@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+    <head> <meta charset="utf-8"/>
+         <meta name="description" content="The Overflowing church website's main page" />
+          <meta name="author" content="unikys@gmail.com" />
+           <title>고양이 왕국</title>
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+     <style>
+         ul{
+   list-style:none;
+   }
+     #topMenu {
+          height: 30px;
+          width: 1200px;
+          margin: 0 auto;
+     }
+     #topMenu ul li{
+          list-style: none;
+          background-color: white;
+          float: left;
+          line-height: 40px;
+          vertical-align: middle;
+          text-align: center;
+          color: black
+     }
+     #topMenu .menuLink{
+          text-decoration:none;
+          display: block; 
+          width: 80px; 
+          font-size: 13px;  
+          color: black;
+          font-family: "Trebuchet MS", Dotum, Arial;
+          
+     }
+     #topMenu .menuLink:hover{
+          color:red;
+     
+     }
+     .baner { 
+         width: 100%;
+         border: 1px solid #aaa;
+          text-align: center;
+           overflow: hidden;
+           height: 100%;
+        }
+
+        .banerimage {  
+     height: 100px;
+      display: inline-block;
+      position: static;
+    }
+    .banersearch{
+        height: 100px;
+      display: inline-block;
+       vertical-align:baseline;
+    }
+    .banerslide {  
+     height: 100px;
+      display: inline-block;
+      position:relative;
+      top: 0px;
+      left: 140px;
+    }
+    .swiper-container {
+        margin-top: 60px;
+	height:320px;
+	border:5px solid silver;
+	border-radius:7px;
+	box-shadow:0 0 20px #ccc inset;
+}
+.swiper-slide {
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+}
+.swiper-slide img {
+	box-shadow:0 0 5px #555;
+	max-width:100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+	/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+}
+.header_user{
+    text-align:right;
+    margin-right: 10px;
+}
+
+nav ul li{
+    display: inline;
+}
+#table{
+    border:3px,solid,black
+}
+
+  
+     </style>
+     <link rel="stylesheet" href="style.css">
+         </head> 
+         <body> 
+              <header>
+                 <ul>
+                        <li><a class="header_text" href="#">★즐겨찾기★ 강아지왕국 바로가기</a></li>
+                 </ul>
+                  <nav>
+                  <ul class="header_user">
+                        <li><a class="header_text" href="#">로그인</a></li>
+                        <li><a class="header_text" href="#">회원가입</a></li>
+                        <li><a class="header_text" href="#">장바구니</a></li>
+                        <li><a class="header_text" href="#">마이페이지</a></li>
+                        <li><a class="header_text" href="#">고객센터</a></li>
+                    </ul>
+                </nav>
+              </header>
+              <div class="baner">
+                      
+                    <div class="banerimage" h><a href="url"><img src="image/catbaner.jpg"></a></div>
+                    <div class="banersearch"><span id='green_window'>
+                           <input type='text' id='input_text' />
+                      </span><button type='submit' id='sch_smit'>검색</button>
+                      </div>
+                      <div class="banerslide"><a href="url"><img src="image/car.jpg"></a></div>
+               </div>
+              <link rel="stylesheet" href="style.css">
+               <nav id="topMenu">
+                         <ul>
+                               <li><a class="menuLink" href="#">브랜드사료</a></li>
+                                <li><a class="menuLink" href="#">기능별사료</a></li>
+                                 <li><a class="menuLink" href="#">건강</a></li>
+                                  <li><a class="menuLink" href="#">간식</a></li>
+                                   <li><a class="menuLink" href="#">캔/파우치</a></li>
+                                   <li><a class="menuLink" href="#">모래</a></li>
+                                   <li><a class="menuLink" href="#">화장실</a></li>
+                                   <li><a class="menuLink" href="#">장난감</a></li>
+                                   <li><a class="menuLink" href="#">캣타워</a></li>
+                                   <li><a class="menuLink" href="#">목욕/미용</a></li>
+                                   <li><a class="menuLink" href="#">하우스</a></li>
+                                   <li><a class="menuLink" href="#">위생/생활</a></li>
+                                   <li><a class="menuLink" href="#">반려인용품</a></li>
+                                   <li><a class="menuLink" href="#">큐레이션몰</a></li>
+                                  </ul>
+                                  </nav>
+                                  <script src="slide.js">
+                                  currentSlide(1)
+                                  </script>
+                                  <div class="slideshow-container">
+
+                                        <div class="mySlides fade">
+                                          <div class="numbertext">1 / 4</div>
+                                          <img src="image/image_slide1.jpg" style="width:100%">
+                                          
+                                        </div>
+                                        
+                                        <div class="mySlides fade">
+                                          <div class="numbertext">2 / 4</div>
+                                          <img src="image/image_slide4.jpg" style="width:100%">
+                                         
+                                        </div>
+                                        
+                                        <div class="mySlides fade">
+                                          <div class="numbertext">3 / 4</div>
+                                          <img src="image/image_slide3.jpg" style="width:100%">
+                                         
+                                        </div>
+                                        <div class="mySlides fade">
+                                                <div class="numbertext">4 / 4</div>
+                                                <img src="image/image_slide2.jpg" style="width:100%">
+                                               
+                                              </div>
+                                        
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                        
+                                        </div>
+                                        <br>
+                                        
+                                        <div style="text-align:center">
+                                          <span class="dot" onclick="currentSlide(1)"></span> 
+                                          <span class="dot" onclick="currentSlide(2)"></span> 
+                                          <span class="dot" onclick="currentSlide(3)"></span> 
+                                          <span class="dot" onclick="currentSlide(4)"></span> 
+                                        </div>
+                                        <div class="swiper-pagination"></div>
+                                    </div>
+                                    
+                                    <div style="text-align:center; margin-top:5px;">SURPRISE EVENT</div>
+                                        <div class="swiper-container">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide"><img src="image/event1.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event2.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event3.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event4.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event5.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event6.jpg"></div>        
+                                                    <div class="swiper-slide"><img src="image/event2.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event5.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event2.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event5.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event2.jpg"></div>
+                                                    <div class="swiper-slide"><img src="image/event5.jpg"></div>
+                                                </div>
+                                            
+                                                <!-- 네비게이션 -->
+                                                <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+                                                <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+                                            
+                                                <!-- 페이징 -->
+                                               </div>
+                                        <script>
+
+                                                new Swiper('.swiper-container', {
+                                                
+                                                    slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
+                                                    spaceBetween : 30, // 슬라이드간 간격
+                                                    slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+                                                
+                                                    // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+                                                    // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+                                                    loopFillGroupWithBlank : true,
+                                                
+                                                    loop : true, // 무한 반복
+                                                
+                                                    pagination : { // 페이징
+                                                        el : '.swiper-pagination',
+                                                        clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                                                    },
+                                                    navigation : { // 네비게이션
+                                                        nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+                                                        prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+                                                    },
+                                                });
+                                                
+                                                </script>
+                                                
+                                                
+                                                <div class="change_image">
+                                                        <div class="image_true"><img src="image/menu1.PNG" onmouseover="this.src='image/final1.JPG'" onmouseout="this.src='image/menu1.PNG'"></div>
+                                                        <div class="image_true"><img src="image/menu2.PNG" onmouseover="this.src='image/final2.JPG'" onmouseout="this.src='image/menu2.PNG'"></div>
+                                                        <div class="image_true"><img src="image/menu3.PNG" onmouseover="this.src='image/final3.JPG'" onmouseout="this.src='image/menu3.PNG'"></div>
+                                                        <div class="image_true"><img src="image/menu4.PNG" onmouseover="this.src='image/final4.JPG'" onmouseout="this.src='image/menu4.PNG'"></div>
+                                                    </div>
+                                                    <table style="width: 25%;float: left;">
+                                                    <td><div class="footer w_set">
+                                                            <div class="ft_top clear">
+                                                              <div class="ft_cs">
+                                                                <p class="ft_title ff_notoKr">고객센터</p>
+                                                                <p class="ff_lato">1688-7079</p>
+                                                                <div class="ft_cs_time">
+                                                                  <div class="cs_tit">근무시간안내</div>
+                                                                  <ul class="time">
+                                                                    <li><span>평일</span><strong>10:00~18:00 발송 및 고객센터 근무</strong><br><span class="stxt">(점심시간 12:00 ~ 13:00)</span></li>
+                                                                    <li><span>토요일</span><strong>10:00~13:00 발송업무만 진행</strong><br><span class="stxt">(CS는 1:1 문의게시판 이용)</span></li>
+                                                                    <li class="holiday"><span>일요일 및 공휴일은 휴무입니다.</span></li>
+                                                                  </ul>      
+                                                                </div>
+                                                                <a href="/shop/service/customer.php?&" class="ft_bt" style="display: none">
+                                                                  고객센터 바로가기
+                                                                </a>
+                                                                </div>
+                                                            </table>
+                                                                <table>
+                                                                <div class="footer w_set" style="width:25%;float: left;">
+                                                                        <p class="ft_title ff_notoKr">은행정보 </p>
+                                                                        <p class="ft_depositor">예금주 : (주)서진에스앤디</p>
+                                                                        <ul class="bank_list">
+                                                                          <li class="ft_bank">국민</li>
+                                                                          <li class="ft_bank_num ff_lato">93456-707070</li>
+                                                                          <li class="ft_bank">우리</li>
+                                                                          <li class="ft_bank_num ff_lato">1005-486-717171</li>
+                                                                          <li class="ft_bank">하나</li>
+                                                                          <li class="ft_bank_num ff_lato">810-717171-01305</li>
+                                                                          <li class="ft_bank">농협</li>
+                                                                          <li class="ft_bank_num ff_lato">23456-707070-08</li>
+                                                                          <li class="ft_bank">신한</li>
+                                                                          <li class="ft_bank_num ff_lato">100-026-875494</li>
+                                                                        </ul>
+                                                                  
+                                                                      </div>
+                                                                      </table>
+                                                                      <table style="width:25%;float: left;">
+                                                                      <div class="footer w_set">
+                                                                            <p class="ft_title ff_notoKr">공지사항</p>
+                                                                                  
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">[메리 추석] 추석휴무일정 및 배송..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">2019년5월6일 대체 공휴일 안내</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">근로자의 날 고객센터 업무시간 변..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">신규고객 3만원이상 첫구매시 대박..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice"> [택배 안내] CJ대한통운 택배외 타..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">바마 파샤 홈 펫 하우스 런칭기념 ..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td height="23" style="padding-left:4px;"><img src="/shop/data/skin/apple_tree/img/main/notice_icon.gif" align=absmiddle>
+                                                                                  <a href="/shop/board/list.php?id=notice">오븐베이크 캣 그레인 런칭기념 이..</a>
+                                                                                </td>
+                                                                              </tr>
+                                                                        
+                                                                          </div>
+                                                                          
+                                                                        
+              </body>
+</html>
