@@ -1,11 +1,12 @@
-var http = require('http');
-var fs = require('fs');
+const express = require('express');
+const app = express()
+app.listen(9091);
+const path = require('path');
+app.get('/',function(req,res){;
+    res.sendFile(path.join(__dirname)+'/index.html')
+})
 
-var server = http.createServer(function(request,response){
-    response.writeHead(200,{'Content-Type':'text/html'});
-    fs.createReadStream("./index.html").pipe(response);
-});
-server.listen(8080, function(){ 
-    console.log('Server is running...');
-});
-
+app.get('/login',function*(req,res){;
+res.sendFile(path.join(__dirname)+'/index.html')
+})
+app.use(express.static('public'));

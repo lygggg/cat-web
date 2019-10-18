@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+        <head>
+                <title>로그인</title>
+                <meta charset="utf-8">
+                <link rel="stylesheet" href="css/styles.css">
+                <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+                <style>
+                * {
+                    box-sizing: border-box;
+                    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color:white;
+}
+
+.login-form {
+  background-color: #eeeff1;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 300px;
+  padding: 20px;
+  
+
+}
+
+.text-field {
+  border: 10px solid #ffffff;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  width: 260px;
+  height: 44px;
+
+}
+
+.submit-btn {
+  font-size: 14px;
+  background-color: gray;
+  border-radius: 5px;
+  border: 10px solid gray;
+  width: 260px;
+  height: 44px;
+  margin: 10px 0 30px 0;
+}
+
+.links {
+  text-align: center;
+}
+
+.links a {
+  font-size: 12px;
+  color: #9b9b9b;
+  text-align: center;
+}
+                </style>
+              </head>
+              <body>
+                <div class="login-form">
+                  <form>
+                      <p>회원 로그인</p>
+                    <input type="text" name="email" class="text-field" placeholder="아이디"><br>
+                    <input type="password" name="password" class="text-field" placeholder="비밀번호"><br>
+                    <input type="submit" value="로그인" class="submit-btn">
+                  </form>
+
+                  <div class="links">
+                    <a href="#">비밀번호를 잊어버리셨나요?</a>
+                  </div>
+                </div>
+              </body>
+              </html>
