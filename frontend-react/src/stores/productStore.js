@@ -37,6 +37,13 @@ const productStore ={
     get categories(){
         return this._categories;
     },
+    createProduct({ title }) {
+        this._product = [...this.products,{
+            title,
+            
+
+        }];
+    }
     
    
 };

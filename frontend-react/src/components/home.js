@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
 import Category from './Category';
 
-import productStore from '../stores/productStore';
+import productStore from '../stores/ProductStore';
 
 
 function Home() {
@@ -34,6 +34,9 @@ function Home() {
             )}
           </ul>
         </nav>
+        <Link to="/products/new">
+          <i className="material-icons ic-create">상품추가</i>
+        </Link>
       </header>
       <ProductList />
     </>

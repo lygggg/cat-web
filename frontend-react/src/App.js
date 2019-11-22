@@ -13,12 +13,9 @@ import Snack from "./components/Snack";
 import Home from "./components/Home";
 import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
+import ProductNew from "./components/ProductNew";
 
-// function handleClick() {
-//   return(
-//     <ProductList name ={"사료"}/>
-//   )
-// }
+
 
 function App() {
   return (
@@ -27,10 +24,12 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/categories/:categoryId" >
+          <Route path="/categories/:categoryId">
             <ProductList />
           </Route>
-         
+         <Route path="/products/new">
+           <ProductNew/>
+           </Route>
           <Route path="/products/:productId">
             <ProductDetail />
           </Route>

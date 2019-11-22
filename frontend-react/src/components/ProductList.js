@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import store from '../stores/productStore';
+import store from '../stores/ProductStore';
 import Product from './Product';
 import { filter } from 'minimatch';
 
