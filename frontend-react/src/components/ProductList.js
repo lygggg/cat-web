@@ -26,7 +26,7 @@ function ProductList( props ) {
         <>
         <h1>{categoryName}</h1>
         
-            { result.map(product =>
+            {result.map(product =>
                 <li key={product.id}>
                     <Product product={product}/>
 
@@ -35,7 +35,7 @@ function ProductList( props ) {
                
   
         
-    </>
+        </>
 );
             }
 export default ProductList;

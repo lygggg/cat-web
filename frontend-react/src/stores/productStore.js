@@ -37,9 +37,13 @@ const productStore ={
     get categories(){
         return this._categories;
     },
-    createProduct({ title }) {
+    createProduct({ title, category, price, description }) {
         this._product = [...this.products,{
+            id: this._product.length +1,
             title,
+            category,
+            price,
+            description,
             
 
         }];

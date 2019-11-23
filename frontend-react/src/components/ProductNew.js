@@ -10,7 +10,7 @@ const [price, setPrice] = useState(0);
 const [category, setCategory] = useState();
 const [fileName, setFileName] = useState('이미지 파일 선택');
 const [image, setImage] = useState();
-console.log(title);
+
 // const onCategoryChange =(event) => {
 //     setCategory(event.target.value ?)
 // }
