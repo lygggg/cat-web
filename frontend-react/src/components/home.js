@@ -7,6 +7,7 @@ import Category from './Category';
 import productStore from '../stores/ProductStore';
 
 
+
 function Home() {
   const categories = productStore.categories;
 

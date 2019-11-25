@@ -1,5 +1,4 @@
-
-
+const DEFAULT_IMAGE ='/public/image/cat'
 const productStore ={
     _product: [
         { id: 100, title: '[AGT캔 증정] 게더 프리 에이커 캣 치킨 1kg', category: '사료', price: 15000, description: "캐나다 금사료!!", imageurl: "/public/image/gethe.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
@@ -8,7 +7,7 @@ const productStore ={
         { id: 103, title: '[150g 추가증정] 빈티지 그레인프리 오븐프레쉬 캣 300g (칠면조와 청어)', category: '사료', price: 10600, description: "렌더링하지 않은 최상급 신선한 생육, 생선 100%", imageurl: "/public/image/food_vintage.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
         { id: 200, title: '캣퓨어 6프리 퓨레스틱 50g (연어와 닭가슴살)', category: '간식', price: 2800, description: "국내산 100% 사람먹는 원료", imageurl: "/public/image/stick.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
         { id: 201, title: '캣퓨어 6프리 퓨레스틱 50g (연어와 참치)', category: '간식', price: 2800, description: "국내산 100% 사람먹는 원료", imageurl: "/public/image/stick_fish.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
-        { id: 202, title: '캣퓨어 6프리 퓨레스틱 50g (맛선택가능) -g 4개', category: '간식', price: 10950, description:"국내산 100% 사람먹는 원료", imageurl: "/public/image/stick_all.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
+        { id: 202, title: '캣퓨어 6프리 퓨레스틱 50g (맛선택가능) -4개', category: '간식', price: 10950, description:"국내산 100% 사람먹는 원료", imageurl: "/public/image/stick_all.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
         { id: 300, title: '헨더슨 두부모래 천연탈취제 700g', category: '모래', price: 3950, description: "두부모래 사용시, 냄새제거+응고력향상", imageurl: "/public/image/send.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
         { id: 301, title: '헨더슨 두부모래 천연탈취제 700g -3개', category: '모래', price: 11000, description: "두부모래 사용시, 냄새제거+응고력향상", imageurl: "/public/image/send_hendersonall.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
         { id: 302, title: '[1+1증정] 헨더슨 두부모래 깨끗한 아침 2.6kg (가는 입자 / 오리지날향)', category:'모래', price:10000, description: "습기와 더위에 강한 최강 두부모래!!", imageurl: "/public/image/send_hendersonsmall.jpg", account: "1111-111-111-1111",phoneNumber:"010-1321-4123"},
@@ -37,13 +36,16 @@ const productStore ={
     get categories(){
         return this._categories;
     },
-    createProduct({ title, category, price, description }) {
+    createProduct({ title, category, price, description, imageurl, phoneNumber, account }) {
         this._product = [...this.products,{
             id: this._product.length +1,
             title,
             category,
             price,
             description,
+            imageurl,
+            phoneNumber,
+            account,
             
 
         }];
