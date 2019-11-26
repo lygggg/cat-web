@@ -12,30 +12,30 @@ export const CATEGORIES = {
 };
 
 
-function ProductList( props ) {
+function ProductList(props) {
     const { categoryId } = useParams();
     const categoryName = store.categories[categoryId];
-    
-   
-     const products = store.products;
-     console.log(props.name)
-  
-     const result = products.filter(product => product.category ===  categoryName  );
-      console.log(result);
+
+
+    const products = store.products;
+    console.log(props.name)
+
+    const result = products.filter(product => product.category === categoryName);
+    console.log(result);
     return (
         <>
-        <h1>{categoryName}</h1>
-        
+            <h1>{categoryName}</h1>
+
             {result.map(product =>
                 <li key={product.id}>
-                    <Product product={product}/>
+                    <Product product={product} />
 
                 </li>
-                )}
-               
-  
-        
+            )}
+
+
+
         </>
-);
-            }
+    );
+}
 export default ProductList;
