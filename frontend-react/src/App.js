@@ -14,6 +14,7 @@ import Home from "./components/Home";
 import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
 import ProductNew from "./components/ProductNew";
+import BasketList from "./components/BasketList";
 
 
 
@@ -32,6 +33,9 @@ function App() {
            </Route>
           <Route path="/products/:productId">
             <ProductDetail />
+          </Route>
+          <Route path="/basket">
+            <BasketList/>
           </Route>
         </Switch>
     </Router>
