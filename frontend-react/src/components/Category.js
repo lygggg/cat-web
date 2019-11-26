@@ -7,6 +7,7 @@ function Category({ categoryName, categoryId }) {
         <Link to={`/categories/${categoryId}`}>
             <div>{categoryName}</div>
         </Link>
+        
     );
 }
 
