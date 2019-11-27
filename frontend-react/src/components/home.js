@@ -42,7 +42,7 @@ function Home() {
         </Link>
         <Search/>
       </header>
-      <ProductList />
+      
     </>
   );
 }

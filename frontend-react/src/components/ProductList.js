@@ -15,7 +15,6 @@ function ProductList() {
     const lowprice = async (result) => {
 
         setButton('낮은가격순');
-        console.log(button)
         const final = result.sort(function (a, b) {
             return a.price - b.price
 
@@ -27,7 +26,6 @@ function ProductList() {
     const highprice = async (result) => {
 
         setButton('높은가격순');
-        console.log(button)
         const final = result.sort(function (a, b) {
             return b.price - a.price
 
@@ -42,23 +40,22 @@ function ProductList() {
 
 
         if (button == '낮은가격순') {
-
             setListResult(lowprice);
-
         }
         else if (button == '높은가격순') {
             setListResult(lowprice);
         }
 
-    }, []
+    }, [setButton]
     );
 
     return (
         <>
-            <h1>{categoryName}</h1>
 
+            <h1>{categoryName}</h1>
             <button onClick={() => lowprice(ListResult)} onChange={setButton}>가격 낮은순</button>
             <button onClick={() => highprice(ListResult)} onChange={setButton}>가격 높은순</button>
+
 
             {ListResult.map(product =>
                 <li key={product.id}>
