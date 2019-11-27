@@ -1,11 +1,11 @@
-const basketStore ={
+const basketStore = {
     _basket: [
 
     ],
     get baskets() {
         return this._basket;
     },
-    createBasket(product){
+    createBasket(product) {
         this._basket.push(product)
         console.log(this._basket);
 

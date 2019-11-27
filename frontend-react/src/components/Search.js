@@ -27,8 +27,9 @@ function Search() {
         <>
             <div>
                 <input type='text' value={searchTerm} placeholder="Search"
-                    onChange={handleChange} />
+                    onChange={handleChange} />               
                      <ul>
+                         
                         {searchResults.map(product =>(
                         <li key={product.id}>
                         <Product product={product}/>
