@@ -16,7 +16,6 @@ function Search() {
             product.title.indexOf(searchTerm) > -1  
          );
              setSearchResults(result);
-             console.log(searchResults);
     }
     ,[searchTerm]
     );

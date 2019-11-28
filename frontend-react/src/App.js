@@ -15,6 +15,7 @@ import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
 import ProductNew from "./components/ProductNew";
 import BasketList from "./components/BasketList";
+import Login from "./components/Login";
 
 
 
@@ -22,6 +23,9 @@ function App() {
   return (
     <Router>
         <Switch>
+          <Route path="/login">
+            <Login/>
+          </Route>
           <Route exact path="/">
             <Home />
           </Route>

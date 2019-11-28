@@ -15,10 +15,11 @@ function Home() {
   return (
     <>
       <header>
+        
         <ul>
           <li><a className="header_text" href="#">★즐겨찾기★ 강아지왕국 바로가기</a></li>
           <ul className="header_user">
-            <li><a className="header_text" >로그인</a></li>
+            <li><Link to="/Login"><i>로그인</i></Link></li>
             <li><a className="header_text" href="#">회원가입</a></li>
             
       

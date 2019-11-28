@@ -10,10 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^3.25.3",
+    "bootstrap": "^4.4.0",
     "html-webpack-plugin": "^3.2.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2"
+    "react": "^16.12.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-transition-group": "^15.6.2",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "reactstrap": "^8.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

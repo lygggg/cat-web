@@ -5,27 +5,28 @@ import Product from './Product';
 import { filter } from 'minimatch';
 
 function ProductList() {
-    const [ListResult, setListResult] = useState([]);
-    const [button, setButton] = useState('');
+    const [productList, setProductList] = useState([]);
+    const [priceOrder, setPriceOrder] = useState('');
     const { categoryId } = useParams();
     const categoryName = store.categories[categoryId];
     const products = store.products;
 
 
-    const lowprice = async (result) => {
+    const lowprice = (result) => {
 
-        setButton('낮은가격순');
+        setPriceOrder('낮은가격순');
         const final = result.sort(function (a, b) {
             return a.price - b.price
 
         })
+        
         return final;
 
     }
 
-    const highprice = async (result) => {
+    const highprice = (result) => {
 
-        setButton('높은가격순');
+        setPriceOrder('높은가격순');
         const final = result.sort(function (a, b) {
             return b.price - a.price
 
@@ -36,28 +37,20 @@ function ProductList() {
 
     useEffect(() => {
         const result = products.filter(product => product.category === categoryName);
-        setListResult(result);
+        setProductList(result);
 
-
-        if (button == '낮은가격순') {
-            setListResult(lowprice);
-        }
-        else if (button == '높은가격순') {
-            setListResult(lowprice);
-        }
-
-    }, [setButton]
+    }, [setPriceOrder]
     );
 
     return (
         <>
 
             <h1>{categoryName}</h1>
-            <button onClick={() => lowprice(ListResult)} onChange={setButton}>가격 낮은순</button>
-            <button onClick={() => highprice(ListResult)} onChange={setButton}>가격 높은순</button>
+            <button onClick={() => lowprice(productList)}>가격 낮은순</button>
+            <button onClick={() => highprice(productList)}>가격 높은순</button>
 
 
-            {ListResult.map(product =>
+            {productList.map(product =>
                 <li key={product.id}>
                     <Product product={product} />
 
