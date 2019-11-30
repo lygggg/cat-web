@@ -9,10 +9,6 @@ const basketStore = {
         return this._basket;
     },
 
-    set baskets(baskets) {
-        this._basket = baskets;
-    },
-
     createBasket(product) {
         this._basket.push(product)
         console.log(this._basket);
@@ -24,11 +20,8 @@ const basketStore = {
     },
 
     oneDeleteBasket(productId) {
-
        const deleteResult = this._basket.filter(item => item.id != productId);
        this._basket = deleteResult;
-       
-       console.log(this._basket);
     }
 };
 export default basketStore;
