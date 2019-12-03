@@ -21,8 +21,7 @@ function Home() {
           <ul className="header_user">
             <li><Link to="/Login"><i>로그인</i></Link></li>
             <li><a className="header_text" href="#">회원가입</a></li>
-            
-      
+            <li><Link to='/purchaselist'>구매목록</Link></li>
             <li><Link to="/basket"><i>장바구니</i></Link></li>
             
             <li><a className="header_text" href="#">마이페이지</a></li>

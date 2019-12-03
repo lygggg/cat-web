@@ -1,4 +1,3 @@
-const DEFAULT_IMAGE = '/public/image/cat'
 const productStore = {
     _product: [
         { id: 100, title: '[AGT캔 증정] 게더 프리 에이커 캣 치킨 1kg', category: '사료', price: 15000, description: "캐나다 금사료!!", imageurl: "/public/image/gethe.jpg", account: "1111-111-111-1111", phoneNumber: "010-1321-4123" },
@@ -46,6 +45,7 @@ const productStore = {
             imageurl,
             phoneNumber,
             account,
+            
 
 
         }];

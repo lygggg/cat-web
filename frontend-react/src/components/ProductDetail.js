@@ -16,7 +16,6 @@ function ProductDetail() {
 
     const { productId } = useParams();
     const product = productStore.getProduct(productId);
-    console.log(Product);
     const { imageurl, account, phoneNumber, title, description, price } = product
 
 
