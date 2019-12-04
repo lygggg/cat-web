@@ -1,41 +1,34 @@
 import React, { useState } from "react";
-import { AutoComplete } from "antd";
+const Id = [{
+  id: 'baayoo71', password: 1234
+}]
 
 function Login() {
     
   
-  const loginform = {
-    width:100,
-    maxWidth:400,
-    margin: AutoComplete,
-    border: '1px solid gray',
-    top:50,
-    left:50,
-    
-    
-  }
+
   
     return (
-      <form method='post' id='authForm' st='https://www.tistory.com/auth/login' >
-        <input type='hidden' className='redirectUrl' value='https://blogpack.tistory.com/manage'/>
+      <form>
+        <input type='hidden' className='redirectUrl'/>
         <fieldset>
       <legend className="screen_out">로그인 정보 입력폼</legend>
       <div className="box_login">
         
         <div className="inp_text">
-          <label for="loginId" className="screen_out">아이디</label>
-          <input type="email" id="loginId" name="loginId" placeholder="ID" />
+          <label className="screen_out">아이디</label>
+          <input type="email" id="loginId" placeholder="ID" />
         </div>
-        <div class="inp_text">
-          <label for="loginPw" className="screen_out">비밀번호</label>
-          <input type="password" id="loginPw" name="password" placeholder="Password" />
+        <div>
+          <label className="screen_out">비밀번호</label>
+          <input type="password" id="loginPw" placeholder="Password" />
         </div>
       </div>
       <button type="submit" className="btn_login">로그인</button>
       <div className="login_append">
         <div className="inp_chk"> 
-          <input type="checkbox" id="keepLogin" className="inp_radio"  name="keepLogin"/>
-          <label for="keepLogin" className="lab_g">
+          <input type="checkbox" id="keepLogin" className="inp_radio" />
+          <label className="lab_g">
 <span className="img_top ico_check"></span>
 <span className="txt_lab">로그인 상태 유지</span>
   </label>

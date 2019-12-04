@@ -16,6 +16,8 @@ import ProductList from "./components/ProductList";
 import ProductNew from "./components/ProductNew";
 import BasketList from "./components/BasketList";
 import Login from "./components/Login";
+import PurchaseList from "./components/Purchaselist";
+import SignUp from "./components/SignUp";
 
 
 
@@ -40,6 +42,12 @@ function App() {
           </Route>
           <Route path="/basket">
             <BasketList/>
+          </Route>
+          <Route path="/purchase">
+            <PurchaseList/>
+          </Route>
+          <Route path="/signup">
+            <SignUp/>
           </Route>
         </Switch>
     </Router>

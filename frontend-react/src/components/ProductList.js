@@ -19,7 +19,7 @@ function ProductList() {
             return a.price - b.price
 
         })
-        
+
         return final;
 
     }

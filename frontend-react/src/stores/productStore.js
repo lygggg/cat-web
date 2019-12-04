@@ -45,7 +45,7 @@ const productStore = {
             imageurl,
             phoneNumber,
             account,
-            
+
 
 
         }];
