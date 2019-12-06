@@ -5,25 +5,21 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-
-import Food from "./components/Food"
-import Canner from "./components/Canner";
-import Send from "./components/Send";
-import Snack from "./components/Snack";
+import AuthRoute from './AuthRoute';
 import Home from "./components/Home";
 import ProductDetail from "./components/ProductDetail";
 import ProductList from "./components/ProductList";
 import ProductNew from "./components/ProductNew";
 import BasketList from "./components/BasketList";
 import Login from "./components/Login";
-import PurchaseList from "./components/Purchaselist";
+import PurchaseList from "./components/MyPagePurchaselist";
 import SignUp from "./components/SignUp";
-
 
 
 function App() {
   return (
     <Router>
+     
         <Switch>
           <Route path="/login">
             <Login/>
@@ -43,12 +39,14 @@ function App() {
           <Route path="/basket">
             <BasketList/>
           </Route>
-          <Route path="/purchase">
-            <PurchaseList/>
-          </Route>
+         
           <Route path="/signup">
             <SignUp/>
           </Route>
+          <AuthRoute>
+              <PurchaseList/>
+            </AuthRoute>
+
         </Switch>
     </Router>
   );

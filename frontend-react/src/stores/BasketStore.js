@@ -28,7 +28,7 @@ const basketStore = {
         this._basket = deleteResult;
     },
 
-    toggleItem(productList, f) {
+    toggleItem(productList,taskId) {
         return productList.map(element => {
             if (element.id == taskId) {
                 element.completed = !element.completed;
