@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
+import { Link } from 'react-router-dom';
 
 function ShoppingBasket() {
     const [ListBasket, setListBasket] = useState([]);
@@ -31,10 +32,12 @@ function ShoppingBasket() {
         setListBasket(basket._basket);
     }
     async function selectBuy() {
+        Purchase.deleteList();
       const buyList = ListBasket.filter(e =>
             e.completed === true
         );
         Purchase.plusPurchase(buyList);
+
 
         
     }
@@ -52,7 +55,7 @@ function ShoppingBasket() {
             <h2>내 장바구니 목록</h2>
             <button onClick={allRemove}>전체삭제</button>
             <button onClick={selectRemove}>선택삭제</button>
-            <button onClick={selectBuy}>구매 하기</button>
+            <Link to='billingpage'><button onClick={selectBuy}>구매 하기</button></Link>
             <button>쇼핑 계속하기</button>
             {ListBasket.map(basket =>
                 <li key={basket.id}>
