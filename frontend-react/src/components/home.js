@@ -19,14 +19,14 @@ function Home() {
   return (
     <>
       {isLogin === 'true' ? (<button onClick={handleLogout}>로그아웃</button>)
-        : (<Link to="/login"><button>로그인</button></Link>)}
+        : (<Link to='/login'><button>로그인</button></Link>)}
       <ul>
-        <li><a className="header_text" href="#">★즐겨찾기★ 강아지왕국 바로가기</a></li>
-        <ul className="header_user">
-          <li><Link to="/signup">회원가입</Link></li>
+        <li><a className='header_text' href='#'>★즐겨찾기★ 강아지왕국 바로가기</a></li>
+        <ul className='header_user'>
+          <li><Link to='/signup'>회원가입</Link></li>
           <li><Link to='/purchase'>마이페이지</Link></li>
-          <li><Link to="/basket"><i>장바구니</i></Link></li>
-          <li><a className="header_text" href="#">고객센터</a></li>
+          <li><Link to='/basket'><i>장바구니</i></Link></li>
+          <li><a className='header_text' href='#'>고객센터</a></li>
         </ul>
       </ul>
       <nav>

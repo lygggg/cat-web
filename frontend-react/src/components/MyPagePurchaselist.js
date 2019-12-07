@@ -4,8 +4,8 @@ import Product from './PurchaseProduct';
 
 function PurchaseList() {
     let final = 0;
-    const purchaseList = store.purchases;
-    if (store._purchases.length > 0) {
+    const purchaseList = store.finalBilling;
+    if (store._finalBilling.length > 0) {
         final = store.priceTotal();
     }
 
