@@ -9,7 +9,6 @@ function PurchaseList() {
         final = store.priceTotal();
     }
 
-    // const [purchaseList, setPurchaseList] = useState(store.purchases);
     console.log(purchaseList);
 
     return (
@@ -17,13 +16,13 @@ function PurchaseList() {
         <>
             <h1>구매목록</h1>
             <h2>나의 구매목록</h2>
+            <fieldset>
             {purchaseList.map(purchase =>
                 <li key={purchase.id}>
                     <Product product={purchase} />
                 </li>
             )}
-            <div>총 금액: {final}</div>
-
+            </fieldset>
 
         </>
     )

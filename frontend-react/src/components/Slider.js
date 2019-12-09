@@ -5,7 +5,7 @@ import Carousel from 'nuka-carousel';
 
 function slider() {
     return (
-        <div style={{ width: '30%', margin: 'auto' }}>
+        <div style={{ width: '40%', margin: 'auto' }}>
 
             <Carousel>
                 <img src='/public/image/event7.jpg' />

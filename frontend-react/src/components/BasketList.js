@@ -57,6 +57,8 @@ function ShoppingBasket() {
             <button onClick={selectRemove}>선택삭제</button>
             <Link to='billingpage'><button onClick={selectBuy}>구매 하기</button></Link>
             <button>쇼핑 계속하기</button>
+            <fieldset>
+                
             {ListBasket.map(basket =>
                 <li key={basket.id}>
                     <input type='checkbox' checked={basket.completed} onChange={() => handleCheck(basket.id)} />
@@ -64,6 +66,7 @@ function ShoppingBasket() {
                 </li>
             )}
             <div>총 금액: {totalPrice}</div>
+            </fieldset>
         </>
     );
 }

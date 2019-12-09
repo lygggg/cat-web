@@ -9,7 +9,7 @@ function BasketProduct({ product, onDeleteClick }) {
         <>
 
             <Link to={`/products/${product.id}`}>
-                {product.title} {product.price}원
+                {product.title} {product.price}원  <h3>{product.amount}개</h3>
         <img src={product.imageurl}
                     alt=""
                     width="20%" />

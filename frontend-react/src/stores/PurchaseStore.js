@@ -35,6 +35,7 @@ const purchaseStore = {
     },
 
      createPurchases(product) {
+         product.amount=1;
          this._purchases.push(product);
         //  this._purchases = this._purchases.filter((item, index) => this._purchases.indexOf(item) === index);
      },
@@ -48,11 +49,6 @@ const purchaseStore = {
         return sum;
     },
 
-    // create({title}) {
-    //     this._purchases = [...this.purchases, {
-    //         title,
-    //     }];
-    // }
     
 };
 export default purchaseStore;

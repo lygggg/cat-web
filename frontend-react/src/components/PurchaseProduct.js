@@ -6,7 +6,7 @@ function PurchaseProduct({ product }) {
     return (
         <>
             <Link to={`/products/${product.id}`}>
-                <div>{product.title}</div>
+                <div>{product.title}</div> {product.price * product.amount}원/{product.amount}개
                 <img src={product.imageurl}
                     alt=""
                     width="15%"

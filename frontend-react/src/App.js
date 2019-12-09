@@ -46,7 +46,7 @@ function App() {
           <Route path="/signup">
             <SignUp/>
           </Route>
-          <AuthRoute>
+          <AuthRoute path="/purchase">
               <PurchaseList/>
             </AuthRoute>
 
