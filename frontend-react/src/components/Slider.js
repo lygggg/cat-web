@@ -1,12 +1,9 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
 
-
-
-function slider() {
+function Slider() {
     return (
         <div style={{ width: '40%', margin: 'auto' }}>
-
             <Carousel>
                 <img src='/public/image/event7.jpg' />
                 <img src='/public/image/event2.jpg' />
@@ -14,7 +11,6 @@ function slider() {
                 <img src='/public/image/event4.jpg' />
             </Carousel>
         </div>
-
-    )
+    );
 }
-export default slider;
+export default Slider;

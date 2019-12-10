@@ -4,6 +4,8 @@ import store from '../stores/ProductStore';
 import Product from './Product';
 import { filter } from 'minimatch';
 
+let newCategoryId = 0;
+
 function ProductList() {
     const [productList, setProductList] = useState([]);
     const [priceOrder, setPriceOrder] = useState('');
@@ -11,6 +13,11 @@ function ProductList() {
     const categoryName = store.categories[categoryId];
     const products = store.products;
 
+    if (newCategoryId != categoryId) {
+        newCategoryId = categoryId;
+
+        setProductList(products.filter(product => product.category === categoryName));
+    }
 
     const lowprice = (result) => {
 

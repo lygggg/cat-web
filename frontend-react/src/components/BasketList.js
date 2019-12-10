@@ -33,13 +33,12 @@ function ShoppingBasket() {
     }
     async function selectBuy() {
         Purchase.deleteList();
-      const buyList = ListBasket.filter(e =>
+        
+        const buyList = ListBasket.filter(e =>
             e.completed === true
         );
-        Purchase.plusPurchase(buyList);
 
-
-        
+        Purchase.plusPurchase(buyList, new Date()+'');
     }
 
     useEffect(() => {
@@ -58,7 +57,7 @@ function ShoppingBasket() {
             <Link to='billingpage'><button onClick={selectBuy}>구매 하기</button></Link>
             <button>쇼핑 계속하기</button>
             <fieldset>
-                
+
             {ListBasket.map(basket =>
                 <li key={basket.id}>
                     <input type='checkbox' checked={basket.completed} onChange={() => handleCheck(basket.id)} />

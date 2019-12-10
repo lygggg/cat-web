@@ -17,11 +17,15 @@ const purchaseStore = {
         return this._finalBilling;
     },
 
-    plusPurchase(product){
+    plusPurchase(product, date){
         product.map(e =>{
-            this._purchases.push(e);
+            this._purchases.push({
+                ...e,
+                'date': date,
+            });
         })
     },
+
     lastPayment() { 
         this.purchases.map(e=>{
             this._finalBilling.push(e);
@@ -34,9 +38,11 @@ const purchaseStore = {
         this._purchases=[];
     },
 
-     createPurchases(product) {
-         product.amount=1;
-         this._purchases.push(product);
+     createPurchases(product, count) {
+        this._purchases.push({ 
+            ...product,
+            'amount': count,
+            'date': new Date() + '',});
         //  this._purchases = this._purchases.filter((item, index) => this._purchases.indexOf(item) === index);
      },
 

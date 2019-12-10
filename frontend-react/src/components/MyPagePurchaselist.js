@@ -19,6 +19,7 @@ function PurchaseList() {
             <fieldset>
             {purchaseList.map(purchase =>
                 <li key={purchase.id}>
+                    {purchase.date}
                     <Product product={purchase} />
                 </li>
             )}

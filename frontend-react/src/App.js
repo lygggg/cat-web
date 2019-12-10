@@ -14,24 +14,30 @@ import Login from './components/Login';
 import PurchaseList from './components/MyPagePurchaselist';
 import SignUp from './components/SignUp';
 import BillingPage from './components/BillingPage';
-
+import SearchResult from './components/SearchResult';
+import Search from "./components/Search";
+import Header from './components/Header';
 
 function App() {
   return (
     <Router>
      
         <Switch>
-        
+          <Route path="/search/:searchTerm">
+            <SearchResult />
+          </Route>
           <Route path="/login">
             <Login/>
           </Route>
           <Route exact path="/">
+            <Header />
             <Home />
           </Route>
           <Route path="/billingpage">
             <BillingPage />
           </Route>
           <Route path="/categories/:categoryId">
+            <Header />
             <ProductList />
           </Route>
          <Route path="/products/new">
