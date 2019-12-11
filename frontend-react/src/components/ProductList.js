@@ -3,6 +3,33 @@ import { useParams } from 'react-router-dom';
 import store from '../stores/ProductStore';
 import Product from './Product';
 import { filter } from 'minimatch';
+import styled from 'styled-components';
+import Grid from "antd/lib/card/Grid";
+
+const H1 = styled.h1`
+    width: 100%;
+    text-align: center;
+`;
+
+const Div = styled.div`
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #333;
+`;
+
+const Button = styled.button`
+    display: inline-block;
+    color: #333;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #333;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+`;
 
 let newCategoryId = 0;
 
@@ -50,23 +77,26 @@ function ProductList() {
     );
 
     return (
-        <>
+        <Div>
+            <H1>{categoryName}</H1>
+            <div>
+                <Button onClick={() => lowprice(productList)}>가격 낮은순</Button>
+                <Button onClick={() => highprice(productList)}>가격 높은순</Button>
+            </div>
 
-            <h1>{categoryName}</h1>
-            <button onClick={() => lowprice(productList)}>가격 낮은순</button>
-            <button onClick={() => highprice(productList)}>가격 높은순</button>
+            <div style={{ display: 'grid', gridTemplateColumns: '300px 300px 300px', gridTemplateRows: '300px 300px 300px' }}>
+                {productList.map(product =>
+                    <div key={product.id}>
+                        <Product product={product} />
 
-
-            {productList.map(product =>
-                <li key={product.id}>
-                    <Product product={product} />
-
-                </li>
-            )}
+                    </div>
+                )}
+            </div>
+            
 
 
 
-        </>
+        </Div>
     );
 }
 export default ProductList;

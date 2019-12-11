@@ -41,18 +41,23 @@ function App() {
             <ProductList />
           </Route>
          <Route path="/products/new">
+            <Header />
            <ProductNew/>
            </Route>
           <Route path="/products/:productId">
+            <Header />
             <ProductDetail />
           </Route>
           <Route path="/basket">
+            <Header />
             <BasketList/>
           </Route>
           <Route path="/signup">
+            <Header />
             <SignUp/>
           </Route>
           <AuthRoute path="/purchase">
+            <Header />
               <PurchaseList/>
             </AuthRoute>
 

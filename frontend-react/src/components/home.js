@@ -52,9 +52,7 @@ function Home() {
     <>
 
       <Slider />
-      <Link to="/products/new">
-        <i className="material-icons ic-create">상품추가</i>
-      </Link>
+      
 
       <SearchResult />
     </>

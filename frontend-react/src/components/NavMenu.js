@@ -5,7 +5,19 @@ import Category from './Category';
 import productStore from '../stores/ProductStore';
 import styled from 'styled-components';
 
+const Li = styled.li`
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 20px;
+  margin-left: 20px;
+  text-decoration: none;
+`;
 
+const Nav = styled.nav`
+  width: 100%;
+  text-align: center;
+  
+`;
 
 function NavMenu() {
 
@@ -15,15 +27,20 @@ function NavMenu() {
 
     return (
         
-        <nav>
+        <Nav>
           <ul>
             {categories.map((category, index) =>
-              <li key={index}>
+              <Li key={index}>
                 <Category categoryName={category} categoryId={index}/>
-              </li>
+              </Li>
+              
             )}
+            <Link to="/products/new">
+        <Li className="material-icons ic-create">상품추가</Li>
+      </Link>
           </ul>
-        </nav>
+          
+        </Nav>
         
     );
 };

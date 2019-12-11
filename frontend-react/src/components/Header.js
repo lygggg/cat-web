@@ -18,6 +18,7 @@ const Li = styled.li`
     text-decoration: none;
     float: right;
     background-color: white;
+    color: #333;
 `;
 
 const Div = styled.div`
