@@ -25,7 +25,7 @@ const Div = styled.div`
     text-align: center;
     width: 1500px;
     height: 100px;
-    border: 1px solid black;
+    border: 1px solid #e0e0e0;
     /* margin-right: 10px; */
 `;
 

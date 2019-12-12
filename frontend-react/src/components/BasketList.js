@@ -4,25 +4,40 @@ import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { symbol } from 'prop-types';
 
 const Div = styled.div`
+    
     margin: auto;
     width: 1000px;
     height: auto;
-    border: 1px solid #333;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
 `;
 const Grid = styled.div`
     display: grid;
     align-items:center;
-grid-template-columns: 100px 600px 50px;
-grid-template-rows: 125px 60px ;
+    grid-template-columns: 100px 800px 50px;
+    grid-template-rows: 125px 60px ;
+    justify-items: center;
 `;
 
 const GridInfo = styled.div`
-    display: grid;
-    grid-template-columns: 350px 460px 120px 70px;
-grid-template-rows: 25px 60px ;
+        display: grid;
+    grid-template-columns: 100px 608px 150px 70px;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: 50px;
+    background-color: #fafafa;
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+`;
+
+const Button = styled.button`
+    background-color: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    margin: 10px;
+
 `;
 
 function ShoppingBasket() {
@@ -74,8 +89,8 @@ function ShoppingBasket() {
             <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>
             
-            <Link to='billingpage'><button onClick={selectBuy}>구매 하기</button></Link>
-            <button>쇼핑 계속하기</button>
+            <Link to='billingpage'><Button onClick={selectBuy}>구매 하기</Button></Link>
+            <Button>쇼핑 계속하기</Button>
             
             <div style={{width:'100%'}}>
             </div>
@@ -83,7 +98,6 @@ function ShoppingBasket() {
             <span>전체상품</span>
             <span>상품정보</span>
             <span>상품금액</span>
-            <span>배송비</span>
             </GridInfo>
             {ListBasket.map(basket =>
                 <Grid key={basket.id}>
@@ -91,8 +105,8 @@ function ShoppingBasket() {
                     <Product onDeleteClick={handleSelectDelete} product={basket} />
                 </Grid>
             )}
-            <button onClick={allRemove}>전체삭제</button>
-            <button onClick={selectRemove}>선택삭제</button>
+            <Button onClick={allRemove}>전체삭제</Button>
+            <Button onClick={selectRemove}>선택삭제</Button>
             
             <div>총 금액: {totalPrice}</div>
         

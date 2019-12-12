@@ -12,7 +12,7 @@ const H1 = styled.h1`
 `;
 
 const Div = styled.div`
-    width: 60%;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #333;

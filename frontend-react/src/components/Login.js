@@ -40,8 +40,7 @@ function Login() {
     loginStatus === 'false'  ?
       <form>
         <input type='hidden' className='redirectUrl' />
-        <fieldset>
-          <legend className="screen_out">로그인 정보 입력폼</legend>
+          
           <div className="box_login">
 
             <div className="inp_text">
@@ -69,8 +68,6 @@ function Login() {
            <a href="/member/find/password" className="link_find">비밀번호 찾기</a>
             </span>
           </div>
-
-        </fieldset>
 
       </form>
       :

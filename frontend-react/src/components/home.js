@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
 
-import Category from './Category';
 import productStore from '../stores/ProductStore';
-import Search from './Search';
 import Slider from './Slider';
 import SearchResult from './SearchResult';
-import { symbol } from 'prop-types';
-import NavMenu from './NavMenu';
-import Header from './Header';
+
 
 const Ul = styled.ul`
   width: 1450px;
@@ -50,10 +45,7 @@ function Home() {
 
   return (
     <>
-
       <Slider />
-      
-
       <SearchResult />
     </>
   );
