@@ -46,7 +46,7 @@ function Home() {
   return (
     <>
       <Slider />
-      <SearchResult />
+      
     </>
   );
 }

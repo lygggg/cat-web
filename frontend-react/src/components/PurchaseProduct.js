@@ -27,22 +27,22 @@ function PurchaseProduct({ product }) {
     return (
         <Grid>
             <Link to={`/products/${product.id}`}>
-                <div style={{display: 'block', textAlign: "center"}}><img src={product.imageurl} 
+                <div style={{ display: 'block', textAlign: "center" }}><img src={product.imageurl}
                     alt=""
                     width="70%"
                 /></div>
             </Link>
-            <Link to={`/products/${product.id}`} style={{textDecoration: 'none', color: 'black'}}>
+            <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div>{product.title}</div> {product.price * product.amount}원/{product.amount}개
             </Link>
             <div>
-                <div style={{textAlign:'center', fontWeight: 'bold'}}>입금대기중</div>
+                <div style={{ textAlign: 'center', fontWeight: 'bold' }}>입금대기중</div>
                 <div><Button>배송조회</Button></div>
                 <div><Button>교환신청</Button></div>
                 <div><Button>반품신청</Button></div>
                 <div><Button>구매후기</Button></div>
             </div>
- 
+
         </Grid>
     );
 };

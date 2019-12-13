@@ -46,11 +46,11 @@ function Header() {
         <Link to='/signup'><Li>회원가입</Li></Link>
         <Link to='/purchase'><Li>마이페이지</Li></Link>
         <Link to='/basket'><Li>장바구니</Li></Link>
-        <Link to='/'><Li>고객센터</Li></Link> 
+        <Link to='/'><Li>고객센터</Li></Link>
       </Ul>
 
       <Div>
-        <Link to='/'><img style={{marginLeft: '230px', maxWidth: '200px', maxHeight: '150px', width: 'auto', height: 'auto'}} src='/public/image/catbaner.jpg' /></Link>
+        <Link to='/'><img style={{ marginLeft: '230px', maxWidth: '200px', maxHeight: '150px', width: 'auto', height: 'auto' }} src='/public/image/catbaner.jpg' /></Link>
         <Search />
       </Div>
       <NavMenu />

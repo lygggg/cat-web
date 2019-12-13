@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
-import Basket from '../stores/BasketStore'
 import styled from 'styled-components';
+import { BoldName } from '../lib/ItemName';
 
 const Div = styled.div`
     display: flex;
     align-items: center;
+    color: #777881;
+    text-align: right;
+    letter-spacing: 0;
 `;
 
 const Grid = styled.div`
@@ -38,9 +41,9 @@ function BasketProduct({ product, onDeleteClick }) {
                             alt=""
                             width="20%" />
                             
-                        {product.title} {product.amount}개
+                        <BoldName>{product.title} {product.amount}개</BoldName>
                     </Div>
-                    <Div>
+                    <Div style={{justifyContent:'center'}}>
                         {product.price}원
                     </Div>
                 </Grid>

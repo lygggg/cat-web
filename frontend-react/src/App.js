@@ -24,6 +24,7 @@ function App() {
      
         <Switch>
           <Route path="/search/:searchTerm">
+            <Header />
             <SearchResult />
           </Route>
           <Route path="/login">

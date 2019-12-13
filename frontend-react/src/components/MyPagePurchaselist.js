@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import store from '../stores/PurchaseStore';
 import PurchaseProduct from './PurchaseProduct';
 import MenuButton from '../lib/Button';
-
-import '../';
+import '../css/MyPagePurchaselist.css';
+import {DescriptionName} from '../lib/ItemName';
+import { symbol } from 'prop-types';
 
 const DateDiv = styled.div`
     background-color: #F9F9F9;
@@ -34,9 +35,13 @@ const ImgDiv = styled.div`
     box-sizing: border-box;
     padding: 30px;
     border: 1px solid rgb(224, 224, 224);
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
+`;
+const FlexDiv = styled.div`
+    display: flex;
+    text-align: -webkit-center;
 `;
 
 function PurchaseList() {
@@ -69,6 +74,13 @@ function PurchaseList() {
             </Div>
             <ImgDiv>
                 <img src='/public/image/order-status.png' />
+                <FlexDiv>
+                <DescriptionName></DescriptionName>
+                <DescriptionName></DescriptionName>
+                <DescriptionName></DescriptionName>
+                <DescriptionName></DescriptionName>
+                <DescriptionName></DescriptionName>
+                </FlexDiv>
             </ImgDiv>
         </>
     )

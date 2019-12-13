@@ -16,8 +16,8 @@ const Div = styled.div`
 const Grid = styled.div`
     display: grid;
     align-items:center;
-    grid-template-columns: 100px 800px 50px;
-    grid-template-rows: 125px 60px ;
+    grid-template-columns: 100px 770px 50px;
+    grid-template-rows: 125px 10px ;
     justify-items: center;
 `;
 
@@ -69,16 +69,16 @@ function ShoppingBasket() {
     }
     async function selectBuy() {
         Purchase.deleteList();
-        
+
         const buyList = ListBasket.filter(e =>
             e.completed === true
         );
 
-        Purchase.plusPurchase(buyList, new Date()+'');
+        Purchase.plusPurchase(buyList, new Date() + '');
     }
 
     useEffect(() => {
-        setListBasket(basket.baskets.map(i => { 
+        setListBasket(basket.baskets.map(i => {
             i.completed = false;
             return i;
         }));
@@ -88,16 +88,16 @@ function ShoppingBasket() {
         <Div>
             <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>
-            
+
             <Link to='billingpage'><Button onClick={selectBuy}>구매 하기</Button></Link>
             <Button>쇼핑 계속하기</Button>
-            
-            <div style={{width:'100%'}}>
+
+            <div style={{ width: '100%' }}>
             </div>
             <GridInfo>
-            <span>전체상품</span>
-            <span>상품정보</span>
-            <span>상품금액</span>
+                <span>전체상품</span>
+                <span>상품정보</span>
+                <span>상품금액</span>
             </GridInfo>
             {ListBasket.map(basket =>
                 <Grid key={basket.id}>
@@ -107,9 +107,9 @@ function ShoppingBasket() {
             )}
             <Button onClick={allRemove}>전체삭제</Button>
             <Button onClick={selectRemove}>선택삭제</Button>
-            
+
             <div>총 금액: {totalPrice}</div>
-        
+
         </Div>
     );
 }
