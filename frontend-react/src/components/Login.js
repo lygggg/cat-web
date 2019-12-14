@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import {
-  Route,
   Redirect
 } from "react-router-dom";
 
 import styled from 'styled-components';
-import Input from '../lib/Input'
+import { symbol } from "prop-types";
 
 const Form = styled.form`
   display: grid;
   height: 200px;
-  margin: 8px;
+  margin-bottom: 8px;
 `;
 
 const ButtonDiv = styled.div`
@@ -40,6 +39,22 @@ const SignUpButton = styled.button`
   font-weight: bold;
   border: 1px solid black;
 `;
+
+const A = styled.a`
+  font-size: 12px;
+  text-decoration: none;
+  color: #333;
+  margin: 4px;
+  font-weight: bold;
+`;
+
+const Input = styled.input`
+  padding: 0 19px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin: 3px;
+  font-size: 14px;
+`; 
 
 const _user = [{
   id: 'baayoo71', password: 1234
@@ -75,20 +90,20 @@ function Login() {
 
   return (
     loginStatus === 'false'  ?
-    <div style={{display: 'grid', justifyContent: 'center', padding: '50px'}}>
+    <div style={{display: 'grid', justifyContent: 'center', padding: '50px', width:'1400px'}}>
       <h3 style={{textAlign:'center'}}>로그인</h3>
       <Form>
         
               
-              <input value={email} placeholder="ID" onChange={({ target: { value } }) => setEmail(value)} type='text' />
+              <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='text' />
             
               
-              <input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="Password" />
+              <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" />
             
           <SearchDiv className="txt_find">
-              <a href="/member/find/loginId">아이디</a>
-              /
-           <a href="/member/find/password" >비밀번호 찾기</a>
+              <A href="/member/find/loginId">아이디</A>
+              <A> / </A>
+           <A href="/member/find/password" >비밀번호 찾기</A>
             </SearchDiv>
           <LoginButton onClick={handleLogin} className="btn_login" >로그인</LoginButton>
           </Form>
@@ -100,7 +115,7 @@ function Login() {
               <input type="checkbox" id="keepLogin" className="inp_radio" />
               <label className="lab_g">
                 <span className="img_top ico_check"></span>
-                <span className="txt_lab">로그인 상태 유지</span>
+                <span style={{    fontSize: '12px',fontWeight: 'bold'}}>로그인 상태 유지</span>
               </label>
             </div>
           </div>

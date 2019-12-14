@@ -39,14 +39,15 @@ function Header() {
 
   return (
     <>
-      {isLogin === 'true' ? (<button onClick={handleLogout}>로그아웃</button>)
-        : (<Link to='/login'><button>로그인</button></Link>)}
+      
 
       <Ul className='header_user'>
-        <Link to='/signup'><Li>회원가입</Li></Link>
         <Link to='/purchase'><Li>마이페이지</Li></Link>
         <Link to='/basket'><Li>장바구니</Li></Link>
         <Link to='/'><Li>고객센터</Li></Link>
+        <Link to='/signup'><Li>회원가입</Li></Link>
+        {isLogin === 'true' ? (<Li onClick={handleLogout}>로그아웃</Li>)
+        : (<Link to='/login'><Li>로그인</Li></Link>)}
       </Ul>
 
       <Div>

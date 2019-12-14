@@ -28,6 +28,7 @@ function App() {
             <SearchResult />
           </Route>
           <Route path="/login">
+            <Header />
             <Login/>
           </Route>
           <Route exact path="/">
