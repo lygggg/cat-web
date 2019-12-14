@@ -22,8 +22,8 @@ function Search() {
     return (
 
         <>
-            <form style={{ display: 'inline-block', height: '40px', width: '399px', border: '1px solid #1b5ac2', background: 'white' }}>
-            <input style={{ fontSize: '16px', width: '325px', height: '20px', padding: '5px', border: '0px', }} type='input' value={searchTerm} placeholder="Search"
+            <form style={{ display: 'inline-block', height: '40px', border: '2px solid #e0e0e0', background: 'white' }}>
+            <input style={{ fontSize: '16px', width: '385px', height: '25px', padding: '5px', border: '0px', }} type='input' value={searchTerm} placeholder="   [투데이 특가] 매일 놀라운 가격"
                     onChange={handleChange}/>
                 <Link to={`/search/${searchTerm}`}><button type='submit' style={{ width: '54px', height: '40px',marginLeft:'10px', border: '0px', background: '#1b5ac2', outline: 'none', color: 'white' }} onClick={handleSearch}>검색</button></Link>
             </form>

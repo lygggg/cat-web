@@ -9,16 +9,18 @@ const Li = styled.li`
   list-style-type: none;
   display: inline-block;
   padding: 0px 50px 0 48px;
-  height: 30px;
-  font-size: 16px;
+  font-weight: bold;
+  height: 20px;
+  font-size: 14px;
   color: #333;
   overflow: hidden;
   text-decoration: none;
 `;
 
-const Nav = styled.nav`
+const Nav = styled.div`
   width: 1500px;
   text-align: center;
+  border-top: 1px solid #e0e0e0;
 `;
 
 const ImageSpan = styled.span`

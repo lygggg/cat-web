@@ -17,6 +17,8 @@ import BillingPage from './components/BillingPage';
 import SearchResult from './components/SearchResult';
 import Search from "./components/Search";
 import Header from './components/Header';
+import Bttom from './components/Bottom';
+import Bottom from "./components/Bottom";
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route exact path="/">
             <Header />
             <Home />
+            <Bottom />
           </Route>
           <Route path="/billingpage">
             <BillingPage />
@@ -57,6 +60,7 @@ function App() {
           <Route path="/signup">
             <Header />
             <SignUp/>
+            <Bottom />
           </Route>
           <AuthRoute path="/purchase">
             <Header />

@@ -40,19 +40,19 @@ function SubSlider() {
         <div>
           <img
             alt=''
-            src='/public/image/canada_fish_canner.jpg'
+            src='/public/image/canada_ck_canner.jpg'
           />
         </div>
         <div>
           <img
             alt=''
-            src='/public/image/canada_fish_canner.jpg'
+            src='/public/image/canner.jpg'
           />
         </div>
         <div>
           <img
             alt=''
-            src='/public/image/canada_fish_canner.jpg'
+            src='/public/image/gethe.jpg'
           />
         </div>
         <div>

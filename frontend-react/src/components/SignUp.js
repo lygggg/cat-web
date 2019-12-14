@@ -1,31 +1,94 @@
 import React, { useState } from "react";
 
+import styled from 'styled-components';
+
+const GridDiv = styled.div`
+    display: grid;
+    justify-content: center;
+    height: 600px;
+    
+`;
+
+const SignForm = styled.form`
+    
+`;
+
+const InputDiv = styled.div`
+
+`;
+
+const Input = styled.input`
+    width: 300px;
+    height: 40px;
+`;
+
+const Label = styled.span`
+    display: inline-block;
+    width: 120px;
+    margin-top:30px;
+    font-size: 13px;
+    font-weight: bold;
+`;
+
+const Span = styled.span`
+`;
+
+const SignButton = styled.button`
+    display: block;
+    width: 340px;
+    height: 54px;
+    margin: 45px auto 0;
+    border: 0 none;
+    border-radius: 3px;
+    background-color: #0074e9;
+    font-size: 16px;
+    color: #fff;
+    line-height: 44px;
+    letter-spacing: -0.3px;
+`;
+
 function SignUp() {
     
     return (
-        <>
-        <form>
+        <GridDiv>
+            <h2 style={{textAlign:'center'}}>회원가입</h2>
+        <SignForm>
+            <InputDiv>
+            <Span>
+            <Label>아이디*</Label>
+            </Span>
+                <Input placeholder='아이디(이메일)' type='id' />
+            </InputDiv>
+            <InputDiv>
+            <Span>
+            <Label>비밀번호*</Label>
+            </Span>
+                <Input type='password' placeholder='비밀번호(영문 숫자 특수문자 2가지 이상 6~15자 이내)'/>
+            </InputDiv>
             <div>
-                <label>아이디</label><br/>
-                <input className="user-id" />
+            <Span>
+            <Label>비밀번호확인*</Label>
+            </Span>
+                <Input type="password" placeholder='비밀번호 확인'/>
             </div>
             <div>
-                <label >닉네임</label><br/>
-                <input className="user-nick" />
+            <Span>
+            <Label>이름*</Label>
+            </Span>
+                <Input type='name' placeholder='이름'/>
             </div>
             <div>
-                <label >비밀번호</label><br/>
-                <input className="user-password"  />
+            <Span>
+            <Label>휴대폰</Label>
+            </Span>
+                <Input  type="tel" placeholder='휴대폰 번호'/>
             </div>
+            
             <div>
-                <label >비밀번호체크</label><br/>
-                <input className="user-password-check" type="password" />
+                <SignButton type="primary" >동의하고 가입하기</SignButton>
             </div>
-            <div>
-                <button type="primary" >가입하기</button>
-            </div>
-        </form>
-        </>   
+        </SignForm>
+        </GridDiv>   
 
         
         

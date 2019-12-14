@@ -11,7 +11,6 @@ const Ul = styled.ul`
 `
 
 const Li = styled.li`
-
     list-style: none;
     margin: 10px;
     padding: 0px;
@@ -19,14 +18,13 @@ const Li = styled.li`
     float: right;
     background-color: white;
     color: #333;
+    font-size: 12px;
 `;
 
 const Div = styled.div`
     text-align: center;
     width: 1500px;
     height: 100px;
-    border: 1px solid #e0e0e0;
-    /* margin-right: 10px; */
 `;
 
 function Header() {
@@ -46,12 +44,12 @@ function Header() {
         <Link to='/basket'><Li>장바구니</Li></Link>
         <Link to='/'><Li>고객센터</Li></Link>
         <Link to='/signup'><Li>회원가입</Li></Link>
-        {isLogin === 'true' ? (<Li onClick={handleLogout}>로그아웃</Li>)
+        {isLogin === 'true' ? (<Link to='/'><Li onClick={handleLogout}>로그아웃</Li></Link>)
         : (<Link to='/login'><Li>로그인</Li></Link>)}
       </Ul>
 
       <Div>
-        <Link to='/'><img style={{ marginLeft: '230px', maxWidth: '200px', maxHeight: '150px', width: 'auto', height: 'auto' }} src='/public/image/catbaner.jpg' /></Link>
+        <Link to='/'><img style={{ marginLeft: '300px', maxWidth: '200px', width: 'auto', height: 'auto' }} src='/public/image/catbaner.jpg' /></Link>
         <Search />
       </Div>
       <NavMenu />
