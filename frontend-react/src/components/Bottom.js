@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const Footer = styled.footer`
     width: 1500px;
+    margin-top: 100px;
     
 `;
 

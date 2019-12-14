@@ -28,10 +28,12 @@ function App() {
           <Route path="/search/:searchTerm">
             <Header />
             <SearchResult />
+            <Bottom />
           </Route>
           <Route path="/login">
             <Header />
             <Login/>
+            <Bottom />
           </Route>
           <Route exact path="/">
             <Header />
@@ -40,22 +42,27 @@ function App() {
           </Route>
           <Route path="/billingpage">
             <BillingPage />
+            <Bottom />
           </Route>
           <Route path="/categories/:categoryId">
             <Header />
             <ProductList />
+            <Bottom />
           </Route>
          <Route path="/products/new">
             <Header />
            <ProductNew/>
+           <Bottom />
            </Route>
           <Route path="/products/:productId">
             <Header />
             <ProductDetail />
+            <Bottom />
           </Route>
           <Route path="/basket">
             <Header />
             <BasketList/>
+            <Bottom />
           </Route>
           <Route path="/signup">
             <Header />
@@ -65,6 +72,7 @@ function App() {
           <AuthRoute path="/purchase">
             <Header />
               <PurchaseList/>
+              <Bottom />
             </AuthRoute>
 
         </Switch>
