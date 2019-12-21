@@ -18,7 +18,6 @@ function Search() {
         setIsVisible(true);
     }
 
-    console.log(isVisible);
     return (
 
         <>

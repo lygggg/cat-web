@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Category from './Category';
 import productStore from '../stores/ProductStore';
-import styled from 'styled-components';
 
 const Li = styled.li`
   list-style-type: none;
@@ -23,22 +23,15 @@ const Nav = styled.div`
   border-top: 1px solid #e0e0e0;
 `;
 
-const ImageSpan = styled.span`
-  background-image: url(https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off.png);
-  width: 100%;
-`;
-
-
 function NavMenu() {
   const categories = productStore.categories;
   return (
     <Nav>
-
       <ul>
         <Li>
           <a>
             메뉴
-            </a>
+          </a>
         </Li>
         {categories.map((category, index) =>
           <Li key={index}>

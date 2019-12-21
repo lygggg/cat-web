@@ -25,6 +25,11 @@ function App() {
     <Router>
      
         <Switch>
+          <Route path="/categories/:categoryId/page/:pageNum">
+            <Header />
+            <ProductList />
+            <Bottom />
+          </Route>
           <Route path="/search/:searchTerm">
             <Header />
             <SearchResult />
@@ -44,11 +49,11 @@ function App() {
             <BillingPage />
             <Bottom />
           </Route>
-          <Route path="/categories/:categoryId">
+          {/* <Route path="/categories/:categoryId">
             <Header />
             <ProductList />
             <Bottom />
-          </Route>
+          </Route> */}
          <Route path="/products/new">
             <Header />
            <ProductNew/>

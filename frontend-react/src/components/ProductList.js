@@ -3,57 +3,67 @@ import { useParams } from 'react-router-dom';
 
 import store from '../stores/ProductStore';
 import Product from './Product';
-import styled from 'styled-components';
 import { Button } from '../lib/Button';
-import ItemListDiv, { Div, H1 } from '../lib/Grid'
+import ItemListDiv, { Div, H1 } from '../lib/Grid';
+import Pagination from '../components/Pagination';
+import Category from "./Category";
+import { getProducts, getSliceProducts } from '../taskService';
+
+const MAX_ITEM = 9;
 
 
-
-
-let newCategoryId = 0;
 
 function ProductList() {
-    const [productList, setProductList] = useState([]);
-    const [priceOrder, setPriceOrder] = useState('');
     const { categoryId } = useParams();
+
+    const [category, setCategory] = useState(store.categories[categoryId]);
+    const [productList, setProductList] = useState([]);
+    const [total, setTotal] = useState(0);
+
     const categoryName = store.categories[categoryId];
-    const products = store.products;
 
-    if (newCategoryId != categoryId) {
-        newCategoryId = categoryId;
-
-        setProductList(products.filter(product => product.category === categoryName));
+    const lowprice = (items) => {
+        setProductList([...items.sort((a, b) => a.price - b.price)]);
     }
 
-    const lowprice = (result) => {
-
-        setPriceOrder('낮은가격순');
-        const final = result.sort(function (a, b) {
-            return a.price - b.price
-
-        })
-
-        return final;
-
+    const highprice = (items) => {
+        setProductList([...items.sort((a, b) => b.price - a.price)]);
     }
 
-    const highprice = (result) => {
+    const onPageChange = async (page) => {
+        const tasks = await getSliceProducts({
+            category: categoryName,
+            offset: MAX_ITEM * (page - 1),
+            limit: MAX_ITEM
+        }); 
 
-        setPriceOrder('높은가격순');
-        const final = result.sort(function (a, b) {
-            return b.price - a.price
+        setProductList(tasks.tasks.products);
+    };
 
+    const fetchTasks = async () => {
+        const tasks = await getSliceProducts({
+            category: categoryName,
+            offset: 0,
+            limit: MAX_ITEM,
         })
-        return final;
-
+        setTotal(tasks.tasks.total);
+        setProductList(tasks.tasks.products);
+        
     }
 
     useEffect(() => {
-        const result = products.filter(product => product.category === categoryName);
-        setProductList(result);
+        
+        
+        if(category !== categoryId) {             
+            setCategory(categoryId);
+        }
+    },);
 
-    }, [setProductList]
-    );
+    useEffect(() => {
+       
+        fetchTasks();
+    }, [category])
+
 
     return (
         <Div>
@@ -67,17 +77,18 @@ function ProductList() {
                 {productList.map(product =>
                     <div key={product.id}>
                         <Product product={product} />
-
                     </div>
                 )}
             </ItemListDiv>
-
-
-
-
+            <Pagination
+                total={total}
+                pageSize={9}
+                onPageChange={onPageChange}
+            />
         </Div>
     );
 }
+
 export default ProductList;
 
 export const CATEGORIES = {

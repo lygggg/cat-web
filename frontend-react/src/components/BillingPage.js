@@ -1,8 +1,57 @@
 import React from 'react';
+
 import Purchase from '../stores/PurchaseStore';
 
+import styled from 'styled-components';
+
+const GridDiv = styled.div`
+     display: grid;
+    justify-content: center;
+    width: 1500px;
+    height: 1500px;
+`; 
 
 
+const Input = styled.input`
+    width: 300px;
+    height: 20px;
+`;
+
+const Div = styled.div`
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    width: 900px;
+`;
+
+const TitleTd = styled.span`
+    background: #f4f4f4;
+    width: 150px;
+    height: 50px;
+    font-size: 13px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    
+    
+`;
+
+const PayMentDiv = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const BuyButton = styled.button`
+    height: 60px;
+    width: 260px;
+    background: #0073e9;
+    color: #fff;
+    border: 2px solid #0073e9;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 22px;
+    justify-self: center;
+
+`;
 function handleBuy() {
     Purchase.lastPayment();
 }
@@ -10,44 +59,71 @@ function handleBuy() {
 function BillingPage() {
 
     return (
-        <>
-        <img src='/public/image/catbaner.jpg'/>
-        <h1 style={{textDecorationLine: 'underline'}}>주문/결제</h1>
+        <GridDiv>
+            <div style={{borderBottom: '1px solid black'}}>
+        <img  src='/public/image/catbaner.jpg' />
+        </div>
+        <h1 style={{borderBottom: '3px solid black'}}>주문/결제</h1>
             
-            <h2>구매자정보</h2>
-                <fieldset>
-                    <div>이름 <input type='text' className='name' placeholder='이름 입력'/></div>
-                    <div>이메일 <input type='email' className='user_email' placeholder='이메일 입력'/></div>
-                    <div>휴대폰 번호 <input type='tel' className='phone_number' placeholder='휴대폰번호 입력'/></div>
-                </fieldset>
+            
+                <div>
+                <h2>구매자정보</h2>
+                    <Div>
+                    <TitleTd>이름</TitleTd>
+                    </Div>
+                    <Div>
+                    <TitleTd>이메일</TitleTd>
+                    </Div>
+                    <Div>
+                    <TitleTd>휴대폰 번호</TitleTd> 
+                    </Div>
+                </div>
                 
-            <h2>받는 사람정보</h2>    
-                <fieldset>
-                    <div>이름 <input type='text' className='name' placeholder='이름 입력'/></div>
-                    <div>배송주소 <input type='text' className='location' placeholder='배송지 입력'/></div>
-                    <div>연락처 <input type='tel' className='phone_number' placeholder='연락처 입력'/></div>
-                    <div>배송 요청사항 <input type='text' placeholder='요청사항 입력'/></div>
-                </fieldset>
+             
+                <div>
+                <h2>받는 사람정보</h2>  
+                    <Div>
+                    <TitleTd>이름</TitleTd> 
+                    </Div>
+                    
+                    <Div>
+                    <TitleTd>배송주소</TitleTd> 
+                    </Div>
+                    <Div>
+                    <TitleTd>연락처</TitleTd> 
+                    </Div>
+                    <Div>
+                    <TitleTd>배송 요청사항</TitleTd> 
+                    </Div>
+                </div>
             
-            <h2>결제정보</h2>
-                <fieldset>
-                    <div>총상품가격 </div>
-                    <div>배송비 무료</div>
-                    <div>총 결제금액 </div>
-                    <div>결제방법 
-                        <div>
-                            <label>
+            
+                <div>
+                <h2>결제정보</h2>
+                    <Div>
+                    <TitleTd>총상품가격 </TitleTd>
+                    </Div>
+                    <Div>
+                    <TitleTd>배송비 무료</TitleTd>
+                    </Div>
+                    <Div>
+                    <TitleTd>총 결제금액 </TitleTd>
+                    </Div>
+                    <Div>
+                        <PayMentDiv><TitleTd>결제방법</TitleTd> <span>
                                 <input type='radio' />카드결제 (미구현)
                                 <input type='radio' />무통장입금
                                 <input type='radio' />계좌이체
-                            </label>
-                        </div>
+                                </span></PayMentDiv>
+                    
+                    </Div>
                     </div>
-                </fieldset>
-                <button onClick={() => handleBuy()}>구매하기</button>
+                    
+                
+                <BuyButton onClick={() => handleBuy()}>구매하기</BuyButton>
             
             
-        </>
+        </GridDiv>
     );
 
 }

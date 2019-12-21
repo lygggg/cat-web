@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Purchase from '../stores/PurchaseStore'
 import styled from 'styled-components';
 
 const Grid = styled.div`

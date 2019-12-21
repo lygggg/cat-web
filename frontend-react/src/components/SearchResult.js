@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import store from '../stores/ProductStore';
 import { useParams } from 'react-router-dom';
-import ProductList from "./ProductList";
 import Product from './Product';
 import { Button } from '../lib/Button';
 import ItemListDiv, { Div, H1 } from '../lib/Grid'
