@@ -45,9 +45,9 @@ const productStore = {
         return productStore._product;
     }
 
-     const getProduct = (id) => {
-         return products.find(product => product.id == id);
-     },
+     const getProductDetail = (id) => {
+         return productStore._product.find(product => product.id == id);
+     }
 
     const categories = () => {
         return productStore._categories;
@@ -55,7 +55,6 @@ const productStore = {
 
     function getProducts({ category, offset, limit }) {
         const products = productStore._product.filter(i => i.category === category);
-        console.log(category,offset,limit);
         const total = products.length;
 
         return {
@@ -64,21 +63,22 @@ const productStore = {
         }
     }
     
-    // const createProduct = ({ title, category, price, description, imageurl, phoneNumber, account }) => {
-    //     productStore._product = [...productStore.products, {
-    //         id: productStore._product.length + 1,
-    //         title,
-    //         category,
-    //         price,
-    //         description,
-    //         imageurl,
-    //         phoneNumber,
-    //         account,
+    function createProduct({ title, category, price, description, imageurl, phoneNumber, account}) {
+        console.log('실행')
+        productStore._product = [...productStore._product, {
+                id: productStore._product.length + 1,
+                title,
+                category,
+                price,
+                description,
+                imageurl,
+                phoneNumber,
+                account,
+            }];
 
-
-
-    //     }];
-    // }
+            console.log(productStore._product);
+        return productStore._product;
+    }
     
 
 
@@ -87,5 +87,6 @@ module.exports = {
     products,
     categories,
     getProducts,
-    getProduct,
+    getProductDetail,
+    createProduct,
 };
