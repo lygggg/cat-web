@@ -1,28 +1,45 @@
 import { getProducts as apiGetProducts } from './apis/task';
-import { getSliceProducts as apiGetSliceProducts} from './apis/task';
-import { getProduct as apiGetProduct } from './apis/task'
+import { getSliceProducts as apiGetSliceProducts } from './apis/task';
+import { getProductDetail as apiGetProductDetail } from './apis/task';
+import { createProduct as apiCreateProduct } from './apis/task';
+import { getUserProfile as apiGetUserProfile} from './apis/task';
 
 export const getProducts = async () => {
     try {
         return await apiGetProducts();
     } catch (e) {
-        console.error(e);
+        alert(e);
     }
 };
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
     try {
-        console.log('das');
         return await  apiGetSliceProducts({ category, offset, limit });
     } catch (e) {
-        console.error(e);
+        alert(e);
     }
 }
 
-export const getProduct = async (id) => {
+export const getProductDetail = async (id) => {
     try {
-        return await apiGetProduct(id);
+        return await apiGetProductDetail(id);
     } catch (e) {
-        console.error(e);
+        alert(e);
     }
 } 
+
+export const createProduct = async ({ title, category, price, description, imageurl, phoneNumber, account }) => {
+    try {
+        return await apiCreateProduct({ title, category, price, description, imageurl, phoneNumber, account });
+    } catch (e) {
+        alert(e);
+    }
+}
+
+export const getUserProfile = async ({ email, password }) => {
+    try {
+        return await apiGetUserProfile({ email, password });
+    } catch (e) {
+        alert(e);
+    }
+}

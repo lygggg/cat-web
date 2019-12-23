@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import productStore from '../stores/ProductStore';
 import BasketStore from '../stores/BasketStore';
 import PurchaseStore from '../stores/PurchaseStore'
+import {getProductDetail as getProduct} from '../taskService'
 
 import styled from 'styled-components';
 import ItemName, { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
@@ -43,20 +44,36 @@ const putCart = async (product, count) => {
     BasketStore.addProductToBasket(product, count);
 }
 
+
+
 function ProductDetail() {
+    const [product, setProduct] = useState([]);
     const [count, setcount] = useState(1);
     const { productId } = useParams();
-    const product = productStore.getProduct(productId);
     const { imageurl, account, phoneNumber, title, description, price } = product
+
+
+  const getOneProduct = async (id) => {
+    console.log('Detail')
+    const product = await getProduct(id);
+    console.log(product);
+     setProduct(product.products);
+}
+
+    useEffect(() => {
+        getOneProduct(productId);
+    },[])
 
     function handlePlus() {
         setcount(count + 1);
     }
+
     function handleMinus() {
         if (count > 1) {
             setcount(count - 1);
         }
     }
+
     return (
         <ItemDetali>
             <div>

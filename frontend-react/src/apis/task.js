@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 const CATEGORIES_URL = 'http://localhost:3000/categories';
-const TASKS_URL = 'http://localhost:3000/products';
+const PRODUCTS_URL = 'http://localhost:3000/products';
+const PRODUCTS_URL_NEW = 'http://localhost:3000/products/new';
+const USER_URL = 'http://localhost:3000/login';
 
 export const getProducts = async () => {
-    const { data } = await axios.get(TASKS_URL);
+    const { data } = await axios.get(PRODUCTS_URL);
     return data;
 }
 
@@ -14,11 +16,26 @@ export const getCategories = async () => {
 }
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
-    const { data } = await axios.post(TASKS_URL,{ category, offset, limit })
+    const { data } = await axios.post(PRODUCTS_URL, { category, offset, limit })
+    console.log('dasdsa')
     return data;
 } 
-export const getProduct = async () => {
-    const { data } = await axios.get(TASKS_URL + `/${id}`);
+
+export const getProductDetail = async (id) => {
+    const { data } = await axios.get(PRODUCTS_URL + `/${id}`);
     return data;
 
+}
+
+export const createProduct = async ({title, category, price, description,
+    imageurl, phoneNumber, account}) => {
+    const { data } = await axios.post(PRODUCTS_URL_NEW, 
+        { title, category, price, description, imageurl, phoneNumber, account })
+    return data;
+}
+
+export const getUserProfile = async ({email, password}) => {
+    const { data } = await axios.post(USER_URL, { email, password })
+    console.log(data);
+    return data;
 }

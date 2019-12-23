@@ -36,8 +36,7 @@ function ProductList() {
             offset: MAX_ITEM * (page - 1),
             limit: MAX_ITEM
         }); 
-
-        setProductList(tasks.tasks.products);
+        setProductList(tasks.products.products);
     };
 
     const fetchTasks = async () => {
@@ -46,8 +45,9 @@ function ProductList() {
             offset: 0,
             limit: MAX_ITEM,
         })
-        setTotal(tasks.tasks.total);
-        setProductList(tasks.tasks.products);
+        console.log(tasks);
+        setTotal(tasks.products.total);
+        setProductList(tasks.products.products);
         
     }
 

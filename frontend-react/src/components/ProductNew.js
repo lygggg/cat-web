@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import productStore from '../stores/ProductStore';
 import ProductList, { CATEGORIES } from './ProductList';
-
+import { createProduct } from '../taskService';
 
 function ProductNew() {
-    console.log(productStore.products);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
@@ -27,8 +25,9 @@ function ProductNew() {
     const onRegister = async (event) => {
         event.preventDefault();
         event.stopPropagation();
+       
 
-        productStore.createProduct({
+        createProduct({
             title,
             category,
             price,
@@ -36,8 +35,8 @@ function ProductNew() {
             imageurl,
             phoneNumber,
             account,
-
         });
+        console.log('new')
     };
 
     return (

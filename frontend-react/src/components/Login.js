@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import {
-  Redirect
-} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
+import { getUserProfile } from '../taskService';
 
 import styled from 'styled-components';
-import { symbol } from "prop-types";
+
 
 const Form = styled.form`
   display: grid;
@@ -65,18 +65,19 @@ function Login() {
   const [password, setPassword] = useState('');
   let loginStatus = localStorage.getItem('isLogin')
 
-  const handleLogin = () => {
-
-    _user.map(e => {
-      if (e.id == email && e.password == password) {
-        login();
-      }
-      else {
-        alert('Failed to login');
-        setEmail('');
-        setPassword('');
-      }
-    })
+  const handleLogin = async () => {
+    const userProfile = await getUserProfile({ email, password });
+    console.log(userProfile);
+    // _user.map(e => {
+    //   if (e.id == email && e.password == password) {
+    //     login();
+    //   }
+    //   else {
+    //     alert('Failed to login');
+    //     setEmail('');
+    //     setPassword('');
+    //   }
+    // })
 
   }
   function login() {
