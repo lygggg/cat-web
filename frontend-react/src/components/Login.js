@@ -56,20 +56,21 @@ const Input = styled.input`
   font-size: 14px;
 `; 
 
-const _user = [{
-  id: 'baayoo71', password: 1234
-}]
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  let loginStatus = localStorage.getItem('isLogin')
+
 
   const handleLogin = async () => {
+    
     const userProfile = await getUserProfile({ email, password });
     console.log(userProfile);
-    // _user.map(e => {
-    //   if (e.id == email && e.password == password) {
+    if(userProfile.islogin == true){
+      islogin = true;
+    }
+    // console.log(userProfile.userProfile.email);
+    // userProfile.userProfile.map(e => {
+    //   if (e.email == email) {
     //     login();
     //   }
     //   else {
@@ -83,14 +84,14 @@ function Login() {
   function login() {
 
     alert('로그인 성공');
-    localStorage.setItem('isLogin', true);
+    
 
 
   }
 
 
   return (
-    loginStatus === 'false'  ?
+    // islogin === 'true'  ?
     <div style={{display: 'grid', justifyContent: 'center', padding: '50px', width:'1400px'}}>
       <h3 style={{textAlign:'center'}}>로그인</h3>
       <Form>
@@ -122,8 +123,8 @@ function Login() {
           </div>
 
       </div>
-      :
-      <Redirect to='/' />
+      // :
+      // <Redirect to='/' />
 
 
 

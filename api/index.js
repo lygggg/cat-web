@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
+const Filestore = require('session-file-store')(session);
 
 const {
     products,
@@ -17,17 +19,44 @@ const {
 
  const app = express();
 
+ const corsOptions = {
+    origin: '*',
+    credentials: true
+};
  app.use(express.json());
- app.use(cors());
+
+ app.use(cors(corsOptions));
+
+
+app.use(session({
+    secret : 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
+    resave: false,
+    saveUninitialized: true,
+    store: new Filestore({
+    }
+    ),
+    cookie: {
+        name: 'user',
+        maxAge: 600 * 1000,
+
+    }
+}));
+
+app.get('/session-destroy', function (req, res) {
+    req.session.destroy();
+    res.send('Session Destroyed!');
+})
 
  app.get('/products', (req, res) => {
      const product = products();
      res.send({ product });
  });
+ 
 
  app.post('/products', (req, res) => {
      const { category, offset, limit } = req.body;
      const products = getProducts({category, offset, limit});
+     
      res.send({ products });
  })
 
@@ -37,10 +66,11 @@ const {
   
      
  })
+
  app.get('/products/:id', (req, res) => {
-     const id = req.params.id;
-     const products = getProductDetail(id);
-     res.send({ products });
+    const id = req.params.id;
+    const products = getProductDetail(id);
+    res.send({ products });
  })
 
  app.get('/categories', (req, res) => {
@@ -48,15 +78,28 @@ const {
      res.send({category});
  });
 
- app.post('/login', (req, res) => {
-     const { email, password } = req.body;
-     console.log(req.body);
-     const userProfile = getUserProfile({ email, password });
-    //  console.log(userProfile);
-     res.send({ userProfile });
 
- })
- 
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    console.log('email',email);
+    console.log('passwd',password);
+    const userProfile = getUserProfile(email, password);
+    console.log(userProfile[0]);
+    console.log(email, password);
+    if (email == userProfile[0].email && password == userProfile[0].password) {
+        console.log('로그인')
+        console.log('성공');
+        req.session.name = userProfile[0].name;
+        req.session.is_logind = true;
+        req.session.save();
+        res.json({ islogin: true });
+    }
+else {
+        
+    }
+})
+
  app.listen(3000, () => {
      console.log(`Listening on port ${port}...`);
  });

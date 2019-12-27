@@ -22,6 +22,13 @@ module.exports = {
     ],
   },
   devServer: {
+      proxy: {
+        "/login": {
+          target: 'http://localhost:3000/',
+          changeOrigin: true,
+          secure: false
+        }
+    },
     inline: true,
     historyApiFallback: true,
   },

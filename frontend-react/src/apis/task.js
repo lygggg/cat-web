@@ -3,10 +3,10 @@ import axios from 'axios';
 const CATEGORIES_URL = 'http://localhost:3000/categories';
 const PRODUCTS_URL = 'http://localhost:3000/products';
 const PRODUCTS_URL_NEW = 'http://localhost:3000/products/new';
-const USER_URL = 'http://localhost:3000/login';
 
 export const getProducts = async () => {
     const { data } = await axios.get(PRODUCTS_URL);
+    console.log(data);
     return data;
 }
 
@@ -34,8 +34,3 @@ export const createProduct = async ({title, category, price, description,
     return data;
 }
 
-export const getUserProfile = async ({email, password}) => {
-    const { data } = await axios.post(USER_URL, { email, password })
-    console.log(data);
-    return data;
-}

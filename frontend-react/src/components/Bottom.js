@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-    width: 1500px;
+    width: d;
     margin-top: 100px;
     
 `;

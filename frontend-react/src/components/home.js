@@ -9,7 +9,7 @@ import SubSlider from './SubSlider';
 
 function Home() {
   const [isLogin, setIsLogin] = useState(localStorage.getItem('isLogin'));
-4
+  
 
   function handleLogout() {
     localStorage.setItem('isLogin', false);

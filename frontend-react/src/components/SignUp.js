@@ -6,6 +6,7 @@ const GridDiv = styled.div`
     display: grid;
     justify-content: center;
     height: 600px;
+    width: 1500px;
     
 `;
 
@@ -48,6 +49,12 @@ const SignButton = styled.button`
 `;
 
 function SignUp() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [phoneNumber, serPhoneNumber] = useState('');
+    const [location, setLocation] = useState('');
+    
     
     return (
         <GridDiv>
@@ -57,13 +64,13 @@ function SignUp() {
             <Span>
             <Label>아이디*</Label>
             </Span>
-                <Input placeholder='아이디(이메일)' type='id' />
+                <Input placeholder='아이디(이메일)' value={email} type='email' />
             </InputDiv>
             <InputDiv>
             <Span>
             <Label>비밀번호*</Label>
             </Span>
-                <Input type='password' placeholder='비밀번호(영문 숫자 특수문자 2가지 이상 6~15자 이내)'/>
+                <Input type='password' value={password} placeholder='비밀번호(영문 숫자 특수문자 2가지 이상 6~15자 이내)'/>
             </InputDiv>
             <div>
             <Span>
@@ -75,13 +82,19 @@ function SignUp() {
             <Span>
             <Label>이름*</Label>
             </Span>
-                <Input type='name' placeholder='이름'/>
+                <Input type='name' value={name} placeholder='이름'/>
             </div>
             <div>
             <Span>
             <Label>휴대폰</Label>
             </Span>
-                <Input  type="tel" placeholder='휴대폰 번호'/>
+                <Input  type="tel" value={phoneNumber} placeholder='휴대폰 번호'/>
+            </div>
+            <div>
+            <Span>
+            <Label>주소</Label>
+            </Span>
+                <Input  type="text" value={location} placeholder='주소지'/>
             </div>
             
             <div>

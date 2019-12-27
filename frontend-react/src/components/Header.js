@@ -47,7 +47,7 @@ function Header() {
         <Link to='/basket'><Li>장바구니</Li></Link>
         <Link to='/'><Li>고객센터</Li></Link>
         {isLogin === 'true' ? (<Link to='/'><Li onClick={handleLogout}>로그아웃</Li></Link>)
-        : (<><Link to='/signup'><Li>회원가입</Li></Link><Link to='/login'><Li>로그인</Li></Link></>)}
+        : (<><Link to='/signup'><Li>회원가입</Li></Link><Link to='/uesr/login'><Li>로그인</Li></Link></>)}
       </Ul>
 
       <Div>

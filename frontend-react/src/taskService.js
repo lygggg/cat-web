@@ -2,14 +2,16 @@ import { getProducts as apiGetProducts } from './apis/task';
 import { getSliceProducts as apiGetSliceProducts } from './apis/task';
 import { getProductDetail as apiGetProductDetail } from './apis/task';
 import { createProduct as apiCreateProduct } from './apis/task';
-import { getUserProfile as apiGetUserProfile} from './apis/task';
+import { getUserProfile as apiGetUserProfile} from './apis/auth';
+
 
 export const getProducts = async () => {
     try {
+        console.log(apiGetProducts());
         return await apiGetProducts();
     } catch (e) {
         alert(e);
-    }
+    }   
 };
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
