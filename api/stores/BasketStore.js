@@ -1,7 +1,7 @@
 
 const basketStore = {
     _basket: [
-
+        
     ],
 
 

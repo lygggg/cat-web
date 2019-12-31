@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const Filestore = require('session-file-store')(session);
+// const Filestore = require('session-file-store')(session);
 
 const {
     products,
@@ -32,19 +32,23 @@ app.use(session({
     secret : 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
     resave: false,
     saveUninitialized: true,
-    store: new Filestore({
-    }
-    ),
+    // store: new Filestore({
+    // }
+    // ),
     cookie: {
         name: 'user',
         maxAge: 600 * 1000,
+        httpOnly: false,
 
     }
 }));
 
-app.get('/session-destroy', function (req, res) {
-    req.session.destroy();
-    res.send('Session Destroyed!');
+app.get('/login', (req, res) => {
+    if(req.session.name) {
+        const session = req.session
+        res.json( {name: session.name, email: session.email} );
+        
+    }
 })
 
  app.get('/products', (req, res) => {
@@ -78,7 +82,12 @@ app.get('/session-destroy', function (req, res) {
      res.send({category});
  });
 
-
+ app.delete('/login', (req, res) => {
+    req.session.destroy();
+    res.clearCookie('connect.sid');
+    res.send('Session Destroyed!');
+    console.log('로그아웃');
+});
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -88,17 +97,21 @@ app.post('/login', (req, res) => {
     console.log(userProfile[0]);
     console.log(email, password);
     if (email == userProfile[0].email && password == userProfile[0].password) {
-        console.log('로그인')
-        console.log('성공');
+        console.log('로그인');
         req.session.name = userProfile[0].name;
-        req.session.is_logind = true;
+        req.session.email = userProfile[0].email;
         req.session.save();
         res.json({ islogin: true });
-    }
-else {
         
+
     }
+    else {
+        res.json({islogin: false});
+    }
+   
+    
 })
+
 
  app.listen(3000, () => {
      console.log(`Listening on port ${port}...`);
