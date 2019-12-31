@@ -15,13 +15,11 @@ const MAX_ITEM = 9;
 
 function ProductList() {
     const { categoryId } = useParams();
-
     const [category, setCategory] = useState(store.categories[categoryId]);
     const [productList, setProductList] = useState([]);
     const [total, setTotal] = useState(0);
 
     const categoryName = store.categories[categoryId];
-
     const lowprice = (items) => {
         setProductList([...items.sort((a, b) => a.price - b.price)]);
     }

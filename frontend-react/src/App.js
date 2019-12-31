@@ -35,7 +35,7 @@ function App() {
             <SearchResult />
             <Bottom />
           </Route>
-          <Route path="/uesr/login">
+          <Route path="/user/login">
             <Header />
             <Login/>
             <Bottom />

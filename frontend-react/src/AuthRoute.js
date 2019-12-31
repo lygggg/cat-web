@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 function AuthRoute({ children, ...rest }) {
-    console.log('rest: ', rest);
-    console.log('children',children);
 
+    // const isLogin = async () => {
+    //     const user = await getUserAuth();
+    //     if(user){
+    //       return true;
+    //     }
+    //   }
 
+    
     return (
 
         <Route
             {...rest}
             render={({ location }) =>
-                localStorage.getItem('isLogin') === 'true' ? (
+                document.cookie ? (
                     children
                 ) : (
-                        <Redirect
-                            to={{ pathname: './login', state: { from: location } }}
+                    <Redirect
+                            to={{ pathname: '/user/login', state: { from: location } }}
                         />
+                        
 
                     )
 
