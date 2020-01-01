@@ -19,7 +19,7 @@ export const getSliceProducts = async ({ category, offset, limit }) => {
     const { data } = await axios.post(PRODUCTS_URL, { category, offset, limit })
     console.log('dasdsa')
     return data;
-} 
+}
 
 export const getProductDetail = async (id) => {
     const { data } = await axios.get(PRODUCTS_URL + `/${id}`);
@@ -27,9 +27,9 @@ export const getProductDetail = async (id) => {
 
 }
 
-export const createProduct = async ({title, category, price, description,
-    imageurl, phoneNumber, account}) => {
-    const { data } = await axios.post(PRODUCTS_URL_NEW, 
+export const createProduct = async ({ title, category, price, description,
+    imageurl, phoneNumber, account }) => {
+    const { data } = await axios.post(PRODUCTS_URL_NEW,
         { title, category, price, description, imageurl, phoneNumber, account })
     return data;
 }

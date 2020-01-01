@@ -9,7 +9,7 @@ import {getProductDetail as getProduct} from '../taskService'
 import styled from 'styled-components';
 import ItemName, { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
 import { Button } from '../lib/Button';
-import { putProduct } from '../userBasketService';
+import { userBasket } from '../userService';
 
 
 const ItemDetali = styled.div`
@@ -41,8 +41,8 @@ const buyItem = (product, count) => {
     console.log(PurchaseStore.purchases);
 }
 const putCart = async (product, count) => {
-    const addProductToBasket = await putProduct({
-        itemId: product.id,
+    const addProductToBasket = await userBasket({
+        productId: product.id,
     })
     // console.log("장바구니 등록버튼을 클릭했다." + product.title);
     // BasketStore.addProductToBasket(product, count);

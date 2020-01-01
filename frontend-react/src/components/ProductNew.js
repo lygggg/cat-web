@@ -63,7 +63,7 @@ function ProductNew() {
     const onRegister = async (event) => {
         event.preventDefault();
         event.stopPropagation();
-       
+
 
         createProduct({
             title,
@@ -79,7 +79,8 @@ function ProductNew() {
 
     return (
         <GridDiv>
-            <SubDiv style={{textAlign: 'center'}} className="container container-sm container-item-create">
+            <SubDiv style={{ textAlign: 'center' }}
+                className="container container-sm container-item-create">
                 <h5 className="container-headline">중고 상품 등록</h5>
 
                 <form className="form-item-create" onSubmit={onRegister}>
@@ -87,14 +88,17 @@ function ProductNew() {
                         <Label>
                             제품 이름*
                         </Label>
-                        <Input type="text" className="form-control" id="productsTitle" placeholder="제품 이름을 입력해주세요." value={title}
+                        <Input type="text" className="form-control"
+                            id="productsTitle" placeholder="제품 이름을 입력해주세요." value={title}
                             onChange={v => setTitle(v.target.value)} />
                     </SubDiv>
                     <SubDiv className="form-group form-category">
                         <Label>
                             라벨*
                         </Label>
-                        <select style={{width: '410px', height: '30px'}} id="productsCategory" className="form-control" value={category} onChange={onCategoryChange}>
+                        <select style={{ width: '410px', height: '30px' }}
+                            id="productsCategory" className="form-control" value={category}
+                            onChange={onCategoryChange}>
                             <option value={undefined}>카테고리를 선택해주세요.</option>
                             <option value={"사료"}>{CATEGORIES[0]}</option>
                             <option value={"간식"}>{CATEGORIES[1]}</option>
@@ -107,39 +111,45 @@ function ProductNew() {
                         <Label>
                             가격*
                         </Label>
-                        <Input type="number" className="form-control" id="productsPrice" min="0" step="1000" value={price}
+                        <Input type="number" className="form-control" id="productsPrice"
+                            min="0" step="1000" value={price}
                             onChange={v => setPrice(Number(v.target.value))}
                             placeholder="가격을 입력해주세요. (￦)" />
                     </SubDiv>
                     <SubDiv className="form-group form-description">
-                        <textarea style={{width:'500px', marginLeft:'210px'}} className="form-control" id="productsDescription" rows={10} value={description}
+                        <textarea style={{ width: '500px', marginLeft: '210px' }}
+                            className="form-control" id="productsDescription" rows={10}
+                            value={description}
                             onChange={v => setDescription(v.target.value)}
                             placeholder="제품 설명을 작성해주세요." />
                     </SubDiv>
                     <SubDiv className="form-group form-picture">
-                    <Label>
+                        <Label>
                             사진 추가*
                         </Label>
-                            <input style={{marginLeft:'20px'}} className="upload-name" value={fileName} disabled />
+                        <input style={{ marginLeft: '20px' }} className="upload-name"
+                            value={fileName} disabled />
+                        <label htmlFor="ex_filename" className="btn btn-secondary"></label>
+                        <input type="file" id="ex_filename" className="upload-hidden"
+                            onChange={onFileChange} />
 
-                            <label htmlFor="ex_filename" className="btn btn-secondary"></label>
-                            <input type="file" id="ex_filename" className="upload-hidden" onChange={onFileChange} />
-                        
                     </SubDiv>
                     <SubDiv className="form-group">
-                    <Label>
+                        <Label>
                             전화번호*
                         </Label>
-                        <Input type="tel" className="usertel" id="productphoneNumber" value={phoneNumber} onChange={v => setPhone(v.target.value)}
+                        <Input type="tel" className="usertel" id="productphoneNumber"
+                            value={phoneNumber} onChange={v => setPhone(v.target.value)}
                             pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="전화번호를 입력해주세요." required
                         />
                     </SubDiv>
                     <SubDiv className="form-group form-number">
-                    <Label>
+                        <Label>
                             계좌번호*
                         </Label>
-                        <Input type="text" className="form-number" id="productacount" value={account}
-                            onChange={v => setAccount(v.target.value)} placeholder="계좌번호를 입력해주세요" />
+                        <Input type="text" className="form-number" id="productacount"
+                            value={account} onChange={v => setAccount(v.target.value)}
+                            placeholder="계좌번호를 입력해주세요" />
                     </SubDiv>
                     <button className="btn btn-primary btn-submit">상품 등록하기</button>
                 </form>
