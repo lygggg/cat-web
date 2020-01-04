@@ -16,6 +16,10 @@ const {
     signUp,
 } = require('../api/stores/UserStore')
 
+const{
+    putBasket,
+} = require('../api/stores/BasketStore')
+
 const port = 3000;
 const app = express();
 const corsOptions = {
@@ -35,7 +39,7 @@ app.use(session({
     // ),
     cookie: {
         name: 'user',
-        maxAge: 600 * 1000,
+        // maxAge: 600 * 1000,
         httpOnly: false,
     }
 }));
@@ -71,7 +75,7 @@ app.get('/categories', (req, res) => {
 app.get('/login', (req, res) => {
     if (req.session.name) {
         const session = req.session
-        res.json({ name: session.name, email: session.email });
+        res.json({ name: session.name });
     }
 })
 
@@ -87,12 +91,11 @@ app.post('/login', (req, res) => {
     console.log('email', email);
     console.log('passwd', password);
     const userProfile = getUserProfile(email, password);
-    console.log(userProfile[0]);
-    console.log(email, password);
     if (email == userProfile[0].email && password == userProfile[0].password) {
         console.log('로그인');
         req.session.name = userProfile[0].name;
         req.session.email = userProfile[0].email;
+        console.log(req.session.email)
         req.session.save();
         res.json({ islogin: true });
     }
@@ -104,6 +107,18 @@ app.post('/login', (req, res) => {
 app.post('/sign_up', (req, res) => {
     console.log(req.body);
     signUp(req.body);
+    res.send('회원가입 완료');
+})
+
+app.post('/userbasket', (req, res) => {
+    const  { productId }  = req.body;
+    putBasket(productId, req.session.email);
+    res.send('장바구니 들어감');
+})
+
+app.get('/userbasket', (req, res) => {
+    const baskets = putBasket(req.session.email);
+    return baskets;
 })
 
 app.listen(3000, () => {

@@ -9,7 +9,7 @@ import {getProductDetail as getProduct} from '../taskService'
 import styled from 'styled-components';
 import ItemName, { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
 import { Button } from '../lib/Button';
-import { userBasket } from '../userService';
+import { putCart } from '../basketService';
 
 
 const ItemDetali = styled.div`
@@ -40,8 +40,8 @@ const buyItem = (product, count) => {
     PurchaseStore.createPurchases(product, count);
     console.log(PurchaseStore.purchases);
 }
-const putCart = async (product, count) => {
-    const addProductToBasket = await userBasket({
+const putProduct = async (product) => {
+    await putCart({
         productId: product.id,
     })
     // console.log("장바구니 등록버튼을 클릭했다." + product.title);
@@ -107,7 +107,7 @@ function ProductDetail() {
                         <button style={{ height: '36px', width: '40px' }} onClick={() => handleMinus()}>-</button>
                     </span>
                     <Link to='/billingpage'><Button style={{ margin: '6px' }} onClick={() => buyItem(product, count)}>상품 구매</Button></Link>
-                    <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putCart(product, count)}>장바구니 추가</Button>
+                    <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product)}>장바구니 추가</Button>
                 </PutDiv>
                 <div>
                     <DescriptionName>계좌번호: {account}</DescriptionName>

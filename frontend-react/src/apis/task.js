@@ -33,4 +33,3 @@ export const createProduct = async ({ title, category, price, description,
         { title, category, price, description, imageurl, phoneNumber, account })
     return data;
 }
-

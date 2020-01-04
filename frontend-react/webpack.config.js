@@ -22,12 +22,11 @@ module.exports = {
     ],
   },
   devServer: {
-      proxy: {
-        "/login": {
-          target: 'http://localhost:3000/',
-          secure: false
-        }
-    },
+    proxy: [{
+      context: ["/login", "/userbasket"],
+      target: 'http://localhost:3000/',
+      secure: false
+    }],
     inline: true,
     historyApiFallback: true,
   },

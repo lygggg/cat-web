@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 
 import store from '../stores/ProductStore';
 import Product from './Product';
-import { Button } from '../lib/Button';
-import ItemListDiv, { Div, H1 } from '../lib/Grid';
 import Pagination from '../components/Pagination';
 import Category from "./Category";
+
 import { getProducts, getSliceProducts } from '../taskService';
 
+import { Button } from '../lib/Button';
+import ItemListDiv, { Div, H1 } from '../lib/Grid';
+
 const MAX_ITEM = 9;
-
-
 
 function ProductList() {
     const { categoryId } = useParams();

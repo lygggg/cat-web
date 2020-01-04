@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
-import { Link } from 'react-router-dom';
+
+import { } from '../basketService';
+
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -41,7 +45,7 @@ const Button = styled.button`
 `;
 
 function ShoppingBasket() {
-    const [ListBasket, setListBasket] = useState([]);
+    const [baskets, setBaskets] = useState([]);
 
     let totalPrice = 0;
     if (basket.baskets.length > 0) {
@@ -50,39 +54,46 @@ function ShoppingBasket() {
 
     async function allRemove() {
         await basket.deleteBasket();
-        setListBasket(basket.baskets);
+        setBaskets(basket.baskets);
     }
 
     async function handleSelectDelete(productId) {
         await basket.oneDeleteBasket(productId);
 
-        setListBasket(basket.baskets);
+        setBaskets(basket.baskets);
     }
 
     async function handleCheck(productId) {
-        await setListBasket(basket.toggleItem(ListBasket, productId));
+        await setBaskets(basket.toggleItem(baskets, productId));
     }
 
     async function selectRemove() {
-        await basket.toggleDeleteItem(ListBasket);
-        setListBasket(basket._basket);
+        await basket.toggleDeleteItem(baskets);
+        setBaskets(basket._basket);
     }
     async function selectBuy() {
         Purchase.deleteList();
 
-        const buyList = ListBasket.filter(e =>
+        const buyList = baskets.filter(e =>
             e.completed === true
         );
 
         Purchase.plusPurchase(buyList, new Date() + '');
     }
+    
+    const fetchBaskets = async () => {
+        const baskets = await getBaskets();
+        console.log(baskets);
+        setBaskets(baskets);
+    }
 
     useEffect(() => {
-        setListBasket(basket.baskets.map(i => {
+        fetchBaskets();
+        setBaskets(basket.baskets.map(i => {
             i.completed = false;
             return i;
         }));
-    }, [setListBasket]);
+    }, [setBaskets]);
 
     return (
         <Div>
@@ -99,9 +110,10 @@ function ShoppingBasket() {
                 <span>상품정보</span>
                 <span>상품금액</span>
             </GridInfo>
-            {ListBasket.map(basket =>
+            {baskets.map(basket =>
                 <Grid key={basket.id}>
-                    <input type='checkbox' checked={basket.completed} onChange={() => handleCheck(basket.id)} />
+                    <input type='checkbox' checked={basket.completed}
+                    onChange={() => handleCheck(basket.id)} />
                     <Product onDeleteClick={handleSelectDelete} product={basket} />
                 </Grid>
             )}

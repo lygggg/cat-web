@@ -2,9 +2,7 @@ import { getProducts as apiGetProducts } from './apis/task';
 import { getSliceProducts as apiGetSliceProducts } from './apis/task';
 import { getProductDetail as apiGetProductDetail } from './apis/task';
 import { createProduct as apiCreateProduct } from './apis/task';
-import { getUserProfile as apiGetUserProfile} from './apis/auth';
-import { userLogout as apiUserLogout} from './apis/auth'
-import { userAuth as apiUserAuth } from './apis/auth';
+
 
 
 export const getProducts = async () => {
@@ -40,26 +38,3 @@ export const createProduct = async ({ title, category, price, description, image
     }
 }
 
-export const getUserProfile = async ({ email, password }) => {
-    try {
-        return await apiGetUserProfile({ email, password });
-    } catch (e) {
-        alert(e);
-    }
-}
-
-export const userLogout = async () =>{
-    try {
-        return await apiUserLogout();
-    } catch (e) {
-        alert(e);
-    }
-}
-
-export const getUserAuth = async () => {
-    try {
-        return await apiUserAuth();
-    } catch (e) {
-        alert(e);
-    }
-}

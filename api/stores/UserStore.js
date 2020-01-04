@@ -1,24 +1,17 @@
 const userStore = {
     _users: [
         {
-            email: 'baayoo71',
+            email: 'baayoo71@naver.com',
             password: 1234,
             name: '이영규',
             location: '서울시 이태원 코딩도장 2층'
         },
 
     ],
-    _usersItemsId: [
-
-    ]
+    
 };
 const getProfile = () => {
     return userStore._users;
-
-}
-
-const putBasket = (itemId) => {
-
 }
 
 const getUserProfile = (email, password) => {
@@ -45,12 +38,15 @@ const getUserProfile = (email, password) => {
 }
 
 function signUp(user) {
-    console.log(userStore._users);
+    // console.log(userStore._users);
     userStore._users = [...userStore._users, user];
+    userStore._userProductIds = [...userStore._userProductIds, {
+        email: user.email,
+    }]
     return userStore._users;
 }
 
 module.exports = {
     getUserProfile,
     signUp,
-}
+};

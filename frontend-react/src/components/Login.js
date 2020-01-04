@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import styled from 'styled-components';
 
-import { getUserProfile } from '../taskService';
+import { getUserProfile } from '../userService';
 
 const Div = styled.div`
   display: grid;

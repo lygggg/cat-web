@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import Search from './Search';
 import NavMenu from './NavMenu';
 
-import { userLogout } from '../taskService';
-import { getUserAuth } from '../taskService';
+import { userAuth, userLogout } from '../userService';
 
 const Ul = styled.ul`
   width: 1400px;
@@ -34,24 +33,24 @@ const Div = styled.div`
 `;
 
 function Header() {
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState('로그아웃');
   
   const handleLogout = async () => {
     userLogout();
-    setUserInfo((''));
+    setUserInfo(('로그아웃'));
+    window.location.href = '/';
   }
 
-  const isLogin = async () => {
-    const user = await getUserAuth();
-    if(user){
-      setUserInfo(user.name);
+  const isLogin =  () => {
+    if(document.cookie){
+      setUserInfo('로그인');
     }
 
   }
 
-  // useEffect(() => {
+  useEffect(() => {
     isLogin();
-  // },)
+  },)
 
   
 
@@ -63,9 +62,9 @@ function Header() {
         <Link to='/purchase'><Li>마이페이지</Li></Link>
         <Link to='/basket'><Li>장바구니</Li></Link>
         <Link to='/'><Li>고객센터</Li></Link>
-        {userInfo ? <Link to='/'><Li onClick={handleLogout}>로그아웃</Li></Link>
+        {document.cookie ? <><Link to='/'><Li onClick={handleLogout}>로그아웃</Li></Link></>
         : (<><Link to='/signup'><Li>회원가입</Li></Link><Link to='/user/login'><Li>로그인</Li></Link></>)}
-        <Li>{userInfo}</Li>
+        {/* <Li>{userInfo}</Li> */}
       </Ul>
 
       <Div>
