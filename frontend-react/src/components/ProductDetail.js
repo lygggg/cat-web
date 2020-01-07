@@ -43,6 +43,10 @@ const buyItem = (product, count) => {
 const putProduct = async (product) => {
     await putCart({
         productId: product.id,
+        price: product.price,
+        title: product.title,
+        imageurl: product.imageurl,
+        
     })
     // console.log("장바구니 등록버튼을 클릭했다." + product.title);
     // BasketStore.addProductToBasket(product, count);
@@ -58,10 +62,8 @@ function ProductDetail() {
 
 
   const getOneProduct = async (id) => {
-    console.log('Detail')
     const product = await getProduct(id);
-    console.log(product);
-     setProduct(product.products);
+    setProduct(product.products);
 }
 
     useEffect(() => {

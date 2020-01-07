@@ -7,25 +7,48 @@ const basketStore = {
     ],
 
 };
-const putBasket = (itemId, userEmail) => {
-    console.log(itemId, userEmail)
+const putBasket = ({ productId, price, title, imageurl }, userEmail) => {
+    console.log(productId, userEmail)
     basketStore._baskets.map(e => {
         if (e.email == userEmail) {
-            e.products = [...e.products, itemId];
+            e.products = [...e.products, {
+                id : productId,
+                price : price,
+                title : title,
+                imageurl : imageurl,
+
+            }];
             console.log('e.products', e.products);
         }
     });
 }
 
 const getBasket = (userEmail) => {
-    basketStore._baskets.map(e => {
-        
+    return basketStore._baskets.map(e => {
+       if(e.email == userEmail) {
+           return e.products;
+       }
     })
     
 }
 
+const deleteCart = (productId, userEmail) => {
+    console.log('id',productId);
+     basketStore._baskets.map(e=> {
+         if(e.email == userEmail && productId == undefined ) {
+            return e.products = [];
+         }
+         else if(e.email == userEmail) {
+            return e.products.splice(e.products.indexOf(productId),1);
+         }
+         
+     })
+}
+
 module.exports = {
     putBasket,
+    getBasket,
+    deleteCart,
 }
 
 // get baskets() {

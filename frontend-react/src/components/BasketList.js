@@ -5,7 +5,7 @@ import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
 
-import { } from '../basketService';
+import { getCart, deleteCart } from '../basketService';
 
 import styled from 'styled-components';
 
@@ -53,14 +53,13 @@ function ShoppingBasket() {
     }
 
     async function allRemove() {
-        await basket.deleteBasket();
-        setBaskets(basket.baskets);
+        deleteCart();
+        fetchBaskets();
     }
 
     async function handleSelectDelete(productId) {
-        await basket.oneDeleteBasket(productId);
-
-        setBaskets(basket.baskets);
+        deleteCart(productId);
+        fetchBaskets();
     }
 
     async function handleCheck(productId) {
@@ -70,6 +69,7 @@ function ShoppingBasket() {
     async function selectRemove() {
         await basket.toggleDeleteItem(baskets);
         setBaskets(basket._basket);
+        console.log(baskets);
     }
     async function selectBuy() {
         Purchase.deleteList();
@@ -82,17 +82,18 @@ function ShoppingBasket() {
     }
     
     const fetchBaskets = async () => {
-        const baskets = await getBaskets();
-        console.log(baskets);
-        setBaskets(baskets);
+        const items = await getCart();
+        setBaskets(items.data.baskets[0]);
     }
 
     useEffect(() => {
+        // getCart().then(v => setBaskets(v.data.baskets[0]))
         fetchBaskets();
         setBaskets(basket.baskets.map(i => {
             i.completed = false;
             return i;
         }));
+        
     }, [setBaskets]);
 
     return (

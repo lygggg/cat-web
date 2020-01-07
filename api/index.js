@@ -18,6 +18,8 @@ const {
 
 const{
     putBasket,
+    getBasket,
+    deleteCart,
 } = require('../api/stores/BasketStore')
 
 const port = 3000;
@@ -92,7 +94,6 @@ app.post('/login', (req, res) => {
     console.log('passwd', password);
     const userProfile = getUserProfile(email, password);
     if (email == userProfile[0].email && password == userProfile[0].password) {
-        console.log('로그인');
         req.session.name = userProfile[0].name;
         req.session.email = userProfile[0].email;
         console.log(req.session.email)
@@ -107,18 +108,23 @@ app.post('/login', (req, res) => {
 app.post('/sign_up', (req, res) => {
     console.log(req.body);
     signUp(req.body);
-    res.send('회원가입 완료');
 })
 
 app.post('/userbasket', (req, res) => {
-    const  { productId }  = req.body;
-    putBasket(productId, req.session.email);
-    res.send('장바구니 들어감');
+    const  { productId, price, title, imageurl }  = req.body;
+    putBasket({ productId, price, title, imageurl }, req.session.email);
+    res.send('장바구니 보내기');
 })
 
 app.get('/userbasket', (req, res) => {
-    const baskets = putBasket(req.session.email);
-    return baskets;
+    const baskets = getBasket(req.session.email);
+    res.send({ baskets });
+})
+
+app.delete('/userbasket', (req, res) => {
+    const productId = req.body;
+    deleteCart(productId, req.session.email);
+    res.send('장바구니 삭제');
 })
 
 app.listen(3000, () => {

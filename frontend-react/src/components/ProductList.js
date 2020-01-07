@@ -43,7 +43,6 @@ function ProductList() {
             offset: 0,
             limit: MAX_ITEM,
         })
-        console.log(tasks);
         setTotal(tasks.products.total);
         setProductList(tasks.products.products);
         
@@ -60,6 +59,7 @@ function ProductList() {
     useEffect(() => {
        
         fetchTasks();
+        console.log(productList);
     }, [category])
 
 
