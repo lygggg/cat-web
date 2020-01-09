@@ -20,6 +20,7 @@ const{
     putBasket,
     getBasket,
     deleteCart,
+    toggleItem,
 } = require('../api/stores/BasketStore')
 
 const port = 3000;
@@ -106,13 +107,12 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/sign_up', (req, res) => {
-    console.log(req.body);
     signUp(req.body);
 })
 
 app.post('/userbasket', (req, res) => {
-    const  { productId, price, title, imageurl }  = req.body;
-    putBasket({ productId, price, title, imageurl }, req.session.email);
+    const  { productId, price, title, imageurl, productCount }  = req.body;
+    putBasket({ productId, price, title, imageurl, productCount }, req.session.email);
     res.send('장바구니 보내기');
 })
 
@@ -122,10 +122,17 @@ app.get('/userbasket', (req, res) => {
 })
 
 app.delete('/userbasket', (req, res) => {
-    const productId = req.body;
+    const { productId } = req.body;
     deleteCart(productId, req.session.email);
     res.send('장바구니 삭제');
 })
+
+app.patch('/userbasket', (req, res) => {
+    const { productId } = req.body;
+    toggleItem(productId, req.session.email);
+    res.send('체크');
+})
+
 
 app.listen(3000, () => {
     console.log(`Listening on port ${port}...`);
