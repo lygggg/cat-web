@@ -16,7 +16,7 @@ export const userLogout = async () =>{
     try {
         return await apiUserLogout();
     } catch (e) {
-        alert(e);
+        alert(e);   
     }
 }
 

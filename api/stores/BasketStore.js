@@ -22,6 +22,7 @@ const putBasket = ({ productId, price, title, imageurl, productCount }, userEmai
                 title : title,
                 imageurl : imageurl,
                 count : productCount,
+                completed : false,
             }];
 
             e.products = e.products.filter((item, i) => { // 중복제거
@@ -29,8 +30,6 @@ const putBasket = ({ productId, price, title, imageurl, productCount }, userEmai
                   return item.id === item2.id;
                 }) === i;
               });
-
-            
         }
     }
     
@@ -51,15 +50,38 @@ const getBasket = (userEmail) => {
     })
 }
 
+// const findUserBasket = (userEmail) => {
+//     //맞는 아이디의 배열을 찾아주는 함수
+//     const array = [];
+//    basketStore._baskets.filter(e => {
+//        if(e.email == userEmail) {
+//            array = e.products;
+//        }
+//     })
+//     return array;
+// }
+
 const deleteCart = (productId, userEmail) => {
-    console.log('id',productId);
      basketStore._baskets.map(e=> {
-         if(e.email == userEmail && productId == null ) {
+
+         if(e.email == userEmail && productId == '체크삭제') {
+            const checkDeleteItem = e.products.filter(i=> 
+                !i.completed == true 
+                //  if(i.completed == true) {
+                //     e.products.splice(e.products.indexOf(i),1);
+                //  }
+             )
+             console.log(checkDeleteItem);
+            e.products = checkDeleteItem
+         }
+
+        else if(e.email == userEmail && productId == null ) {
              console.log('전체삭제');
             return e.products = [];
          }
+
          else if(e.email == userEmail) {
-             console.log('삭제');
+             console.log('선택삭제');
              e.products.map(i=> { 
                 if(i.id == productId){
                     e.products.splice(e.products.indexOf(i),i.count);
@@ -73,14 +95,16 @@ const deleteCart = (productId, userEmail) => {
 const toggleItem = (userEmail,productId) => {
          basketStore._baskets.map(element => {
             if(element.email == userEmail) {
-                element.map(e=> {
-                    console.log('야',e, productId);
+                element.products.map(e=> {
+                    
+                    if(e.id == productId) {
+                        e.completed = !e.completed;
+                    }
+                    console.log(e);
                     //아이디와 맞는 아이템을 찾아서 토글체크 프론트엔드에서 실행시켜줘야함.
                 })
             }
-            // if (element.id == productId) {
-            //     element.completed = !element.completed;
-            // }
+            
 
             return element
         });

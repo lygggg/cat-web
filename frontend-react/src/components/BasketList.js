@@ -5,7 +5,7 @@ import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
 
-import { getCart, deleteCart } from '../basketService';
+import { getCart, deleteCart ,toggleItem } from '../basketService';
 
 import styled from 'styled-components';
 
@@ -44,36 +44,33 @@ const Button = styled.button`
 
 `;
 
-function ShoppingBasket() {
+function BasketList() {
     const [baskets, setBaskets] = useState([]);
-
-    let totalPrice = 0;
-    if (basket.baskets.length > 0) {
-        totalPrice = basket.priceTotal();
-    }
+    const [totalPrice, setTotalPrice] = useState(0);
 
     async function allRemove() {
-        deleteCart();
+        await deleteCart();
         fetchBaskets();
     }
 
     async function handleSelectDelete(productId) {
-        deleteCart(productId);
+        await deleteCart(productId);
         fetchBaskets();
     }
 
     async function handleCheck(productId) {
-        await setBaskets(basket.toggleItem(baskets, productId));
+        await toggleItem(productId);
+        fetchBaskets();
+        
     }
 
     async function selectRemove() {
-        await basket.toggleDeleteItem(baskets);
-        setBaskets(basket._basket);
-        console.log(baskets);
+        await deleteCart('체크삭제');
+        fetchBaskets();
     }
+
     async function selectBuy() {
         Purchase.deleteList();
-
         const buyList = baskets.filter(e =>
             e.completed === true
         );
@@ -83,13 +80,20 @@ function ShoppingBasket() {
     
     const fetchBaskets = async () => {
         const items = await getCart();
+        console.log(items.data.baskets[0]);
+        let price = 0;
         setBaskets(items.data.baskets[0]);
+        items.data.baskets[0].map(e=> {
+            console.log(e);
+            price +=e.price;
+            
+        })
+        setTotalPrice(price);
     }
 
     useEffect(() => {
-        // getCart().then(v => setBaskets(v.data.baskets[0]))
         fetchBaskets();
-        setBaskets(basket.baskets.map(i => {
+        setBaskets(baskets.map(i => {
             i.completed = false;
             return i;
         }));
@@ -127,4 +131,4 @@ function ShoppingBasket() {
     );
 }
 
-export default ShoppingBasket;
+export default BasketList;

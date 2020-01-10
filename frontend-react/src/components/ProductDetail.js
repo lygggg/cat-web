@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import productStore from '../stores/ProductStore';
-import BasketStore from '../stores/BasketStore';
-import PurchaseStore from '../stores/PurchaseStore'
-import {getProductDetail as getProduct} from '../taskService'
+import { getProductDetail as getProduct } from '../service/taskService'
+import { createPurchases } from '../'
 
 import styled from 'styled-components';
 import ItemName, { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
 import { Button } from '../lib/Button';
-import { putCart } from '../basketService';
+import { putCart } from '../service/basketService';
 
 
 const ItemDetali = styled.div`
@@ -36,16 +34,19 @@ const PutDiv = styled.div`
 `;
 
 const buyItem = (product, count) => {
-    PurchaseStore.deleteList();
-    PurchaseStore.createPurchases(product, count);
-    console.log(PurchaseStore.purchases);
+    // PurchaseStore.deleteList();
+    createPurchases(product, count);
+    // PurchaseStore.createPurchases(product, count);
+    // console.log(PurchaseStore.purchases);
 }
-const putProduct = async (product) => {
+const putProduct = async (product, count) => {
+    console.log(count);
     await putCart({
         productId: product.id,
         price: product.price,
         title: product.title,
         imageurl: product.imageurl,
+        productCount: count,
         
     })
     // console.log("장바구니 등록버튼을 클릭했다." + product.title);
@@ -109,7 +110,7 @@ function ProductDetail() {
                         <button style={{ height: '36px', width: '40px' }} onClick={() => handleMinus()}>-</button>
                     </span>
                     <Link to='/billingpage'><Button style={{ margin: '6px' }} onClick={() => buyItem(product, count)}>상품 구매</Button></Link>
-                    <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product)}>장바구니 추가</Button>
+                    <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product, count)}>장바구니 추가</Button>
                 </PutDiv>
                 <div>
                     <DescriptionName>계좌번호: {account}</DescriptionName>

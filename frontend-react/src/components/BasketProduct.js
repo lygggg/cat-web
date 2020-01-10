@@ -41,7 +41,7 @@ function BasketProduct({ product, onDeleteClick }) {
                             alt=""
                             width="20%" />
                             
-                        <BoldName>{product.title} {product.amount}개</BoldName>
+                        <BoldName>{product.title} {product.count}개</BoldName>
                     </Div>
                     <Div style={{justifyContent:'center'}}>
                         {product.price}원

@@ -60,7 +60,6 @@ app.post('/products', (req, res) => {
 })
 
 app.post('/products/new', (req, res) => {
-    console.log(req.body);
     createProduct(req.body);
 })
 
@@ -91,13 +90,10 @@ app.delete('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    console.log('email', email);
-    console.log('passwd', password);
     const userProfile = getUserProfile(email, password);
     if (email == userProfile[0].email && password == userProfile[0].password) {
         req.session.name = userProfile[0].name;
         req.session.email = userProfile[0].email;
-        console.log(req.session.email)
         req.session.save();
         res.json({ islogin: true });
     }
@@ -129,7 +125,8 @@ app.delete('/userbasket', (req, res) => {
 
 app.patch('/userbasket', (req, res) => {
     const { productId } = req.body;
-    toggleItem(productId, req.session.email);
+    console.log(productId);
+    toggleItem(req.session.email, productId);
     res.send('체크');
 })
 
