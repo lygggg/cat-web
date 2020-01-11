@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import ProductList, { CATEGORIES } from './ProductList';
-import { createProduct } from '../taskService';
+import { createProduct } from '../service/taskService';
 
 import styled from 'styled-components';
 

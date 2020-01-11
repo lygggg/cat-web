@@ -5,7 +5,7 @@ import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
 
-import { getCart, deleteCart ,toggleItem } from '../basketService';
+import { getCart, deleteCart, toggleItem } from '../service/basketService';
 
 import styled from 'styled-components';
 
@@ -61,7 +61,7 @@ function BasketList() {
     async function handleCheck(productId) {
         await toggleItem(productId);
         fetchBaskets();
-        
+
     }
 
     async function selectRemove() {
@@ -77,16 +77,16 @@ function BasketList() {
 
         Purchase.plusPurchase(buyList, new Date() + '');
     }
-    
+
     const fetchBaskets = async () => {
         const items = await getCart();
         console.log(items.data.baskets[0]);
         let price = 0;
         setBaskets(items.data.baskets[0]);
-        items.data.baskets[0].map(e=> {
+        items.data.baskets[0].map(e => {
             console.log(e);
-            price +=e.price;
-            
+            price += e.price;
+
         })
         setTotalPrice(price);
     }
@@ -97,7 +97,7 @@ function BasketList() {
             i.completed = false;
             return i;
         }));
-        
+
     }, [setBaskets]);
 
     return (
@@ -118,7 +118,7 @@ function BasketList() {
             {baskets.map(basket =>
                 <Grid key={basket.id}>
                     <input type='checkbox' checked={basket.completed}
-                    onChange={() => handleCheck(basket.id)} />
+                        onChange={() => handleCheck(basket.id)} />
                     <Product onDeleteClick={handleSelectDelete} product={basket} />
                 </Grid>
             )}

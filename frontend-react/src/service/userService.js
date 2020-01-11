@@ -1,7 +1,7 @@
-import { userSignUp as apiUserSignUp } from './apis/auth';
-import { userLogout as apiUserLogout} from './apis/auth'
-import { userAuth as apiUserAuth } from './apis/auth';
-import { getUserProfile as apiGetUserProfile} from './apis/auth';
+import { userSignUp as apiUserSignUp } from '../apis/auth';
+import { userLogout as apiUserLogout} from '../apis/auth'
+import { userAuth as apiUserAuth } from '../apis/auth';
+import { getUserProfile as apiGetUserProfile} from '../apis/auth';
 
 
 export const userSignUp = async({email, password, name, phoneNumber, location}) =>{

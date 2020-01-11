@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { getProductDetail as getProduct } from '../service/taskService'
-import { createPurchases } from '../'
+
+import { createPurchase as buyItem } from '../service/purchaseService'
 
 import styled from 'styled-components';
-import ItemName, { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
+import { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
 import { Button } from '../lib/Button';
 import { putCart } from '../service/basketService';
 
@@ -33,10 +34,10 @@ const PutDiv = styled.div`
     margin-right: 10px;
 `;
 
-const buyItem = (product, count) => {
+const handleBuyItem = async (product, count) => {
     // PurchaseStore.deleteList();
-    createPurchases(product, count);
-    // PurchaseStore.createPurchases(product, count);
+    await buyItem(product, count);
+    // PurchaseStore.BuyItem(product, count);
     // console.log(PurchaseStore.purchases);
 }
 const putProduct = async (product, count) => {
@@ -109,7 +110,7 @@ function ProductDetail() {
                             className='count' value={count} size='3' readOnly />
                         <button style={{ height: '36px', width: '40px' }} onClick={() => handleMinus()}>-</button>
                     </span>
-                    <Link to='/billingpage'><Button style={{ margin: '6px' }} onClick={() => buyItem(product, count)}>상품 구매</Button></Link>
+                    <Link to='/billingpage'><Button style={{ margin: '6px' }} onClick={() => handleBuyItem(product, count)}>상품 구매</Button></Link>
                     <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product, count)}>장바구니 추가</Button>
                 </PutDiv>
                 <div>

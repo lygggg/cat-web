@@ -1,7 +1,7 @@
-import { getProducts as apiGetProducts } from './apis/task';
-import { getSliceProducts as apiGetSliceProducts } from './apis/task';
-import { getProductDetail as apiGetProductDetail } from './apis/task';
-import { createProduct as apiCreateProduct } from './apis/task';
+import { getProducts as apiGetProducts } from '../apis/task';
+import { getSliceProducts as apiGetSliceProducts } from '../apis/task';
+import { getProductDetail as apiGetProductDetail } from '../apis/task';
+import { createProduct as apiCreateProduct } from '../apis/task';
 
 
 

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Search from './Search';
 import NavMenu from './NavMenu';
 
-import { userAuth, userLogout } from '../userService';
+import { userAuth, userLogout } from '../service/userService';
 
 const Ul = styled.ul`
   width: 1400px;

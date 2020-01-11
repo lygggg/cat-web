@@ -1,7 +1,7 @@
-import { putCart as apiPutCart } from './apis/basket';
-import { getCart as apiGetCart } from './apis/basket';
-import { deleteCart as apiDeleteCart } from './apis/basket'; 
-import { toggleItem as apiToggleItem } from './apis/basket';
+import { putCart as apiPutCart } from '../apis/basket';
+import { getCart as apiGetCart } from '../apis/basket';
+import { deleteCart as apiDeleteCart } from '../apis/basket'; 
+import { toggleItem as apiToggleItem } from '../apis/basket';
 
 
 export const putCart = async (productId, price, title, imageurl, productCount) => {
@@ -22,7 +22,6 @@ export const getCart = async () => {
 
 export const deleteCart = async (productId) => {
     try {
-        console.log(productId);
         return await apiDeleteCart(productId);
     } catch (e) {
         alert(e);

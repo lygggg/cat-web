@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 import store from '../stores/PurchaseStore';
 import PurchaseProduct from './PurchaseProduct';
+import { getPurchase } from '../service/purchaseService';
+
+
 import MenuButton from '../lib/Button';
 import '../css/MyPagePurchaselist.css';
 import {DescriptionName} from '../lib/ItemName';
-import { symbol } from 'prop-types';
+
 
 const DateDiv = styled.div`
     background-color: #F9F9F9;
@@ -58,11 +61,24 @@ const FlexDiv = styled.div`
     text-align: -webkit-center;
 `;
 
+
+
 function PurchaseList() {
-    const purchaseList = store.finalBilling;
+    const [purchaseList, setPurchaseList] = useState([]);
+    
     // if (store._finalBilling.length > 0) {
     //     final = store.priceTotal();
     // }
+
+    const fetchPurchase = async () => {
+        const items = await getPurhase();
+        console.log(items);
+        setPurchaseList(items)
+    }
+
+    useEffect(() => {
+        fetchPurchase();
+    })
 
     return (
         <>

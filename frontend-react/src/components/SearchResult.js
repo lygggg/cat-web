@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 
 import Product from './Product';
-import { getProducts } from '../taskService';
+import { getProducts } from '../service/taskService';
 
 import { Button } from '../lib/Button';
 import ItemListDiv, { Div } from '../lib/Grid'

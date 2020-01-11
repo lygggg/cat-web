@@ -16,12 +16,19 @@ const {
     signUp,
 } = require('../api/stores/UserStore')
 
-const{
+const {
     putBasket,
     getBasket,
     deleteCart,
     toggleItem,
+    userSignUpBasket,
 } = require('../api/stores/BasketStore')
+
+const {
+    userSignUpPurchase,
+    getPurchases,
+    createPurchases,
+} = require('../api/stores/PurchaseStore')
 
 const port = 3000;
 const app = express();
@@ -104,11 +111,12 @@ app.post('/login', (req, res) => {
 
 app.post('/sign_up', (req, res) => {
     signUp(req.body);
+    userSignUpBasket(req.session.email);
+    userSignUpPurchase(req.session.email);
 })
 
 app.post('/userbasket', (req, res) => {
-    const  { productId, price, title, imageurl, productCount }  = req.body;
-    putBasket({ productId, price, title, imageurl, productCount }, req.session.email);
+    putBasket(req.body, req.session.email);
     res.send('장바구니 보내기');
 })
 
@@ -128,6 +136,16 @@ app.patch('/userbasket', (req, res) => {
     console.log(productId);
     toggleItem(req.session.email, productId);
     res.send('체크');
+})
+
+app.post('/userpurchase', (req, res) => {
+    createPurchases(req.body, req.session.email);
+    res.send('구매리스트에 넣기')
+})
+
+app.get('/userpurchase', (req, res) => {
+    const purchases = getPurchases(req.session.email);
+    res.send({purchases});
 })
 
 
