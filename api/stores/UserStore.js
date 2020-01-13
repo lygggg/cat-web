@@ -14,7 +14,7 @@ const userStore = {
 const getUserProfile = (email, password) => userStore._users.filter(e => {
 
     if (e.email === email && e.password === password) {
-        return e;
+        return e;  // 로그인 확인
     }
 
 })
