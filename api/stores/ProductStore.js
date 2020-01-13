@@ -64,7 +64,6 @@ const productStore = {
     }
     
     function createProduct({ title, category, price, description, imageurl, phoneNumber, account}) {
-        console.log('실행')
         productStore._product = [...productStore._product, {
                 id: productStore._product.length + 1,
                 title,
@@ -75,8 +74,6 @@ const productStore = {
                 phoneNumber,
                 account,
             }];
-
-            console.log(productStore._product);
         return productStore._product;
     }
     

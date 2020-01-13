@@ -18,16 +18,11 @@ const userSignUpPurchase = (userEmail) => {
     } ]
 }
 
-const createPurchases = ({ productId, price, title, imageurl, productCount }, userEmail) => {
+const createPurchases = ( product, userEmail) => {
     purchaseStore._purchases.map(e => {
-        if(e.products == userEmail) {
-            e.products = [...e.products, {
-                id: productId,
-                price: price * productCount,
-                title: title,
-                imageurl: imageurl,
-                count: productCount,
-            }]
+        if(e.email == userEmail) {
+            e.products = [...e.products, product,
+               ]
         }
     })
 }

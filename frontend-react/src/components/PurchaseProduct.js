@@ -32,7 +32,7 @@ function PurchaseProduct({ product }) {
                 /></div>
             </Link>
             <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}>
-                <div>{product.title}</div> {product.price * product.amount}원/{product.amount}개
+                <div>{product.title}</div> {product.price * product.count}원/{product.count}개
             </Link>
             <div>
                 <div style={{ textAlign: 'center', fontWeight: 'bold' }}>입금대기중</div>

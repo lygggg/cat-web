@@ -6,6 +6,7 @@ import Product from './BasketProduct';
 import Purchase from '../stores/PurchaseStore';
 
 import { getCart, deleteCart, toggleItem } from '../service/basketService';
+import { createPurchase as buyItem } from '../service/purchaseService'
 
 import styled from 'styled-components';
 
@@ -74,8 +75,8 @@ function BasketList() {
         const buyList = baskets.filter(e =>
             e.completed === true
         );
-
-        Purchase.plusPurchase(buyList, new Date() + '');
+        await buyItem(buyList[0]);
+        
     }
 
     const fetchBaskets = async () => {

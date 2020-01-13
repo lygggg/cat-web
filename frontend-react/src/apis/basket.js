@@ -3,8 +3,8 @@ import axios from 'axios';
 const USER_BASKET_URL = 'http://localhost:8080/userbasket'
 const USER_BASKET_TOGGLE_URL = 'http://localhost:8080/toggle' 
 
-export const putCart = async ({ productId, price, title, imageurl, productCount }) => {
-    const data = await axios.post(USER_BASKET_URL, { productId, price, title, imageurl, productCount });
+export const putCart = async (params) => {
+    const data = await axios.post(USER_BASKET_URL, params);
     return data;
 }
 

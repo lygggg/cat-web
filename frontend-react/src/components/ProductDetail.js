@@ -35,23 +35,13 @@ const PutDiv = styled.div`
 `;
 
 const handleBuyItem = async (product, count) => {
-    // PurchaseStore.deleteList();
-    await buyItem(product, count);
+    console.log(product);
+    await buyItem({...product, count});
     // PurchaseStore.BuyItem(product, count);
     // console.log(PurchaseStore.purchases);
 }
 const putProduct = async (product, count) => {
-    console.log(count);
-    await putCart({
-        productId: product.id,
-        price: product.price,
-        title: product.title,
-        imageurl: product.imageurl,
-        productCount: count,
-        
-    })
-    // console.log("장바구니 등록버튼을 클릭했다." + product.title);
-    // BasketStore.addProductToBasket(product, count);
+    await putCart({...product, count})
 }
 
 

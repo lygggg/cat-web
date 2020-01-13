@@ -83,8 +83,7 @@ app.get('/categories', (req, res) => {
 
 app.get('/login', (req, res) => {
     if (req.session.name) {
-        const session = req.session
-        res.json({ name: session.name });
+        res.json({ name: req.session.name });
     }
 })
 
@@ -98,21 +97,21 @@ app.delete('/login', (req, res) => {
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     const userProfile = getUserProfile(email, password);
+    console.log(email, password, userProfile);
     if (email == userProfile[0].email && password == userProfile[0].password) {
-        req.session.name = userProfile[0].name;
         req.session.email = userProfile[0].email;
-        req.session.save();
-        res.json({ islogin: true });
+        req.session.name = userProfile[0].name;
+        res.json({ islogin: true, name: req.session.name });
     }
     else {
-        res.json({ islogin: false });
+        res.json({ islogin: false});
     }
 })
 
 app.post('/sign_up', (req, res) => {
     signUp(req.body);
-    userSignUpBasket(req.session.email);
-    userSignUpPurchase(req.session.email);
+    userSignUpBasket(req.body.email);
+    userSignUpPurchase(req.body.email);
 })
 
 app.post('/userbasket', (req, res) => {
@@ -122,6 +121,7 @@ app.post('/userbasket', (req, res) => {
 
 app.get('/userbasket', (req, res) => {
     const baskets = getBasket(req.session.email);
+    console.log('get',baskets);
     res.send({ baskets });
 })
 
@@ -133,7 +133,6 @@ app.delete('/userbasket', (req, res) => {
 
 app.patch('/userbasket', (req, res) => {
     const { productId } = req.body;
-    console.log(productId);
     toggleItem(req.session.email, productId);
     res.send('체크');
 })
@@ -145,7 +144,7 @@ app.post('/userpurchase', (req, res) => {
 
 app.get('/userpurchase', (req, res) => {
     const purchases = getPurchases(req.session.email);
-    res.send({purchases});
+    res.send({ purchases });
 })
 
 

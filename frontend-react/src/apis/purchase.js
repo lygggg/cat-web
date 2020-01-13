@@ -2,10 +2,9 @@ import axios from 'axios';
 
 const USER_PURCHASE_URL = 'http://localhost:8080/userpurchase';
 
-export const createPurchase = async (product, count) => {
-    console.log(product, count);
-    const data = await axios.post(USER_PURCHASE_URL, (product, count));
-    console.log('상품',data, count);
+export const createPurchase = async (params) => {
+    const date = new Date();
+    const data = await axios.post(USER_PURCHASE_URL, {...params, date});
     return data;
 }
 

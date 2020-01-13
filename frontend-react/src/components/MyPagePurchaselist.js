@@ -71,14 +71,14 @@ function PurchaseList() {
     // }
 
     const fetchPurchase = async () => {
-        const items = await getPurhase();
-        console.log(items);
-        setPurchaseList(items)
+        const items = await getPurchase();
+        console.log(items.data.purchases[0]);
+        setPurchaseList(items.data.purchases[0])
     }
 
     useEffect(() => {
         fetchPurchase();
-    })
+    },[])
 
     return (
         <>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const USER_URL = 'http://localhost:8080/login';
-const USER_SIGN_UP = 'http://localhost:3000/sign_up'
+const USER_SIGN_UP = 'http://localhost:8080/sign_up'
 
 export const getUserProfile = async ({email, password}) => {
     const { data } = await axios.post(USER_URL, { email, password });

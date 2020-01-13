@@ -8,28 +8,29 @@ const basketStore = {
 };
 
 const userSignUpBasket = (email) => {
-    purchaseStore._purchases = [...purchaseStore._purchases, {
+    basketStore._baskets = [...basketStore._baskets, {
         email: email,
         products: [],
     } ]
 }
 
-const putBasket = ({ productId, price, title, imageurl, productCount }, userEmail) => {
+const putBasket = ({id, title, catagory, price, description, imageurl, phoneNumber, account, count }, userEmail) => {
+    
     basketStore._baskets.map(e => { // 같은값이 있을때 갯수만 추가
         e.products.forEach(i => {
-            if (i.id == productId) {
-                i.price += price * productCount;
-                i.count += productCount;
+            if (i.id == id && e.email == userEmail) {
+                i.price += price * count;
+                i.count += count;
             }
         })
 
         if (e.email == userEmail) { // 아이디와 패스워드가 같을경우 장바구니에 상품 넣기
             e.products = [...e.products, {
-                id: productId,
-                price: price * productCount,
+                id: id,
+                price: price * count,
                 title: title,
                 imageurl: imageurl,
-                count: productCount,
+                count: count,
                 completed: false,
             }];
 
@@ -39,6 +40,7 @@ const putBasket = ({ productId, price, title, imageurl, productCount }, userEmai
                 }) === i;
             });
         }
+        
     }
     );
 }
@@ -77,7 +79,6 @@ const deleteCart = (productId, userEmail) => {
                 //     e.products.splice(e.products.indexOf(i),1);
                 //  }
             )
-            console.log(checkDeleteItem);
             e.products = checkDeleteItem
         }
 
@@ -122,59 +123,3 @@ module.exports = {
     toggleItem,
     userSignUpBasket,
 }
-
-// get baskets() {
-    //     return this._baskets;
-    // },
-
-    // addProductToBasket(product, count) {
-    //     const itemIndex = this._baskets.findIndex(item => item.id === product.id);
-    //     if (itemIndex < 0) {
-    //         this._baskets.push({ 
-    //             ...product,
-    //             'amount': count
-    //         });
-    //         return;
-    //     }
-    //     this._baskets[itemIndex].amount += count;
-    // },
-
-    // deleteBasket() {
-    //     this._baskets = [];
-    // },
-
-
-    // oneDeleteBasket(productId) {
-    //     const deleteResult = this._baskets.filter(item => item.id != productId);
-    //     this._baskets = deleteResult;
-    // },
-
-    // selectDeleteBasket(productId) {
-    //     const deleteResult = this._baskets.filter(item => item.id != productId);
-    //     this._baskets = deleteResult;
-    // },
-
-    // toggleItem(productList,productId) {
-    //     return productList.map(element => {
-    //         if (element.id == productId) {
-    //             element.completed = !element.completed;
-    //         }
-
-    //         return element
-    //     });
-
-    // },
-    // toggleDeleteItem(checkItem) {
-    //     const checkDeleteItem = checkItem.filter(product => !product.completed == true);
-    //     this._baskets = checkDeleteItem;
-
-    // },
-    // priceTotal() {
-    //     console.log(this._baskets);
-    //     let total = this._baskets.map(item => item.price * item.amount);
-    //     let sum = total.reduce(function (pre, value) {
-    //         return pre + value;
-
-    //     });
-    //     return sum;
-    // }

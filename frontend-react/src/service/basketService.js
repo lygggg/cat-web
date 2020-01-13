@@ -4,9 +4,9 @@ import { deleteCart as apiDeleteCart } from '../apis/basket';
 import { toggleItem as apiToggleItem } from '../apis/basket';
 
 
-export const putCart = async (productId, price, title, imageurl, productCount) => {
+export const putCart = async (params) => {
     try {
-        return await apiPutCart(productId, price, title, imageurl, productCount);
+        return await apiPutCart(params);
     } catch (e) {
         alert(e);
     } 

@@ -3,9 +3,9 @@ import { getPurchase as apiGetPurchase } from '../apis/purchase'
 
 
 
-export const createPurchase = async ({ title, category, price, description, imageurl, phoneNumber, account },count) => {
+export const createPurchase = async (params) => {
     try {
-        return await apiCreatePurchase({ title, category, price, description, imageurl, phoneNumber, account },count);
+        return await apiCreatePurchase(params);
     } catch (e) {
         alert(e);
     }

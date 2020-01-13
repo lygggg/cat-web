@@ -6,7 +6,6 @@ const PRODUCTS_URL_NEW = 'http://localhost:3000/products/new';
 
 export const getProducts = async () => {
     const { data } = await axios.get(PRODUCTS_URL);
-    console.log(data);
     return data;
 }
 
@@ -17,7 +16,6 @@ export const getCategories = async () => {
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
     const { data } = await axios.post(PRODUCTS_URL, { category, offset, limit })
-    console.log('dasdsa')
     return data;
 }
 

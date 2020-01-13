@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import styled from 'styled-components';
 
@@ -31,7 +31,6 @@ const LoginButton = styled.button`
 `;
 
 const SignUpButton = styled.button`
-  
   background: white;
   color: #0074e9;
   font-weight: bold;
@@ -67,22 +66,12 @@ function Login() {
       alert('로그인이 성공했습니다.');
       // const data = sessionStorage.getItem(document.cookie.substring(12));
     }
-    else if(userProfile.islogin !== true) {
+    else {
       setLogin('false');
       alert('아이디 또는 패스워드를 다시 입력해주세요.');
       setEmail('');
       setPassword('');
     }
-    // userProfile.userProfile.map(e => {
-    //   if (e.email == email) {
-    //     login();
-    //   }
-    //   else {
-    //     alert('Failed to login');
-    //     setEmail('');
-    //     setPassword('');
-    //   }
-    // })
   }
 
   return (
@@ -102,7 +91,7 @@ function Login() {
           <LoginButton onClick={handleLogin} className="btn_login" >로그인</LoginButton>
         </Div>
         <ButtonDiv>
-          <SignUpButton className="btn_login" >회원가입</SignUpButton>
+        <SignUpButton className="btn_login" ><Link style= {{textDecoration: 'none'}} to='/signup'>회원가입</Link></SignUpButton>
         </ButtonDiv>
         <div className="login_append">
           <div className="inp_chk">
