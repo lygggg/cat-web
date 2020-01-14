@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { getUserProfile } from '../service/userService';
 
-const Div = styled.div`
+const Div = styled.form`
   display: grid;
   height: 200px;
   margin-bottom: 8px;
@@ -56,26 +56,25 @@ const Input = styled.input`
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, setLogin] = useState('false');
+
+  const successesLogin = async () => { // 로그인 성공
+    localStorage.setItem('isLogin',true);
+    alert('로그인이 성공했습니다.'); 
+  }
+  
+  const falseLogin = async () => { // 로그인 실패
+    alert('아이디 또는 패스워드를 다시 입력해주세요.');
+    setEmail('');
+    setPassword('');
+  }
 
   const handleLogin = async () => {
     const userProfile = await getUserProfile({ email, password });
-    console.log(userProfile);
-    if (userProfile.islogin == true) {
-      setLogin('true');
-      alert('로그인이 성공했습니다.');
-      // const data = sessionStorage.getItem(document.cookie.substring(12));
-    }
-    else {
-      setLogin('false');
-      alert('아이디 또는 패스워드를 다시 입력해주세요.');
-      setEmail('');
-      setPassword('');
-    }
+    userProfile.islogin == true ?  successesLogin() : falseLogin();
   }
 
   return (
-    login === 'false' ?
+    localStorage.getItem('isLogin') !== 'true' ?
       <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: '1400px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>

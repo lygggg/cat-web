@@ -8,16 +8,14 @@ import { Button } from '../lib/Button';
 import ItemListDiv, { Div } from '../lib/Grid'
 
 function SearchResult() {
-    // const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [products, setProducts] = useState([]);
-    const [priceOrder, setPriceOrder] = useState('');
-    
     const { searchTerm } = useParams();
-
+    
     const fetchProducts = async () => {
         const products = await getProducts();
         setProducts(products.product);
+        console.log(products.product);
     }
     
 

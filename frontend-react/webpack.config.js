@@ -25,7 +25,9 @@ module.exports = {
     proxy: [{
       context: ["/login", "/userbasket", "/sign_up", "/userpurchase"],
       target: 'http://localhost:3000/',
-      secure: false
+      secure: false,
+      changeOrigin: true,
+      
     }],
     inline: true,
     historyApiFallback: true,

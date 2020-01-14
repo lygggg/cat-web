@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-// const Filestore = require('session-file-store')(session);
 
 const {
     products,
@@ -97,7 +96,6 @@ app.delete('/login', (req, res) => {
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
     const userProfile = getUserProfile(email, password);
-    console.log(email, password, userProfile);
     if (email == userProfile[0].email && password == userProfile[0].password) {
         req.session.email = userProfile[0].email;
         req.session.name = userProfile[0].name;
@@ -151,4 +149,3 @@ app.get('/userpurchase', (req, res) => {
 app.listen(3000, () => {
     console.log(`Listening on port ${port}...`);
 });
-

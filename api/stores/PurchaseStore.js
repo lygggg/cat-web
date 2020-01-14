@@ -3,6 +3,9 @@ const purchaseStore = {
     _purchases: [
         {
             email: 'baayoo71@naver.com', products: []
+        },
+        {
+            email: 'baayoo79@naver.com', products: []
         }
     ],
 
@@ -28,14 +31,14 @@ const createPurchases = ( product, userEmail) => {
 }
 
 const getPurchases = (userEmail) => {
-    if(userEmail == undefined) {
+    if (userEmail == undefined) {
         return [[]];
     }
     return purchaseStore._purchases.map(e => {
-        if(e.email == userEmail) {
+        if (e.email == userEmail) {
             return e.products;
         }
-    })
+    }).filter(e=> e!==undefined);
 }
 
 module.exports = {

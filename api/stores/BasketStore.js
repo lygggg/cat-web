@@ -3,7 +3,11 @@ const basketStore = {
     _baskets: [
         {
             email: 'baayoo71@naver.com', products: []
+        },
+        {
+            email: 'baayoo79@naver.com', products: []
         }
+
     ],
 };
 
@@ -40,22 +44,19 @@ const putBasket = ({id, title, catagory, price, description, imageurl, phoneNumb
                 }) === i;
             });
         }
-        
     }
     );
 }
 
 const getBasket = (userEmail) => {
     if (userEmail == undefined) {
-
         return [[]];
     }
     return basketStore._baskets.map(e => {
         if (e.email == userEmail) {
             return e.products;
         }
-
-    })
+    }).filter(e=> e!==undefined);
 }
 
 // const findUserBasket = (userEmail) => {
@@ -75,9 +76,6 @@ const deleteCart = (productId, userEmail) => {
         if (e.email == userEmail && productId == '체크삭제') {
             const checkDeleteItem = e.products.filter(i =>
                 !i.completed == true
-                //  if(i.completed == true) {
-                //     e.products.splice(e.products.indexOf(i),1);
-                //  }
             )
             e.products = checkDeleteItem
         }

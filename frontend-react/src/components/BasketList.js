@@ -85,7 +85,6 @@ function BasketList() {
         let price = 0;
         setBaskets(items.data.baskets[0]);
         items.data.baskets[0].map(e => {
-            console.log(e);
             price += e.price;
 
         })
