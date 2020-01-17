@@ -44,6 +44,6 @@ function NavMenu() {
       </ul>
     </Nav>
   );
-};
+}
 
 export default NavMenu;

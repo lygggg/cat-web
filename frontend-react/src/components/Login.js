@@ -59,19 +59,19 @@ function Login() {
 
   const successesLogin = async () => { // 로그인 성공
     localStorage.setItem('isLogin',true);
-    alert('로그인이 성공했습니다.'); 
-  }
-  
+    alert('로그인이 성공했습니다.');
+  };
+
   const falseLogin = async () => { // 로그인 실패
     alert('아이디 또는 패스워드를 다시 입력해주세요.');
     setEmail('');
     setPassword('');
-  }
+  };
 
   const handleLogin = async () => {
     const userProfile = await getUserProfile({ email, password });
     userProfile.islogin == true ?  successesLogin() : falseLogin();
-  }
+  };
 
   return (
     localStorage.getItem('isLogin') !== 'true' ?
@@ -79,9 +79,7 @@ function Login() {
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>
           <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='text' />
-
           <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" />
-
           <SearchDiv className="txt_find">
             <A href="/member/find/loginId">아이디</A>
             <A> / </A>
@@ -102,11 +100,7 @@ function Login() {
           </div>
         </div>
       </div>
-      :
-      <Redirect to='/' />
+      : <Redirect to="/" />
   );
-
-};
+}
 export default Login;
-
-

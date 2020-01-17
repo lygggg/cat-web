@@ -30,7 +30,7 @@ function signUp(user) {
     return userStore._users;
 }
 
-module.exports = {
+export {
     getUserProfile,
     signUp,
 };

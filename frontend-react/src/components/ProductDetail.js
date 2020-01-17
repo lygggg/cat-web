@@ -6,7 +6,10 @@ import { getProductDetail as getProduct } from '../service/taskService'
 import { createPurchase as buyItem } from '../service/purchaseService'
 
 import styled from 'styled-components';
-import { MainName, PriceName, BoldName, DescriptionName } from '../lib/ItemName';
+
+import {
+  MainName, PriceName, BoldName, DescriptionName,
+} from '../lib/ItemName';
 import { Button } from '../lib/Button';
 import { putCart } from '../service/basketService';
 
@@ -35,44 +38,43 @@ const PutDiv = styled.div`
 `;
 
 const handleBuyItem = async (product, count) => {
-    console.log(product);
-    await buyItem({...product, count});
-    // PurchaseStore.BuyItem(product, count);
-    // console.log(PurchaseStore.purchases);
-}
-const putProduct = async (product, count) => {
-    await putCart({...product, count})
-}
+  await buyItem({ ...product, count });
+};
 
+const putProduct = async (product, count) => {
+  await putCart({ ...product, count });
+};
 
 
 function ProductDetail() {
-    const [product, setProduct] = useState([]);
-    const [count, setcount] = useState(1);
-    const { productId } = useParams();
-    const { imageurl, account, phoneNumber, title, description, price } = product
+  const [product, setProduct] = useState([]);
+  const [count, setcount] = useState(1);
+  const { productId } = useParams();
+  const {
+    imageurl, account, phoneNumber, title, description, price,
+  } = product;
 
 
   const getOneProduct = async (id) => {
-    const product = await getProduct(id);
-    setProduct(product.products);
-}
+    const oneProduct = await getProduct(id);
+    setProduct(oneProduct.products);
+  };
 
-    useEffect(() => {
-        getOneProduct(productId);
-    },[])
+  useEffect(() => {
+    getOneProduct(productId);
+  }, []);
 
-    function handlePlus() {
-        setcount(count + 1);
+  function handlePlus() {
+    setcount(count + 1);
+  }
+
+  function handleMinus() {
+    if (count > 1) {
+      setcount(count - 1);
     }
+  }
 
-    function handleMinus() {
-        if (count > 1) {
-            setcount(count - 1);
-        }
-    }
-
-    return (
+  return (
         <ItemDetali>
             <div>
                 <img
@@ -109,6 +111,7 @@ function ProductDetail() {
                 </div>
             </ItemDivide>
         </ItemDetali>
-    );
+  );
 }
+
 export default ProductDetail;

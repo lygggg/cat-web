@@ -114,7 +114,7 @@ const toggleItem = (userEmail, productId) => {
 
 }
 
-module.exports = {
+export {
     putBasket,
     getBasket,
     deleteCart,

@@ -6,16 +6,13 @@ import SubSlider from './SubSlider';
 
 
 function Home() {
-  
   const Div = styled.div`
     margin-top: 100px;
   `;
 
   return (
     <>
-    
-      <Slider />
-      
+    <Slider />
       <Div>
       <SubSlider />
       </Div>

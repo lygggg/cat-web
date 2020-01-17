@@ -56,6 +56,7 @@ const productStore = {
     function getProducts({ category, offset, limit }) {
         const products = productStore._product.filter(i => i.category === category);
         const total = products.length;
+        console.log('아이템가져오기');
 
         return {
             products: products.slice(offset, offset + limit),
@@ -80,7 +81,7 @@ const productStore = {
 
 
 
-module.exports = {
+export {
     products,
     categories,
     getProducts,

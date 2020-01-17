@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { BoldName } from '../lib/ItemName';
 
@@ -30,11 +31,9 @@ const Button = styled.button`
 
 
 function BasketProduct({ product, onDeleteClick }) {
-
-    return (
-        <>
-
-            <Link to={`/products/${product.id}`} style={{textDecoration: 'none'}}>
+  return (
+    <>
+      <Link to={`/products/${product.id}`} style={{textDecoration: 'none'}}>
                 <Grid>
                     <Div>
                         <img src={product.imageurl}
@@ -49,10 +48,8 @@ function BasketProduct({ product, onDeleteClick }) {
                 </Grid>
             </Link>
             <Button onClick={() => { onDeleteClick(product.id) }}>삭제</Button>
-
-        </>
-    );
-
+    </>
+  );
 }
-export default BasketProduct;
 
+export default BasketProduct;

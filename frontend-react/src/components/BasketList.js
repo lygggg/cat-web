@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import basket from '../stores/BasketStore';
 import Product from './BasketProduct';
-import Purchase from '../stores/PurchaseStore';
-
-import { getCart, deleteCart, toggleItem } from '../service/basketService';
-import { createPurchase as buyItem } from '../service/purchaseService'
 
 import styled from 'styled-components';
+
+import { getCart, deleteCart, toggleItem } from '../service/basketService';
+import { createPurchase as buyItem } from '../service/purchaseService';
 
 const Div = styled.div`
     
@@ -46,63 +43,56 @@ const Button = styled.button`
 `;
 
 function BasketList() {
-    const [baskets, setBaskets] = useState([]);
-    const [totalPrice, setTotalPrice] = useState(0);
+  const [baskets, setBaskets] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-    async function allRemove() {
-        await deleteCart();
-        fetchBaskets();
-    }
+  const fetchBaskets = async () => {
+    const items = await getCart();
+    let price = 0;
+    setBaskets(items.data.baskets[0]);
+    items.data.baskets[0].map((e) => {
+      price += e.price;
+    });
+    setTotalPrice(price);
+  };
 
-    async function handleSelectDelete(productId) {
-        await deleteCart(productId);
-        fetchBaskets();
-    }
+  async function allRemove() {
+    await deleteCart();
+    fetchBaskets();
+  }
 
-    async function handleCheck(productId) {
-        await toggleItem(productId);
-        fetchBaskets();
+  async function handleSelectDelete(productId) {
+    await deleteCart(productId);
+    fetchBaskets();
+  }
 
-    }
+  async function handleCheck(productId) {
+    await toggleItem(productId);
+    fetchBaskets();
+  }
 
-    async function selectRemove() {
-        await deleteCart('체크삭제');
-        fetchBaskets();
-    }
+  async function selectRemove() {
+    await deleteCart('체크삭제');
+    fetchBaskets();
+  }
 
-    async function selectBuy() {
-        Purchase.deleteList();
-        const buyList = baskets.filter(e =>
-            e.completed === true
-        );
-        await buyItem(buyList[0]);
-        
-    }
+  async function selectBuy() {
+    const buyList = baskets.filter((e) => e.completed === true);
+    await buyItem(buyList[0]);
+  }
 
-    const fetchBaskets = async () => {
-        const items = await getCart();
-        console.log(items.data.baskets[0]);
-        let price = 0;
-        setBaskets(items.data.baskets[0]);
-        items.data.baskets[0].map(e => {
-            price += e.price;
 
-        })
-        setTotalPrice(price);
-    }
+  useEffect(() => {
+    fetchBaskets();
+    setBaskets(baskets.map((i) => {
+      i.completed = false;
+      return i;
+    }));
+  }, [setBaskets]);
 
-    useEffect(() => {
-        fetchBaskets();
-        setBaskets(baskets.map(i => {
-            i.completed = false;
-            return i;
-        }));
-
-    }, [setBaskets]);
-
-    return (
+  return (
         <Div>
-            <h1>장바구니</h1>
+        <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>
 
             <Link to='billingpage'><Button onClick={selectBuy}>구매 하기</Button></Link>
@@ -128,7 +118,7 @@ function BasketList() {
             <div>총 금액: {totalPrice}</div>
 
         </Div>
-    );
+  );
 }
 
 export default BasketList;

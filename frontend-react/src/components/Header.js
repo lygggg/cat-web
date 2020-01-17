@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import Search from './Search';
 import NavMenu from './NavMenu';
 
-import { userAuth, userLogout } from '../service/userService';
+import { userLogout } from '../service/userService';
 
 const Ul = styled.ul`
   width: 1400px;
-`
+`;
 
 const Li = styled.li`
     list-style: none;

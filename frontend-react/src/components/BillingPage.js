@@ -9,12 +9,6 @@ const GridDiv = styled.div`
     justify-content: center;
     width: 1500px;
     height: 1500px;
-`; 
-
-
-const Input = styled.input`
-    width: 300px;
-    height: 20px;
 `;
 
 const Div = styled.div`
@@ -53,19 +47,17 @@ const BuyButton = styled.button`
 
 `;
 function handleBuy() {
-    Purchase.lastPayment();
+  Purchase.lastPayment();
 }
 
 function BillingPage() {
 
-    return (
-        <GridDiv>
+  return (
+    <GridDiv>
             <div style={{borderBottom: '1px solid black'}}>
-        <img  src='/public/image/catbaner.jpg' />
-        </div>
+            <img  src='/public/image/catbaner.jpg' />
+            </div>
         <h1 style={{borderBottom: '3px solid black'}}>주문/결제</h1>
-            
-            
                 <div>
                 <h2>구매자정보</h2>
                     <Div>
@@ -78,14 +70,11 @@ function BillingPage() {
                     <TitleTd>휴대폰 번호</TitleTd> 
                     </Div>
                 </div>
-                
-             
                 <div>
                 <h2>받는 사람정보</h2>  
                     <Div>
                     <TitleTd>이름</TitleTd> 
-                    </Div>
-                    
+                    </Div>  
                     <Div>
                     <TitleTd>배송주소</TitleTd> 
                     </Div>
@@ -96,8 +85,6 @@ function BillingPage() {
                     <TitleTd>배송 요청사항</TitleTd> 
                     </Div>
                 </div>
-            
-            
                 <div>
                 <h2>결제정보</h2>
                     <Div>
@@ -110,21 +97,21 @@ function BillingPage() {
                     <TitleTd>총 결제금액 </TitleTd>
                     </Div>
                     <Div>
-                        <PayMentDiv><TitleTd>결제방법</TitleTd> <span>
-                                <input type='radio' />카드결제 (미구현)
-                                <input type='radio' />무통장입금
-                                <input type='radio' />계좌이체
-                                </span></PayMentDiv>
-                    
+                        <PayMentDiv><TitleTd>결제방법</TitleTd> 
+                          <span>
+                            <input type='radio' />
+                            카드결제 (미구현)
+                            <input type='radio' />
+                            무통장입금
+                            <input type='radio' />
+                            계좌이체
+                          </span>
+                        </PayMentDiv>
                     </Div>
-                    </div>
-                    
-                
+                </div>
                 <BuyButton onClick={() => handleBuy()}>구매하기</BuyButton>
-            
-            
-        </GridDiv>
-    );
-
+    </GridDiv>
+  );
 }
+
 export default BillingPage;

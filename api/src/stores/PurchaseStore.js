@@ -41,7 +41,7 @@ const getPurchases = (userEmail) => {
     }).filter(e=> e!==undefined);
 }
 
-module.exports = {
+export {
     userSignUpPurchase,
     createPurchases,
     getPurchases,

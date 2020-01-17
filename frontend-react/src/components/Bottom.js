@@ -48,7 +48,7 @@ const MidP = styled.p`
 function Bottom() {
     return(
         <>
-        <Footer>
+          <Footer>
             <MenuDiv>
                 <A>인재채용</A>|
                 <A>입점 / 제휴문의</A>|
@@ -80,12 +80,8 @@ function Bottom() {
 이태원마켓은 소비자 보호와 안전거래를 위해 신뢰관리센터(lyg@lyg.com)를 운영하고 있습니다.
                 </p>
             </TextDiv>
-
-
-        </Footer>
-
+          </Footer>
         </>
-
-    )
+  );
 }
 export default Bottom;

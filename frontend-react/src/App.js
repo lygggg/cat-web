@@ -15,10 +15,8 @@ import PurchaseList from './components/MyPagePurchaselist';
 import SignUp from './components/SignUp';
 import BillingPage from './components/BillingPage';
 import SearchResult from './components/SearchResult';
-import Search from "./components/Search";
 import Header from './components/Header';
-import Bttom from './components/Bottom';
-import Bottom from "./components/Bottom";
+import Bottom from './components/Bottom';
 
 function App() {
   return (
