@@ -18,7 +18,7 @@ const Li = styled.li`
 `;
 
 const Nav = styled.div`
-  width: 1500px;
+  width: 1850px;
   text-align: center;
   border-top: 1px solid #e0e0e0;
 `;

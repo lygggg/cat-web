@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import ProductList, { CATEGORIES } from './ProductList';
+import { CATEGORIES } from './ProductList';
 import { createProduct } from '../service/taskService';
 
 import styled from 'styled-components';
@@ -19,14 +19,6 @@ const SubDiv = styled.div`
     margin-bottom: 20px;
 `;
 
-// const Input = styled.input`
-//   padding: 0 19px;
-//   border: 1px solid #ccc;
-//   background-color: #fff;
-//   margin: 3px;
-//   font-size: 14px;
-// `; 
-
 const Input = styled.input`
     width: 400px;
     height: 20px;
@@ -41,48 +33,46 @@ const Label = styled.span`
 `;
 
 function ProductNew() {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(0);
-    const [category, setCategory] = useState();
-    const [fileName, setFileName] = useState('이미지 파일 선택');
-    const [imageurl, setImageurl] = useState('');
-    const [phoneNumber, setPhone] = useState('');
-    const [account, setAccount] = useState('');
-    const onFileChange = (event) => {
-        if (event.target.files != null && event.target.files.length > 0) {
-            setFileName(event.target.files[0].name);
-            setImageurl("/public/image/" + event.target.files[0].name);
-        }
-    };
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState();
+  const [fileName, setFileName] = useState('이미지 파일 선택');
+  const [imageurl, setImageurl] = useState('');
+  const [phoneNumber, setPhone] = useState('');
+  const [account, setAccount] = useState('');
+  const onFileChange = (event) => {
+    if (event.target.files != null && event.target.files.length > 0) {
+      setFileName(event.target.files[0].name);
+      setImageurl("/public/image/" + event.target.files[0].name);
+    }
+  };
 
-    const onCategoryChange = (event) => {
-        setCategory(event.target.value ? String(event.target.value) : undefined);
-    };
+  const onCategoryChange = (event) => {
+    setCategory(event.target.value ? String(event.target.value) : undefined);
+  };
 
-    const onRegister = async (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+  const onRegister = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
 
-        createProduct({
-            title,
-            category,
-            price,
-            description,
-            imageurl,
-            phoneNumber,
-            account,
-        });
-        console.log('new')
-    };
+    createProduct({
+      title,
+      category,
+      price,
+      description,
+      imageurl,
+      phoneNumber,
+      account,
+    });
+  };
 
-    return (
+  return (
         <GridDiv>
             <SubDiv style={{ textAlign: 'center' }}
                 className="container container-sm container-item-create">
                 <h5 className="container-headline">중고 상품 등록</h5>
-
                 <form className="form-item-create" onSubmit={onRegister}>
                     <SubDiv className="form-group form-title">
                         <Label>
@@ -104,7 +94,6 @@ function ProductNew() {
                             <option value={"간식"}>{CATEGORIES[1]}</option>
                             <option value={"캔"}>{CATEGORIES[2]}</option>
                             <option value={"모래"}>{CATEGORIES[3]}</option>
-
                         </select>
                     </SubDiv>
                     <SubDiv className="form-group form-price">
@@ -132,7 +121,6 @@ function ProductNew() {
                         <label htmlFor="ex_filename" className="btn btn-secondary"></label>
                         <input type="file" id="ex_filename" className="upload-hidden"
                             onChange={onFileChange} />
-
                     </SubDiv>
                     <SubDiv className="form-group">
                         <Label>
@@ -155,11 +143,7 @@ function ProductNew() {
                 </form>
             </SubDiv>
         </GridDiv>
-
-
-
-    )
-
+  );
 }
 
 export default ProductNew;

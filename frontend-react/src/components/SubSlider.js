@@ -3,10 +3,10 @@ import React from 'react';
 import InfiniteCarousel from 'react-leaf-carousel';
 
 function SubSlider() {
-    return (
-        <div style={{width:'1500px'}}>
-        <h2 style={{textAlign: 'center'}}>이 상품 어때요?</h2>
-        <InfiniteCarousel
+  return (
+        <div style={{ width:'1890px' }}>
+          <h2 style={{ textAlign: 'center' }}>이 상품 어때요?</h2>
+          <InfiniteCarousel
         breakpoints={[
           {
             breakpoint: 500,
@@ -122,7 +122,7 @@ function SubSlider() {
           />
         </div>
       </InfiniteCarousel>
-    </div>
-    )
+        </div>
+  );
 }
 export default SubSlider;

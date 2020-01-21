@@ -9,7 +9,7 @@ import NavMenu from './NavMenu';
 import { userLogout } from '../service/userService';
 
 const Ul = styled.ul`
-  width: 1400px;
+    width: 1850px;
 `;
 
 const Li = styled.li`
@@ -24,7 +24,7 @@ const Li = styled.li`
 `;
 
 const Div = styled.div`
-    width: 1500px;
+    width: 1850px;
     height: 150px;
     display: flex;
     justify-content: center;
@@ -51,11 +51,8 @@ function Header() {
         : (<><Link to='/signup'><Li>회원가입</Li></Link><Link to='/user/login'><Li>로그인</Li></Link></>)}
         <Li>{userName}</Li>
       </Ul>
-
       <Div>
-        
         <Link to='/'><span><img style={{ maxWidth: '150px', width: 'auto', height: 'auto', margin: '10px' }} src='/public/image/catbaner.jpg' /></span></Link>
-        
         <Search />
       </Div>
       <NavMenu />

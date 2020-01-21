@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node @babel/preset-env",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +19,7 @@
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",
     "express-session": "^1.17.0",
+    "http-errors": "^1.7.3",
     "http-status": "^1.4.2",
     "i": "^0.3.6",
     "moment": "^2.24.0",
@@ -37,6 +37,24 @@
     "babel-cli": "^6.26.0",
     "babel-preset-node6": "^11.0.0",
     "babel-register": "^6.26.0",
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "1.19.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "airbnb"
+    ],
+    "rules": {
+      "react/prefer-stateless-function": 0,
+      "react/jsx-filename-extension": 0,
+      "react/jsx-one-expression-per-line": 0
+    }
   }
 }

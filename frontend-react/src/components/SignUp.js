@@ -50,29 +50,28 @@ const SignButton = styled.button`
 `;
 
 function SignUp() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [location, setLocation] = useState('');
-    
-    const onRegister = async (event) => {
-        event.preventDefault();
-        event.stopPropagation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [location, setLocation] = useState('');
+  const onRegister = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-        userSignUp({
-            email,
-            password,
-            name,
-            phoneNumber,
-            location,
-        })
-        alert('회원가입 되셨습니다.')
-    }
-    
-    return (
+    userSignUp({
+      email,
+      password,
+      name,
+      phoneNumber,
+      location,
+    });
+    alert('회원가입 되셨습니다.');
+  };
+
+  return (
         <GridDiv>
-            <h2 style={{textAlign:'center'}}>회원가입</h2>
+          <h2 style={{textAlign:'center'}}>회원가입</h2>
         <SignForm onSubmit={onRegister}>
             <InputDiv>
             <Span>
@@ -122,11 +121,7 @@ function SignUp() {
                 <SignButton type="primary" >동의하고 가입하기</SignButton>
             </div>
         </SignForm>
-        </GridDiv>   
-
-        
-        
-    );
-    
-};
+        </GridDiv>
+  );
+}
 export default SignUp;

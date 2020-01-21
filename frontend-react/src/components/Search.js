@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import store from '../stores/ProductStore';
-import ProductList from "./ProductList";
+import ProductList from './ProductList';
 import Product from './Product';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 
 function Search() {
-    const products = store.products;
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
-    const [isVisible, setIsVisible] = useState(false);
-    const handleChange = event => {
-        setSearchTerm(event.target.value);
-    };
+  const products = store.products;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
     function handleSearch() {
         setIsVisible(true);
-    }
+  }
 
     return (
 

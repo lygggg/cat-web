@@ -3,14 +3,14 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-    width: d;
     margin-top: 100px;
+    width: 1890px;
     
 `;
 
 const TextDiv = styled.div`
     display: flex;
-    width: 1500px;
+    width: 1890px;
     height: 90px;
     background: #333;
     text-align: center;

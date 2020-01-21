@@ -1,51 +1,43 @@
 const purchaseStore = {
-    
-    _purchases: [
-        {
-            email: 'baayoo71@naver.com', products: []
-        },
-        {
-            email: 'baayoo79@naver.com', products: []
-        }
-    ],
 
-    _finalBilling: [
-
-    ],
+  _purchases: [
+    { email: 'baayoo71@naver.com', products: [] },
+    { email: 'baayoo79@naver.com', products: [] },
+  ],
+  _finalBilling: [],
 
 };
 const userSignUpPurchase = (userEmail) => {
-    purchaseStore._purchases = [...purchaseStore._purchases, {
-        email: userEmail,
-        products: [],
-    } ]
-}
+  purchaseStore._purchases = [...purchaseStore._purchases, {
+    email: userEmail,
+    products: [],
+  }];
+};
 
-const createPurchases = ( product, userEmail) => {
-    purchaseStore._purchases.map(e => {
-        if(e.email == userEmail) {
-            e.products = [...e.products, product,
-               ]
-        }
-    })
-}
+const createPurchases = (product, userEmail) => {
+  purchaseStore._purchases.map((e) => {
+    if (e.email === userEmail) {
+      e.products = [...e.products, product];
+    }
+  });
+};
 
 const getPurchases = (userEmail) => {
-    if (userEmail == undefined) {
-        return [[]];
+  if (userEmail === undefined) {
+    return [[]];
+  }
+  return purchaseStore._purchases.map((e) => {
+    if (e.email === userEmail) {
+      return e.products;
     }
-    return purchaseStore._purchases.map(e => {
-        if (e.email == userEmail) {
-            return e.products;
-        }
-    }).filter(e=> e!==undefined);
-}
+  }).filter((e) => e !== undefined);
+};
 
 export {
-    userSignUpPurchase,
-    createPurchases,
-    getPurchases,
-}
+  userSignUpPurchase,
+  createPurchases,
+  getPurchases,
+};
 
 // get purchases() {
     //     return this._purchases;

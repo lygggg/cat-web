@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,26 +23,25 @@ const Button = styled.button`
 `;
 
 function PurchaseProduct({ product }) {
-    return (
-        <Grid>
-            <Link to={`/products/${product.id}`}>
+  return (
+    <Grid>
+      <Link to={`/products/${product.id}`}>
                 <div style={{ display: 'block', textAlign: "center" }}><img src={product.imageurl}
                     alt=""
                     width="70%"
                 /></div>
-            </Link>
-            <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+      </Link>
+      <Link to={`/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                 <div>{product.title}</div> {product.price * product.count}원/{product.count}개
-            </Link>
-            <div>
-                <div style={{ textAlign: 'center', fontWeight: 'bold' }}>입금대기중</div>
-                <div><Button>배송조회</Button></div>
-                <div><Button>교환신청</Button></div>
-                <div><Button>반품신청</Button></div>
-                <div><Button>구매후기</Button></div>
-            </div>
-
-        </Grid>
-    );
-};
+      </Link>
+      <div>
+        <div style={{ textAlign: 'center', fontWeight: 'bold' }}>입금대기중</div>
+        <div><Button>배송조회</Button></div>
+        <div><Button>교환신청</Button></div>
+        <div><Button>반품신청</Button></div>
+        <div><Button>구매후기</Button></div>
+      </div>
+    </Grid>
+  );
+}
 export default PurchaseProduct;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,7 +21,6 @@ import Bottom from './components/Bottom';
 function App() {
   return (
     <Router>
-     
         <Switch>
           <Route path="/categories/:categoryId/page/:pageNum">
             <Header />
@@ -77,11 +76,9 @@ function App() {
               <PurchaseList/>
               <Bottom />
             </AuthRoute>
-
         </Switch>
     </Router>
   );
 }
 
 export default App;
-

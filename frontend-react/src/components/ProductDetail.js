@@ -57,7 +57,7 @@ function ProductDetail() {
 
   const getOneProduct = async (id) => {
     const oneProduct = await getProduct(id);
-    setProduct(oneProduct.products);
+    setProduct(oneProduct.product);
   };
 
   useEffect(() => {
