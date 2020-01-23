@@ -1,4 +1,4 @@
-const purchaseStore = {
+export const purchaseStore = {
 
   _purchases: [
     { email: 'baayoo71@naver.com', products: [] },

@@ -1,5 +1,5 @@
 
-const basketStore = {
+export const basketStore = {
   _baskets: [
     {
       email: 'baayoo71@naver.com', products: []

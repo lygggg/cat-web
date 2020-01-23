@@ -9,7 +9,8 @@ require('dotenv').config();
 
 const port = 3000;
 const app = express();
-mongoose.connect('mongodb://localhost:27017/mongo', {useNewUrlParser: true});
+
+mongoose.connect('mongodb://localhost:27017/cat_web', {useNewUrlParser: true});
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));
@@ -17,9 +18,6 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function() {
   console.log('Connected');
 })
-
-const products = db.collection('products');
-console.log(products);
 
 const corsOptions = {
   origin: '*',

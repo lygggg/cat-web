@@ -1,4 +1,4 @@
-const userStore = {
+export const userStore = {
   _users: [
     {
       email: 'baayoo71@naver.com',

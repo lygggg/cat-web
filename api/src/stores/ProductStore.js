@@ -1,4 +1,4 @@
-const productStore = {
+export const productStore = {
   _product: [
     { id: 119, title: '[AGT캔 증정] 게더 프리 에이커 캣 치킨 1kg', category: '사료', price: 15000, description: '캐나다 금사료!!', imageurl: '/public/image/gethe.jpg', account: '1111-111-111-1111', phoneNumber: '010-1321-4123' },
     { id: 101, title: '뉴웨이브 홀리스틱 연어 (전연령) 2.4kg', category: '사료', price: 19000, description: '천연 항산화 물질인 폴리페놀이 풍부~', imageurl: '/public/image/food_newwave.jpg', account: '1111-111-111-1111', phoneNumber: '010-1321-4123' },
@@ -42,11 +42,12 @@ const categories = () => productStore._categories;
 function getProducts({ category, offset, limit }) {
   const products = productStore._product.filter((i) => i.category === category);
   const total = products.length;
+  
   return {
     products: products.slice(offset, offset + limit),
     total,
   };
-}
+};
 
 function createProduct({ title, category, price, description, imageurl, phoneNumber, account }) {
   productStore._product = [...productStore._product, {
