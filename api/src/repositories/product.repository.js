@@ -1,4 +1,3 @@
-import { productStore } from '../stores/ProductStore';
 import model from '../models/product.schema';
 
 class ProductRepository {
@@ -17,21 +16,26 @@ class ProductRepository {
     }
 
     async createOne({ title, category, price, description, imageurl, phoneNumber, account }) {
-        productStore._product = [...productStore._product, {
-            id: productStore._product.length + 1,
+      const product = await new model({
+            id:  (await model.find({})).length,
             title,
             category,
             price,
             description,
             imageurl,
-            phoneNumber,
             account,
-          }];
-          return productStore._product;
+            phoneNumber,
+      })
+      try {
+        await product.save();
+      } catch(e) {
+        return console.error(500, e);
+      }
     }
     
-    async getOne(id) {
-      return productStore._product.find(product => product.id == id);
+    async getOne(productId) {
+      const getProducts = await model.find({ id: productId });
+      return getProducts;
     }
 
 }

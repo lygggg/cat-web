@@ -1,4 +1,5 @@
 import { basketStore } from '../stores/BasketStore';
+import model from '../models/basket.schema';
 
 class BasketRepository {
     constructor() {

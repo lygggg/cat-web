@@ -54,10 +54,9 @@ function ProductDetail() {
     imageurl, account, phoneNumber, title, description, price,
   } = product;
 
-
   const getOneProduct = async (id) => {
     const oneProduct = await getProduct(id);
-    setProduct(oneProduct.product);
+    setProduct(oneProduct.product[0]);
   };
 
   useEffect(() => {

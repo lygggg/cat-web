@@ -57,12 +57,12 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const successesLogin = async () => { // 로그인 성공
+  const successesLogin = () => { // 로그인 성공
     localStorage.setItem('isLogin',true);
     alert('로그인이 성공했습니다.');
   };
 
-  const falseLogin = async () => { // 로그인 실패
+  const falseLogin = () => { // 로그인 실패
     alert('아이디 또는 패스워드를 다시 입력해주세요.');
     setEmail('');
     setPassword('');
@@ -70,7 +70,8 @@ function Login() {
 
   const handleLogin = async () => {
     const userProfile = await getUserProfile({ email, password });
-    userProfile.islogin == true ?  successesLogin() : falseLogin();
+    console.log(userProfile);
+    await userProfile.islogin == true ?  successesLogin() : falseLogin();
   };
 
   return (
@@ -78,7 +79,7 @@ function Login() {
       <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: '1400px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>
-          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='text' />
+          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' />
           <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" />
           <SearchDiv className="txt_find">
             <A href="/member/find/loginId">아이디</A>

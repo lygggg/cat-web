@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     imageurl: { type: String, required: true },
     account: { type: String },
-    phoneNumber: { type: String },
+    phoneNumber: { },
 });
 
 export default mongoose.model('products', productSchema);

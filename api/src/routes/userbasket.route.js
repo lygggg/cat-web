@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  // const basketRepo = new BasketRepo();
-  // const basketService = new BasketService(basketRepo);
-  // const baskets = await basketService.getBaskets(req.session.email);
-  const baskets = getBasket(req.session.email);
+  const basketRepo = new BasketRepo();
+  const basketService = new BasketService(basketRepo);
+  const baskets = await basketService.getBaskets(req.session.email);
+  // const baskets = getBasket(req.session.email);
   res.send({ baskets });
 });
 

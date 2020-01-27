@@ -1,5 +1,3 @@
-import { userStore } from "../stores/UserStore";
-
 export default class AuthService {
     constructor(auth) {
         this.auth = auth;
@@ -11,7 +9,6 @@ export default class AuthService {
     }
 
     async signUp(user) {
-        console.log(user.email,'이메일');
         await this.auth.createOne(user);
     }
 }
