@@ -26,10 +26,11 @@ class BasketRepository {
     );
   }
 
-  async deleteOne({ productId, userEmail }) {
-    console.log(userEmail);
-    const getCart = await model.find({ email: userEmail })
-    console.log('sd',getCart);
+  async deleteOne(_id, userEmail) {
+    await model.update(
+      { email: userEmail },
+      { $pull: { products: _id } }
+      )
     
     // basketStore._baskets.map(e => {
     //   if (e.email === ulserEmail && productId === "체크삭제") {

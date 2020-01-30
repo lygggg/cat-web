@@ -12,8 +12,8 @@ export default class BasketService {
         await this.baskets.putOne(basket, userEmail);
     }
 
-    async deleteBasket({ productId, userEmail }) {
-        await this.baskets.deleteOne({ productId, userEmail });
+    async deleteBasket(productId, userEmail) {
+        await this.baskets.deleteOne(productId, userEmail);
     }
 
     async toggleBasket({ userEmail, productId }) {

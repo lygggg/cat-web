@@ -47,7 +47,7 @@ function BasketProduct({ product, onDeleteClick }) {
                     </Div>
                 </Grid>
             </Link>
-            <Button onClick={() => { onDeleteClick(product.id) }}>삭제</Button>
+            <Button onClick={() => { onDeleteClick(product._id) }}>삭제</Button>
     </>
   );
 }
