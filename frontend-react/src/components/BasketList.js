@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Product from './BasketProduct';
+import groupBy from 'lodash.groupby';
 
 import styled from 'styled-components';
 
@@ -48,11 +49,17 @@ function BasketList() {
 
   const fetchBaskets = async () => {
     const items = await getCart();
+    const products = groupBy(items.data.baskets[0].products,'_id');
     let price = 0;
-    setBaskets(items.data.baskets[0]);
-    items.data.baskets[0].map((e) => {
-      price += e.price;
-    });
+    setBaskets(Object.values(products).map(i=>{ // 장바구니 리스트 정렬
+      return { ...i[0] ,count: i.length };
+    }));
+
+    Object.values(products).map(i=>{ // 가격출력
+      return { ...i[0] ,count: i.length };
+    }).forEach(i=> {
+      price += i.count * i.price;
+    })
     setTotalPrice(price);
   };
 

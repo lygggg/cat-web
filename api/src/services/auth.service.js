@@ -10,5 +10,7 @@ export default class AuthService {
 
     async signUp(user) {
         await this.auth.createOne(user);
+        await this.auth.createCart(user.email);
+        await this.auth.createPurchase(user.email);
     }
 }

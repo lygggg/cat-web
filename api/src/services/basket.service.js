@@ -4,12 +4,12 @@ export default class BasketService {
     }
 
     async getBaskets(userEmail) {
-        const baskets = await this.baskets.getBaskets(userEmail);
+        const baskets = await this.baskets.getAll(userEmail);
         return baskets;
     }
 
     async putBasket(basket, userEmail) {
-        await this.baskets.putBasket(basket, userEmail);
+        await this.baskets.putOne(basket, userEmail);
     }
 
     async deleteBasket({ productId, userEmail }) {

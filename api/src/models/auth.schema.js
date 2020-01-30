@@ -6,8 +6,6 @@ const authSchema = new mongoose.Schema({
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     location: { type: String, required: true },
-    cart: { },
-    purchase: { },
 });
 
 export default mongoose.model('user', authSchema);

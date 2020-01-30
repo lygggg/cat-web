@@ -1,28 +1,27 @@
-import model from '../models/auth.schema';
+import userModel from '../models/auth.schema';
+import cartModel from '../models/basket.schema';
 
 class UserRepository {
     constructor() {
 
     }
     async getOne(userEmail) {
-        const getUser = await model.find({ email: userEmail });
+        const getUser = await userModel.find({ email: userEmail });
         if(getUser) {
             return getUser
         }
     }
 
     async createOne({ email, password, name, phoneNumber, location }) {
-        const user = await new model({
+        const newUser = await new userModel({
             email,
             password,
             name,
             phoneNumber,
             location,
-            cart: [],
-            purchase: [],
         })
         try {
-            await user.save();
+            await newUser.save();
         } catch(e) {
             return console.error(500, e);
         }
@@ -31,6 +30,21 @@ class UserRepository {
     // 사용자 구매페이지 배열
     // 사용자 회원 배열추가
 }
+    async createCart(userEmail) {
+        const newCart = await new cartModel({
+            email: userEmail,
+            products: [],
+        })
+        try {
+            await newCart.save();
+        } catch(e) {
+            return console.error(500,e);
+        }
+    }
+    
+    async createPurchase(userEmail) {
+
+    }
 }
 
 export default UserRepository;
