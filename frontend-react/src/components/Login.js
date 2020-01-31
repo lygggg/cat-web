@@ -70,7 +70,6 @@ function Login() {
 
   const handleLogin = async () => {
     const userProfile = await getUserProfile({ email, password });
-    console.log(userProfile);
     await userProfile.islogin == true ?  successesLogin() : falseLogin();
   };
 

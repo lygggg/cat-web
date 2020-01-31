@@ -46,13 +46,12 @@ const Button = styled.button`
 function BasketList() {
   const [baskets, setBaskets] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
   const fetchBaskets = async () => {
     const items = await getCart();
-    const products = groupBy(items.data.baskets[0].products,'_id');
+    const products = await groupBy(items.data.baskets[0].products,'_id');
     let price = 0;
     setBaskets(Object.values(products).map(i=>{ // 장바구니 리스트 정렬
-      return { ...i[0] ,count: i.length };
+      return { ...i[0] ,count: i.length, selected: false };
     }));
 
     Object.values(products).map(i=>{ // 가격출력
@@ -63,7 +62,7 @@ function BasketList() {
     setTotalPrice(price);
   };
 
-  async function allRemove() {
+  const allRemove = async () => {
     await deleteCart();
     fetchBaskets();
   }
@@ -73,26 +72,30 @@ function BasketList() {
     fetchBaskets();
   }
 
-  async function handleCheck(productId) {
-    await toggleItem(productId);
-    fetchBaskets();
+  async function handleCheck(productId, cart) {
+    setBaskets(cart.map(item => {
+      if(item.id === productId) {
+        item.selected = !item.selected;
+      }
+      return item;
+    }))
+    console.log(baskets);
   }
 
-  async function selectRemove() {
-    await deleteCart('체크삭제');
+  async function checkRemove() {
+    await deleteCart(baskets.filter(i=> i.selected == true).map(e=> {return e._id}));
     fetchBaskets();
   }
 
   async function selectBuy() {
-    const buyList = baskets.filter((e) => e.completed === true);
+    const buyList = baskets.filter((e) => e.selected === true);
     await buyItem(buyList[0]);
   }
-
 
   useEffect(() => {
     fetchBaskets();
     setBaskets(baskets.map((i) => {
-      i.completed = false;
+      i.selected = true;
       return i;
     }));
   }, [setBaskets]);
@@ -114,13 +117,13 @@ function BasketList() {
             </GridInfo>
             {baskets.map(basket =>
                 <Grid key={basket.id}>
-                    <input type='checkbox' checked={basket.completed}
-                        onChange={() => handleCheck(basket.id)} />
+                    <input type='checkbox' checked={basket.selected}
+                        onChange={() => handleCheck(basket.id, baskets)} />
                     <Product onDeleteClick={handleSelectDelete} product={basket} />
                 </Grid>
             )}
             <Button onClick={allRemove}>전체삭제</Button>
-            <Button onClick={selectRemove}>선택삭제</Button>
+            <Button onClick={checkRemove}>선택삭제</Button>
 
             <div>총 금액: {totalPrice}</div>
 
