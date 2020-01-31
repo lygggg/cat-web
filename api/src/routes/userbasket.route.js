@@ -3,10 +3,6 @@ import express from 'express';
 import BasketRepo from '../repositories/basket.repository';
 import BasketService from '../services/basket.service';
 
-import {
-  putBasket, getBasket, deleteCart, toggleItem,
-} from '../stores/BasketStore';
-
 const router = express.Router();
 
 router.get('/', async (req, res) => {
