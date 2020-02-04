@@ -5,7 +5,7 @@ import groupBy from 'lodash.groupby';
 
 import styled from 'styled-components';
 
-import { getCart, deleteCart, toggleItem } from '../service/basketService';
+import { getCart, deleteCart } from '../service/basketService';
 import { createPurchase as buyItem } from '../service/purchaseService';
 
 const Div = styled.div`
@@ -53,7 +53,6 @@ function BasketList() {
     setBaskets(Object.values(products).map(i=>{ // 장바구니 리스트 정렬
       return { ...i[0] ,count: i.length, selected: false };
     }));
-
     Object.values(products).map(i=>{ // 가격출력
       return { ...i[0] ,count: i.length };
     }).forEach(i=> {
@@ -79,7 +78,6 @@ function BasketList() {
       }
       return item;
     }))
-    console.log(baskets);
   }
 
   async function checkRemove() {

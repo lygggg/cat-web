@@ -42,7 +42,7 @@ const handleBuyItem = async (product, count) => {
 };
 
 const putProduct = async (product, count) => {
-  await putCart({ ...product, count });
+  await putCart(new Array(count).fill(product._id));
 };
 
 

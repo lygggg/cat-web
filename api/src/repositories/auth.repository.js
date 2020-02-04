@@ -1,5 +1,7 @@
 import userModel from '../models/auth.schema';
 import cartModel from '../models/basket.schema';
+import purchaseModel from '../models/purchase.schema';
+import { model } from 'mongoose';
 
 class UserRepository {
     constructor() {
@@ -38,12 +40,20 @@ class UserRepository {
         try {
             await newCart.save();
         } catch(e) {
-            return console.error(500,e);
+            return console.error(500, e);
         }
     }
     
     async createPurchase(userEmail) {
-
+        const newPurchase = await new purchaseModel({
+            email: userEmail,
+            products: [],
+        })
+        try {
+            await newPurchase.save();
+        } catch(e) {
+            return console.error(500, e);
+        }
     }
 }
 

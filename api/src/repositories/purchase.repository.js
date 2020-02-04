@@ -1,27 +1,24 @@
-import { purchaseStore } from '../stores/PurchaseStore';
+import model from '../models/purchase.schema';
 
 class PurchaseRepository {
-    constructor() {
-        
-    }
+    constructor() {}
 
     async getAll(userEmail) {
         if (userEmail === undefined) {
-            return [[]];
+            return [{}];
           }
-          return purchaseStore._purchases.map((e) => {
-            if (e.email === userEmail) {
-              return e.products;
-            }
-          }).filter((e) => e !== undefined);
+
+          const purchaseList = await model.find({ email: userEmail })
+            .populate('products');
+            return purchaseList;
     }
 
-    async createOne(product, userEmail) {
-        purchaseStore._purchases.map((e) => {
-            if (e.email === userEmail) {
-              e.products = [...e.products, product];
-            }
-          });
+    async createOne({ _id, count }, userEmail) {
+      await model.updateMany(
+        { email: userEmail },
+        { $push: { products: _id, }},
+        { $addToSet: { amount: count }},
+      );
     }
 }
 

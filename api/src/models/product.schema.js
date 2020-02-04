@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
     imageurl: { type: String, required: true },
     account: { type: String },
     phoneNumber: { },
+    amount: { type: Number },
 });
 
 export default mongoose.model('products', productSchema);
