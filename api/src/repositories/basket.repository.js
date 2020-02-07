@@ -14,7 +14,7 @@ class BasketRepository {
   }
 
   async putOne( _id, userEmail) {
-    await model.update(
+    await model.updateMany(
       { email: userEmail },
       { $push: { products: _id } }
     );
@@ -22,21 +22,24 @@ class BasketRepository {
 
   async deleteOne(_id, userEmail) {
     if(_id) {
-    await model.update(
+    await model.updateOne(
       { email: userEmail },
       { $pull: { products: _id } }
       )
     }
-    
-    if(_id === undefined) {
-      await model.update({ email: userEmail },
+  }
+
+  async deleteAll(_id, userEmail) {
+      await model.updateMany({ email: userEmail },
         { $set: { products: [] }}
       );
-    }
-    await model.updateMany(
-    { email: userEmail}, {$pull: {products: { $in: _id }}} , function(err) {console.log(err,500)}
-    )
   }
+
+  async deleteSelected(_id, userEmail) {
+    await model.updateMany(
+      { email: userEmail}, {$pull: {products: { $in: _id }}}
+      )
+}
 }
 
 export default BasketRepository;

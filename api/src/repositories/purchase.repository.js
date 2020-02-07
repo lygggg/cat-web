@@ -1,25 +1,15 @@
-import model from '../models/purchase.schema';
+import model from "../models/purchase.schema";
 
 class PurchaseRepository {
-    constructor() {}
+  async getAll(email) {
+    return await model.find({ email });
+  }
 
-    async getAll(userEmail) {
-        if (userEmail === undefined) {
-            return [{}];
-          }
-
-          const purchaseList = await model.find({ email: userEmail })
-            .populate('products');
-            return purchaseList;
-    }
-
-    async createOne({ _id, count }, userEmail) {
-      await model.updateMany(
-        { email: userEmail },
-        { $push: { products: _id, }},
-        { $addToSet: { amount: count }},
-      );
-    }
+  async create(products, email) {
+    const d = new Date();
+    const date = d.getFullYear()+'년 '+ d.getMonth()+'월 '+ d.getDate()+'일'
+    await model.create({ products, email, date });
+  }
 }
 
 export default PurchaseRepository;

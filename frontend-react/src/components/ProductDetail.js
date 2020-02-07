@@ -38,7 +38,8 @@ const PutDiv = styled.div`
 `;
 
 const handleBuyItem = async (product, count) => {
-  await buyItem({ ...product, count });
+  const products = [{...product, count}];
+  await buyItem({products});
 };
 
 const putProduct = async (product, count) => {

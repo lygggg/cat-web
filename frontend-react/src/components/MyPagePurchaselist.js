@@ -4,16 +4,22 @@ import styled from 'styled-components';
 import PurchaseProduct from './PurchaseProduct';
 import { getPurchase } from '../service/purchaseService';
 
-
+import { MainDiv } from '../lib/Grid';
 import { MenuButton } from '../lib/Button';
 import '../css/MyPagePurchaselist.css';
 import { DescriptionName } from '../lib/ItemName';
 
 
 const DateDiv = styled.div`
+    font-size: 17px;
     background-color: #F9F9F9;
     margin: 7px;
     padding: 20px;
+`;
+
+const FrameDiv = styled.div`
+display: grid;
+grid-gap: 50px
 `;
 
 const ItemDiv = styled.div`
@@ -64,9 +70,9 @@ const FlexDiv = styled.div`
 function PurchaseList() {
   const [purchaseList, setPurchaseList] = useState([]);
   const fetchPurchase = async () => {
-    const items = await getPurchase();
-    console.log(items);
-    setPurchaseList(items.data.purchases[0].products);
+    const item = await getPurchase();
+    console.log(item.data.purchases);
+    setPurchaseList(item.data.purchases);
   };
 
   useEffect(() => {
@@ -74,7 +80,7 @@ function PurchaseList() {
   }, []);
 
   return (
-    <>
+    <MainDiv>
         <Div>
                 <h2>주문목록/배송조회</h2>
                 <div>
@@ -83,16 +89,35 @@ function PurchaseList() {
                     <MenuButton className="menu-btn">여행상품</MenuButton>
                     <MenuButton className="menu-btn">티켓상품</MenuButton>
                 </div>
-          <div>
-                    {purchaseList.map(purchase =>
+          <FrameDiv>
+              {purchaseList.map(it => {
+                  return (<div key= {it._id}>
+                      <DateDiv>주문일 {it.date}</DateDiv>
+                      { 
+                      
+                        it.products.map(i => {
+                            return (
+                                
+                                <ItemDiv key={i._id}>
+                                     <PurchaseProduct product={i} />
+                                </ItemDiv>
+                            )
+                        })
+                      }
+                  </div>)
+              })
+              }
+                    {/* {purchaseList.map(purchase =>
                         <div key={purchase.id}>
                             <DateDiv>{purchase.date}</DateDiv>
                             <ItemDiv>
                                 <PurchaseProduct product={purchase} />
                             </ItemDiv>
                         </div>
-                    )}
-          </div>
+                    )} */}
+          </FrameDiv>
+          
+          
         </Div>
         <ImgDiv>
                 <img style={{width:'800px'}} src='/public/image/order-status.png' />
@@ -117,7 +142,7 @@ function PurchaseList() {
                 <h4>교환</h4>
 상품의 교환 신청은 고객센터로 문의하여 주세요.
         </TextDiv>
-    </>
+    </MainDiv>
   );
 }
 export default PurchaseList;

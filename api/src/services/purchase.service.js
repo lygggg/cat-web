@@ -8,7 +8,7 @@ export default class PurchaseService {
         return purchase;
     }
 
-    async createPurchase(product, userEmail) {
-        await this.purchase.createOne(product, userEmail);
+    async createPurchase(products, email) {
+        await this.purchase.create(products, email);
     }
 }

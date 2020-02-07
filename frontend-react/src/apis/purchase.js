@@ -3,8 +3,7 @@ import axios from 'axios';
 const USER_PURCHASE_URL = 'http://localhost:8080/userpurchase';
 
 export const createPurchase = async (params) => {
-  const date = new Date();
-  const data = await axios.post(USER_PURCHASE_URL, { ...params, date });
+  const data = await axios.post(USER_PURCHASE_URL, { ...params });
   return data;
 };
 

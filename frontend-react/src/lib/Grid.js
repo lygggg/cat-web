@@ -20,5 +20,12 @@ export const Div = styled.div`
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #e0e0e0;
+    display: grid;
+    justify-content: center;
 `;
+
+export const MainDiv = styled.div`
+    width: 1880px;
+`;
+
 export default ItemListDiv;

@@ -4,6 +4,7 @@ import Product from './BasketProduct';
 import groupBy from 'lodash.groupby';
 
 import styled from 'styled-components';
+import { MainDiv } from '../lib/Grid';
 
 import { getCart, deleteCart } from '../service/basketService';
 import { createPurchase as buyItem } from '../service/purchaseService';
@@ -40,7 +41,6 @@ const Button = styled.button`
     color: #333;
     border: 1px solid #e0e0e0;
     margin: 10px;
-
 `;
 
 function BasketList() {
@@ -50,14 +50,17 @@ function BasketList() {
     const items = await getCart();
     const products = await groupBy(items.data.baskets[0].products,'_id');
     let price = 0;
+
     setBaskets(Object.values(products).map(i=>{ // 장바구니 리스트 정렬
       return { ...i[0] ,count: i.length, selected: false };
     }));
+
     Object.values(products).map(i=>{ // 가격출력
       return { ...i[0] ,count: i.length };
     }).forEach(i=> {
       price += i.count * i.price;
     })
+    
     setTotalPrice(price);
   };
 
@@ -86,8 +89,8 @@ function BasketList() {
   }
 
   async function selectBuy() {
-    const buyList = baskets.filter((e) => e.selected === true);
-    await buyItem(buyList[0]);
+    const products = baskets.filter((e) => e.selected === true);
+    await buyItem({products});
   }
 
   useEffect(() => {
@@ -99,6 +102,7 @@ function BasketList() {
   }, [setBaskets]);
 
   return (
+    <MainDiv>
         <Div>
         <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>
@@ -126,6 +130,7 @@ function BasketList() {
             <div>총 금액: {totalPrice}</div>
 
         </Div>
+    </MainDiv>
   );
 }
 

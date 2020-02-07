@@ -10,7 +10,7 @@ require('dotenv').config();
 const port = 3000;
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/cat_web', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/cat_web', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));

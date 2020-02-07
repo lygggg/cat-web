@@ -9,7 +9,7 @@ import Pagination from './Pagination';
 import { getSliceProducts } from '../service/taskService';
 
 import { Button } from '../lib/Button';
-import ItemListDiv, { Div, H1 } from '../lib/Grid';
+import ItemListDiv, { Div, H1, MainDiv } from '../lib/Grid';
 
 const MAX_ITEM = 9;
 
@@ -58,6 +58,7 @@ function ProductList() {
   });
 
   return (
+    <MainDiv>  
         <Div>
          <H1>{categoryName}</H1>
             <div>
@@ -78,6 +79,7 @@ function ProductList() {
                 onPageChange={onPageChange}
             />
         </Div>
+        </MainDiv>
   );
 }
 

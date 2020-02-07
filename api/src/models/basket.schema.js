@@ -5,4 +5,6 @@ const basketSchema = new mongoose.Schema({
   products: [{ type: mongoose.ObjectId, ref: 'products' }]
 });
 
+mongoose.set('useCreateIndex', true)
+
 export default mongoose.model('basket', basketSchema);

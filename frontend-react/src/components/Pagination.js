@@ -1,5 +1,29 @@
 import React from 'react';
 
+import styled from 'styled-components'
+
+const PageDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+width: 40px;
+height: 34px;
+line-height: 34px;
+font-size: 12px;
+font-weight: bold;
+border:1px solid #6c6c6c;
+color: #6c6c6c;
+background:#fff;
+display: inline-block;
+padding: 0 5px;
+text-align: center;
+margin-left: 1;
+margin: 5px;
+
+`;
+
 function Pagination({ total, pageSize, onPageChange }) {
   const pagesCount = Math.ceil(total / pageSize);
   const pages = [];
@@ -9,18 +33,18 @@ function Pagination({ total, pageSize, onPageChange }) {
   }
 
   return (
-    <div>
-            <button>이전</button>
+    <PageDiv>
+            <Button>이전</Button>
         {
               pages.map(e => (
-                <button onClick={() => onPageChange(e)} 
+                <Button onClick={() => onPageChange(e)} 
                       key={e}>
                       {e}
-                </button>
+                </Button>
                 ))
             }
-            <button>다음</button>
-    </div>
+            <Button>다음</Button>
+    </PageDiv>
   );
 }
 
