@@ -4,6 +4,9 @@ import cors from 'cors';
 import v1Route from './src/routes';
 import session from 'express-session';
 import mongoose from 'mongoose';
+import redis from 'redis';
+import connectRedis from 'connect-redis';
+
 
 require('dotenv').config();
 
@@ -24,6 +27,9 @@ const corsOptions = {
   credentials: true,
 };
 
+const RedisStore = connectRedis(session);
+const redisClient = redis.createClient();
+
 app.use(session({
   secret: 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
   resave: false,
@@ -32,6 +38,7 @@ app.use(session({
     name: 'user',
     httpOnly: false,
   },
+  store: new RedisStore({ host: 'localhost', port: 6367, client: redisClient, ttl: 86400 }),
 }));
 
 app.use(express.json());
