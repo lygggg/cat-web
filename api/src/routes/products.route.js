@@ -28,9 +28,4 @@ router.get('/:id', async (req, res) => {
   res.send({ product });
 });
 
-// router.get('/categories', (req, res) => {
-//   const category = categories();
-//   res.send({ category });
-// });
-
 export default router;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,17 +19,24 @@ import Header from './components/Header';
 import Bottom from './components/Bottom';
 
 function App() {
+
+  const [searchText, setSearchText] = useState('');
+
+  const searchTermRoute = (text) => {
+    setSearchText(text);
+  }
+
   return (
     <Router>
         <Switch>
           <Route path="/categories/:categoryId/page/:pageNum">
-            <Header />
-            <ProductList />
+            <Header/>
+            <ProductList/>
             <Bottom />
           </Route>
-          <Route path="/search/:searchTerm">
-            <Header />
-            <SearchResult />
+          <Route path="/search">
+            <Header searchCallback={searchTermRoute} />
+            <SearchResult searchText={searchText}/>
             <Bottom />
           </Route>
           <Route path="/user/login">
@@ -46,11 +53,6 @@ function App() {
             <BillingPage />
             <Bottom />
           </Route>
-          {/* <Route path="/categories/:categoryId">
-            <Header />
-            <ProductList />
-            <Bottom />
-          </Route> */}
          <Route path="/products/new">
             <Header />
            <ProductNew/>

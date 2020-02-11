@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const CATEGORIES_URL = 'http://localhost:3000/categories';
 const PRODUCTS_URL = 'http://localhost:3000/products';
+const SEARCH_PRODUCTS_URL = 'http://localhost:3000/search';
 const PRODUCTS_URL_NEW = 'http://localhost:3000/products/new';
 
 export const getProducts = async () => {
@@ -24,7 +25,6 @@ export const getProductDetail = async (id) => {
   return data;
 };
 
-
 export const createProduct = async ({
   title, category, price, description,
   imageurl, phoneNumber, account,
@@ -32,5 +32,11 @@ export const createProduct = async ({
   const { data } = await axios.post(PRODUCTS_URL_NEW, {
     title, category, price, description, imageurl, phoneNumber, account,
   });
+  return data;
+};
+
+export const getSearchProducts = async (string) => {
+  console.log(string);
+  const { data } = await axios.get(SEARCH_PRODUCTS_URL + `?q=${string}` );
   return data;
 };

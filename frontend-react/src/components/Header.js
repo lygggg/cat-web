@@ -32,13 +32,16 @@ const Div = styled.div`
     align-items: center;
 `;
 
-function Header() {
+function Header(props) {
   const [userName, setUserName] =  useState('')
 
   const handleLogout = async () => {
     userLogout();
     localStorage.removeItem('isLogin');
     window.location.href = '/';
+  }
+  const searchTermRoute = (text) => {
+    props.searchCallback(text)
   }
 
   return (
@@ -53,7 +56,7 @@ function Header() {
       </Ul>
       <Div>
         <Link to='/'><span><img style={{ maxWidth: '150px', width: 'auto', height: 'auto', margin: '10px' }} src='/public/image/catbaner.jpg' /></span></Link>
-        <Search />
+        <Search handleSearch={searchTermRoute} />
       </Div>
       <NavMenu />
     </>

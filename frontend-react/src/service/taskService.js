@@ -2,6 +2,8 @@ import { getProducts as apiGetProducts } from '../apis/task';
 import { getSliceProducts as apiGetSliceProducts } from '../apis/task';
 import { getProductDetail as apiGetProductDetail } from '../apis/task';
 import { createProduct as apiCreateProduct } from '../apis/task';
+import { getSearchProducts as apiGetSearchProducts } from '../apis/task';
+
 
 
 export const getProducts = async () => {
@@ -11,6 +13,14 @@ export const getProducts = async () => {
     alert(e);
   }
 };
+
+export const getSearchProducts = async (string) => {
+  try {
+    return await apiGetSearchProducts(string);
+  } catch (e) {
+    alert(e);
+  }
+}
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
   try {

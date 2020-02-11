@@ -1,4 +1,5 @@
 import model from '../models/product.schema';
+import { get } from 'mongoose';
 
 class ProductRepository {
     constructor(){
@@ -35,6 +36,11 @@ class ProductRepository {
     
     async getOne(productId) {
       const getProducts = await model.find({ id: productId });
+      return getProducts;
+    }
+
+    async getSearch(string) {
+      const getProducts = await model.find({title: {$regex: string}});
       return getProducts;
     }
 

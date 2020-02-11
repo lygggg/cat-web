@@ -16,4 +16,9 @@ export default class ProductService {
         const product = await this.products.getOne(id);
         return product;
     }
+
+    async getSearchProducts(string) {
+        const products = await this.products.getSearch(string);
+        return products;
+    }
 };

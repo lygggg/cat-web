@@ -3,19 +3,19 @@ import { useParams } from 'react-router-dom';
 
 import Product from './Product';
 import { getProducts } from '../service/taskService';
+import { getSearchProducts as searchProducts } from '../service/taskService'
 
 import { Button } from '../lib/Button';
 import ItemListDiv, { Div } from '../lib/Grid'
 
-function SearchResult() {
+function SearchResult(props) {
   const [searchResults, setSearchResults] = useState([]);
-  const [products, setProducts] = useState([]);
   const { searchTerm } = useParams();
 
-  const fetchProducts = async () => {
-    const result = await getProducts();
-    setProducts(result.product);
-  };
+  // const fetchProducts = async () => {
+  //   const result = await getProducts();
+  //   setProducts(result.product);
+  // };
 
   const lowprice = (result) => {
     const final = result.sort(function (a, b) { return a.price - b.price });
@@ -28,15 +28,17 @@ function SearchResult() {
     return final;
   };
 
+  async function handleSearch(searchTerm) {
+    setSearchResults(await searchProducts(searchTerm));
+  }
+
   useEffect(() => {
-    fetchProducts();
-    const result = products.filter(product =>
-      product.title.indexOf(searchTerm) > -1);
-    setSearchResults(result);
-  }, [searchTerm]);
+    handleSearch(props.searchText);
+  },[props.searchText]);
 
 
   return (
+    
     <Div>
         <div>
             <Button onClick={() => lowprice(searchResults)}>가격 낮은순</Button>

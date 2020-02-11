@@ -1,4 +1,3 @@
-import createError from 'http-errors';
 import express from 'express';
 import cors from 'cors';
 import v1Route from './src/routes';
@@ -6,10 +5,14 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 import redis from 'redis';
 import connectRedis from 'connect-redis';
-
+import Iamport from 'iamport';
 
 require('dotenv').config();
 
+const iamport = new Iamport({
+  impKey: '7032860098826519',
+  impSecret: '4AeFWJkJMI1Gl2HlUxyA3Hv5XjbwccEgMSWJChso0u4lwLHrjg2nXxtUQFq3R4jEXgnzxQYxk3TRPAi9'
+})
 const port = 3000;
 const app = express();
 
@@ -41,45 +44,14 @@ app.use(session({
   store: new RedisStore({ host: 'localhost', port: 6367, client: redisClient, ttl: 86400 }),
 }));
 
+
 app.use(express.json());
 
 app.use(cors(corsOptions));
 
 app.use(v1Route);
 
-app.use((req, res, next) => {
-  next(createError(404));
-});
 
-app.use((err, req, res) => {
-  let apiError = err;
-
-  if (!err.status) {
-    apiError = createError(err);
-  }
-
-  if (process.env.NODE_ENV === 'test') {
-    const errObj = {
-      req: {
-        headers: req.headers,
-        query: req.query,
-        body: req.body,
-        route: req.route,
-      },
-      error: {
-        message: apiError.message,
-        stack: apiError.stack,
-        status: apiError.status,
-      },
-      user: req.user,
-    };
-
-    logger.error(`${moment().format('YYYY-MM-DD HH:mm:ss')}`, errObj);
-  } else {
-    res.locals.message = apiError.message;
-    res.locals.error = apiError;
-  }
-});
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
     console.log(`Listening on port ${port}...`);
