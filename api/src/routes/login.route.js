@@ -11,6 +11,13 @@ router.delete('/', (req, res) => {
   res.send('Session Destroyed!');
 });
 
+router.get('/', async (req, res) => {
+  const authRepo = new AuthRepo();
+  const authService = new AuthService(authRepo);
+  const userInfo = await authService.Info(req.session.email);
+  res.send(userInfo)
+})
+
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
   const authRepo = new AuthRepo();

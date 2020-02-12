@@ -17,6 +17,8 @@ import BillingPage from './components/BillingPage';
 import SearchResult from './components/SearchResult';
 import Header from './components/Header';
 import Bottom from './components/Bottom';
+import Payment from './Payment';
+import PaymentResult from './PaymentResult';
 
 function App() {
 
@@ -29,13 +31,15 @@ function App() {
   return (
     <Router>
         <Switch>
+          <Route exact path="/payment" component={Payment}/>
+          <Route exact path="/payment/result" component={PaymentResult}/>
           <Route path="/categories/:categoryId/page/:pageNum">
             <Header/>
             <ProductList/>
             <Bottom />
           </Route>
           <Route path="/search">
-            <Header searchCallback={searchTermRoute} />
+            <Header searchCallback={searchTermRoute}/>
             <SearchResult searchText={searchText}/>
             <Bottom />
           </Route>
@@ -50,7 +54,7 @@ function App() {
             <Bottom />
           </Route>
           <Route path="/billingpage">
-            <BillingPage />
+            <BillingPage component={BillingPage}/>
             <Bottom />
           </Route>
          <Route path="/products/new">

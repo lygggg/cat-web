@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-import { getProductDetail as getProduct } from '../service/taskService'
+import { getProductDetail as getProduct } from '../service/taskService';
 
-import { createPurchase as buyItem } from '../service/purchaseService'
+import { createPurchase as buyItem } from '../service/purchaseService';
 
 import styled from 'styled-components';
 

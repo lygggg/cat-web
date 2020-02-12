@@ -10,11 +10,12 @@ const Li = styled.li`
   display: inline-block;
   padding: 0px 50px 0 48px;
   font-weight: bold;
-  height: 20px;
+  height: 40px;
   font-size: 14px;
   color: #333;
   overflow: hidden;
   text-decoration: none;
+  line-height: 50px;
 `;
 
 const Nav = styled.div`

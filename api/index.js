@@ -5,14 +5,14 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 import redis from 'redis';
 import connectRedis from 'connect-redis';
-import Iamport from 'iamport';
+// import Iamport from 'iamport';
 
 require('dotenv').config();
 
-const iamport = new Iamport({
-  impKey: '7032860098826519',
-  impSecret: '4AeFWJkJMI1Gl2HlUxyA3Hv5XjbwccEgMSWJChso0u4lwLHrjg2nXxtUQFq3R4jEXgnzxQYxk3TRPAi9'
-})
+// const iamport = new Iamport({
+//   impKey: '7032860098826519',
+//   impSecret: '4AeFWJkJMI1Gl2HlUxyA3Hv5XjbwccEgMSWJChso0u4lwLHrjg2nXxtUQFq3R4jEXgnzxQYxk3TRPAi9'
+// })
 const port = 3000;
 const app = express();
 

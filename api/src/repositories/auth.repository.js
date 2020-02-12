@@ -44,17 +44,6 @@ class UserRepository {
         }
     }
     
-    async createPurchase(userEmail) {
-        const newPurchase = await new purchaseModel({
-            email: userEmail,
-            products: [],
-        })
-        try {
-            await newPurchase.save();
-        } catch(e) {
-            return console.error(500, e);
-        }
-    }
 }
 
 export default UserRepository;

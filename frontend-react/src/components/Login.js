@@ -75,7 +75,7 @@ function Login() {
 
   return (
     localStorage.getItem('isLogin') !== 'true' ?
-      <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: '1400px' }}>
+      <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: 'width: 1890px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>
           <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' />

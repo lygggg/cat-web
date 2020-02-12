@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState ,useEffect } from 'react';
+
+import { userAuth as getUserInfo  } from '../service/userService';
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const GridDiv = styled.div`
     display: grid;
@@ -13,6 +16,7 @@ const Table = styled.table`
     height: 50px;
     border: 1px solid #e0e0e0;
     width: 900px;
+    border-top: 1px solid black;
 `;
 
 const TitleTd = styled.td`
@@ -37,11 +41,6 @@ const TextTd = styled.td`
     font-family: "돋움",Dotum,sans-serif;
 `;
 
-const PayMentDiv = styled.div`
-    display: flex;
-    align-items: center;
-`;
-
 const BuyButton = styled.button`
     height: 60px;
     width: 260px;
@@ -57,7 +56,30 @@ const BuyButton = styled.button`
 function handleBuy() {
 }
 
-function BillingPage() {
+
+
+
+function BillingPage({ history }) {
+    const [userInfo, setUserInfo] = useState([]);
+    const [requestTerm, setRequestTerm] = useState('안전하게 배송 해주세요');
+    const {
+        name, phoneNumber, location, email,
+    } = userInfo;
+
+    function modifyRequestTerm() {
+        var retVal = prompt("요청사항 변경 : ", requestTerm);
+        setRequestTerm(retVal);
+     }
+
+    const UserInfo = async () => {
+        const Info = await getUserInfo()
+        setUserInfo(Info);
+    }
+
+useEffect(() => {
+    UserInfo();
+}, []);
+    
 
   return (
     <GridDiv>
@@ -71,15 +93,15 @@ function BillingPage() {
             <tbody>
                 <tr>
                     <TitleTd>이름</TitleTd>
-                    <TextTd>이영규</TextTd>
+                    <TextTd>{name}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>이메일</TitleTd>
-                    <TextTd>baayoo93@naver.com</TextTd>
+                    <TextTd>{email}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>휴대폰 번호</TitleTd>
-                    <TextTd>010-2388-7218</TextTd>
+                    <TextTd>{phoneNumber}</TextTd>
                 </tr>
             </tbody>
         </Table>
@@ -90,19 +112,19 @@ function BillingPage() {
             <tbody>
                 <tr>
                     <TitleTd>이름</TitleTd>
-                    <TextTd>이영규</TextTd>
+                    <TextTd>{name}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>배송주소</TitleTd>
-                    <TextTd>이태원</TextTd>
+                    <TextTd>{location}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>연락처</TitleTd>
-                    <TextTd>010-2388-7218</TextTd>
+                    <TextTd>{phoneNumber}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>배송 요청사항</TitleTd>
-                    <TextTd>문 앞</TextTd>
+                    <TextTd>{requestTerm} <button onClick={() => modifyRequestTerm()}>변경</button></TextTd>
                 </tr>
             </tbody>
         </Table>
@@ -113,31 +135,31 @@ function BillingPage() {
             <tbody>
                 <tr>
                     <TitleTd>이름</TitleTd>
-                    <TextTd>이영규</TextTd>
+                    <TextTd>{name}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>이메일</TitleTd>
-                    <TextTd>baayoo93@naver.com</TextTd>
+                    <TextTd>{email}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>휴대폰 번호</TitleTd>
-                    <TextTd>010-2388-7218</TextTd>
+                    <TextTd>{phoneNumber}</TextTd>
                 </tr>
                 <tr>
                     <TitleTd>결제방법</TitleTd>
                 <TextTd><span>
-                            <input type='radio' />
+                            <input type='radio' name='Payment'/>
                             카드결제 (미구현)
-                            <input type='radio' />
+                            <input type='radio' name='Payment'/>
                             무통장입금
-                            <input type='radio' />
+                            <input type='radio' name='Payment'/>
                             계좌이체
                           </span></TextTd>
                 </tr>
             </tbody>
         </Table>
                 </div>
-                <BuyButton onClick={() => handleBuy()}>구매하기</BuyButton>
+                <Link to='payment'><BuyButton>구매하기</BuyButton></Link>
     </GridDiv>
   );
 }

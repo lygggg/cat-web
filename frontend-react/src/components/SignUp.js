@@ -7,7 +7,7 @@ const GridDiv = styled.div`
     display: grid;
     justify-content: center;
     height: 600px;
-    width: 1500px;
+    width: 1890px;
     
 `;
 
