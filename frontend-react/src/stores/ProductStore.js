@@ -1,4 +1,8 @@
 const productStore = {
+  _paymentProducts: [
+
+
+  ],
 
   _categories: [
     '사료',
@@ -10,8 +14,21 @@ const productStore = {
     '화장실',
   ],
 
-  get categories() {
-    return this._categories;
+  get paymentProducts() {
+    if(this._paymentProducts.length==0){
+    return [];
+    };
+    return this._paymentProducts;
   },
+
+  get categories() {
+    return this._categories;  
+  },
+  
+  putPayProducts(products) {
+    this._paymentProducts = [];
+    this._paymentProducts = [...this.paymentProducts, products]
+
+  }
 };
 export default productStore;

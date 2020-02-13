@@ -8,6 +8,7 @@ import { MainDiv } from '../lib/Grid';
 
 import { getCart, deleteCart } from '../service/basketService';
 import { createPurchase as buyItem } from '../service/purchaseService';
+import ProductStore from "../stores/ProductStore";
 
 const Div = styled.div`
     
@@ -17,6 +18,7 @@ const Div = styled.div`
     border: 1px solid #e0e0e0;
     padding: 20px;
 `;
+
 const Grid = styled.div`
     display: grid;
     align-items:center;
@@ -90,7 +92,8 @@ function BasketList() {
 
   async function selectBuy() {
     const products = baskets.filter((e) => e.selected === true);
-    await buyItem({products});
+    ProductStore.putPayProducts(products);
+    // await buyItem({products});
   }
 
   useEffect(() => {
@@ -107,7 +110,7 @@ function BasketList() {
         <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>
 
-            <Link to='billingpage'><Button onClick={selectBuy}>구매 하기</Button></Link>
+            <Link to='payment'><Button onClick={selectBuy}>구매 하기</Button></Link>
             <Button>쇼핑 계속하기</Button>
 
             <div style={{ width: '100%' }}>

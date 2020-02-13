@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import { getProductDetail as getProduct } from '../service/taskService';
-
 import { createPurchase as buyItem } from '../service/purchaseService';
+import ProductStore from '../stores/ProductStore';
 
 import styled from 'styled-components';
 
@@ -39,7 +39,8 @@ const PutDiv = styled.div`
 
 const handleBuyItem = async (product, count) => {
   const products = [{...product, count}];
-  await buyItem({products});
+  ProductStore.putPayProducts(products);
+  // await buyItem({products});
 };
 
 const putProduct = async (product, count) => {
@@ -102,7 +103,7 @@ function ProductDetail() {
                             className='count' value={count} size='3' readOnly />
                         <button style={{ height: '36px', width: '40px' }} onClick={() => handleMinus()}>-</button>
                     </span>
-                    <Link to='/billingpage'><Button style={{ margin: '6px' }} onClick={() => handleBuyItem(product, count)}>상품 구매</Button></Link>
+                    <Link to='/payment'><Button style={{ margin: '6px' }} onClick={() => handleBuyItem(product, count)}>상품 구매</Button></Link>
                     <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product, count)}>장바구니 추가</Button>
                 </PutDiv>
                 <div>

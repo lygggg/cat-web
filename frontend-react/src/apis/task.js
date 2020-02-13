@@ -36,7 +36,6 @@ export const createProduct = async ({
 };
 
 export const getSearchProducts = async (string) => {
-  console.log(string);
   const { data } = await axios.get(SEARCH_PRODUCTS_URL + `?q=${string}` );
   return data;
 };

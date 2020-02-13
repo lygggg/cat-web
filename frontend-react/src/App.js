@@ -13,7 +13,7 @@ import BasketList from './components/BasketList';
 import Login from './components/Login';
 import PurchaseList from './components/MyPagePurchaselist';
 import SignUp from './components/SignUp';
-import BillingPage from './components/BillingPage';
+
 import SearchResult from './components/SearchResult';
 import Header from './components/Header';
 import Bottom from './components/Bottom';
@@ -53,10 +53,10 @@ function App() {
             <Home />
             <Bottom />
           </Route>
-          <Route path="/billingpage">
-            <BillingPage component={BillingPage}/>
+          {/* <Route path="/billingpage">
+            <BillingPage/>
             <Bottom />
-          </Route>
+          </Route> */}
          <Route path="/products/new">
             <Header />
            <ProductNew/>

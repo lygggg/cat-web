@@ -71,7 +71,6 @@ function PurchaseList() {
   const [purchaseList, setPurchaseList] = useState([]);
   const fetchPurchase = async () => {
     const item = await getPurchase();
-    console.log(item.data.purchases);
     setPurchaseList(item.data.purchases);
   };
 
