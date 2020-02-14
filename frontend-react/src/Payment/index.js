@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { userAuth as getUserInfo } from "../service/userService";
+import { getPrice as getPaymentPrice} from '../service/paymentService';
 import ProductStore from "../stores/ProductStore";
 
 import styled from "styled-components";
@@ -26,6 +27,8 @@ const { Option } = Select;
 function Payment({ history, form, ua }) {
   const [products, setProducts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
+  const [orderName, setOrderName] = useState('');
+  const [Price, setPrice] = useState(0);
   const [requestTerm, setRequestTerm] = useState("안전하게 배송 해주세요");
   const { name, phoneNumber, location, email } = userInfo;
   const [methods, setMethods] = useState(METHODS_FOR_INICIS);
@@ -204,9 +207,15 @@ function Payment({ history, form, ua }) {
     setUserInfo(Info);
   };
 
+  const fetchPrice = async () => {
+    setPrice((await getPaymentPrice(ProductStore.paymentProducts[0].map(product=> { return {'id': product._id, 'count': product.count} }))).price)
+  };
+
   useEffect(() => {
     UserInfo();
-    setProducts(ProductStore.paymentProducts[0]); 
+    setProducts(ProductStore.paymentProducts[0]);
+    setOrderName(ProductStore.paymentProducts[0].map(i=> { return `${i.title}` }));
+    fetchPrice();
   }, []);
 
   return (
@@ -304,48 +313,56 @@ function Payment({ history, form, ua }) {
         <h2>결제정보</h2>
         <Table>
           <tbody>
+          {getFieldDecorator("name", {
+                initialValue: orderName.toString(),
+              })( <tr>
+                <TitleTd>결제명</TitleTd>
+                <TextTd>
+                  {orderName.toString()}
+                </TextTd>
+              </tr>)}
+              {getFieldDecorator("merchant_uid", {
+                initialValue: `${new Date().getTime()}`,
+                rules: [
+                  { required: true, message: "주문번호는 필수입력입니다" }
+                ]
+              })( <tr>
+                <TitleTd>주문번호</TitleTd>
+                <TextTd>
+                {new Date().getTime()}
+                </TextTd>
+              </tr>)}
             <tr>
               <TitleTd>총상품가격</TitleTd>
               <TextTd>
-              14000
+              {Price - 2500}원
               </TextTd>
             </tr>
             <tr>
               <TitleTd>배송비</TitleTd>
               <TextTd>
-                2500
+                2500원
               </TextTd>
             </tr>
             <tr>
               <TitleTd>총결제금액</TitleTd>
               <TextTd>
-              16500
+              {getFieldDecorator("amount", {
+                initialValue: Price,
+                rules: [
+                  { required: true, message: "결제금액은 필수입력입니다" }
+                ] 
+              })(<span>{Price}원</span>)}
               </TextTd>
             </tr>
           </tbody>
         </Table>
         <Wrapper>
           <FormContainer onSubmit={handleSubmit}>
-            <Item label="PG사">
-              {getFieldDecorator("pg", {
+            <Span>
+            {getFieldDecorator("pg", {
                 initialValue: "html5_inicis"
-              })(
-                <Select
-                  size="large"
-                  onChange={onChangePg}
-                  suffixIcon={<Icon type="caret-down" />}
-                >
-                  {PGS.map(pg => {
-                    const { value, label } = pg;
-                    return (
-                      <Option value={value} key={value}>
-                        {label}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              )}
-            </Item>
+              })(<span style={{ fontSize: '35px', textAlign: 'center', marginTop:'13px' }}>결제</span>)}
             <Item label="결제수단">
               {getFieldDecorator("pay_method", {
                 initialValue: "card"
@@ -423,28 +440,7 @@ function Payment({ history, form, ua }) {
                 valuePropName: "checked"
               })(<Switch />)}
             </Item>
-            <Item>
-              {getFieldDecorator("name", {
-                initialValue: "아임포트 결제 데이터 분석",
-                rules: [{ required: true, message: "주문명은 필수입력입니다" }]
-              })(<Input size="large" addonBefore="주문명" />)}
-            </Item>
-            <Item>
-              {getFieldDecorator("amount", {
-                initialValue: "39000",
-                rules: [
-                  { required: true, message: "결제금액은 필수입력입니다" }
-                ]
-              })(<Input size="large" type="number" addonBefore="결제금액" />)}
-            </Item>
-            <Item>
-              {getFieldDecorator("merchant_uid", {
-                initialValue: `min_${new Date().getTime()}`,
-                rules: [
-                  { required: true, message: "주문번호는 필수입력입니다" }
-                ]
-              })(<Input size="large" addonBefore="주문번호" />)}
-            </Item>
+            </Span>
             <Item style={{ textAlign: "-webkit-center" }}>
               <BuyButton type="primary" htmlType="submit" size="large">
                 결제하기
@@ -456,10 +452,17 @@ function Payment({ history, form, ua }) {
     </GridDiv>
   );
 }
-
+const Span = styled.span`
+  display: grid;
+  flex-gap: ;
+  grid-column: 10px 20px 30px;
+  grid-template-columns: 100px 200px 200px 130px;
+  grid-gap: 70px;
+`;
 const TitleSpan = styled.span`
   width: 350px;
   font-size: 17px;
+  font-weight: 700;
 `;
 
 const GridInfo = styled.div`
@@ -537,27 +540,23 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const FormContainer = styled(Form)`
-  width: 350px;
+const FormContainer = styled.form`
   border-radius: 3px;
 
   .ant-row {
     margin-bottom: 1rem;
   }
   .ant-form-item {
-    display: flex;
     align-items: center;
   }
   .ant-col.ant-form-item-label {
     padding: 0 11px;
-    width: 9rem;
     text-align: left;
     label {
       color: #888;
       font-size: 1.2rem;
     }
     & + .ant-col.ant-form-item-control-wrapper {
-      width: 26rem;
       .ant-form-item-control {
         line-height: inherit;
       }
@@ -582,7 +581,6 @@ const FormContainer = styled(Form)`
   }
 
   .ant-input-group-addon:first-child {
-    width: 9rem;
     text-align: left;
     color: #888;
     font-size: 1.2rem;
@@ -594,11 +592,9 @@ const FormContainer = styled(Form)`
   }
 
   .ant-col {
-    width: 100%;
   }
 
   button[type="submit"] {
-    width: 100%;
     height: 5rem;
     font-size: 1.6rem;
     margin-top: 2rem;

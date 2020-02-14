@@ -2,10 +2,6 @@ import model from '../models/product.schema';
 import { get } from 'mongoose';
 
 class ProductRepository {
-    constructor(){
-
-    }
-
     async getAll({ category, offset, limit }) {
         const getProducts = await model.find({});
         const products = getProducts.filter((i) => i.category === category);

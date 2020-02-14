@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   const authService = new AuthService(authRepo);
   const userInfo = await authService.Info(req.session.email);
   res.send(userInfo)
-})
+});
 
 router.post('/', async (req, res) => {
   const { email, password } = req.body;

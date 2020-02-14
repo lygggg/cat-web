@@ -4,9 +4,6 @@ import purchaseModel from '../models/purchase.schema';
 import { model } from 'mongoose';
 
 class UserRepository {
-    constructor() {
-
-    }
     async getOne(userEmail) {
         const getUser = await userModel.find({ email: userEmail });
         if(getUser) {

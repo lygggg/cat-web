@@ -1,8 +1,6 @@
 import model from '../models/basket.schema';
 
 class BasketRepository {
-  constructor() {}
-
   async getAll(userEmail) {
     if (userEmail === undefined) {
       return [{}];
