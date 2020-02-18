@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { userAuth as getUserInfo } from "../service/userService";
 import { getPrice as getPaymentPrice} from '../service/paymentService';
+import { createPurchase as buyItem } from '../service/purchaseService';
 import ProductStore from "../stores/ProductStore";
 
 import styled from "styled-components";
@@ -115,9 +116,18 @@ function Payment({ history, form, ua }) {
     });
   }
 
-  function callback(response) {
-    const query = queryString.stringify(response);
-    history.push(`/payment/result?${query}`);
+  async function callback (response) {
+    const {
+      success,
+    } = response;
+
+    if(success) {
+      const query = queryString.stringify(response);
+      history.push(`/payment/result?${query}`);
+      await buyItem({products});
+    } else  {
+      history.push(`/payment/result?${query}`);
+    }
   }
 
   function onChangePg(value) {
@@ -348,7 +358,7 @@ function Payment({ history, form, ua }) {
               <TitleTd>총결제금액</TitleTd>
               <TextTd>
               {getFieldDecorator("amount", {
-                initialValue: Price,
+                initialValue: 100,
                 rules: [
                   { required: true, message: "결제금액은 필수입력입니다" }
                 ] 

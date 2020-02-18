@@ -93,7 +93,6 @@ function BasketList() {
   async function selectBuy() {
     const products = baskets.filter((e) => e.selected === true);
     ProductStore.putPayProducts(products);
-    // await buyItem({products});
   }
 
   useEffect(() => {
