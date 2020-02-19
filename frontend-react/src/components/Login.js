@@ -54,15 +54,16 @@ const Input = styled.input`
 `;
 
 function Login() {
+  const [isLogin, setLogin] = useState(localStorage.getItem('isLogin'));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const successesLogin = () => { // 로그인 성공
+  const successesLogin = () => {
     localStorage.setItem('isLogin',true);
-    alert('로그인이 성공했습니다.');
+    setLogin('true');
   };
 
-  const falseLogin = () => { // 로그인 실패
+  const falseLogin = () => {
     alert('아이디 또는 패스워드를 다시 입력해주세요.');
     setEmail('');
     setPassword('');
@@ -70,22 +71,26 @@ function Login() {
 
   const handleLogin = async () => {
     const userProfile = await getUserProfile({ email, password });
-    await userProfile.islogin == true ?  successesLogin() : falseLogin();
+    if (userProfile.islogin) {
+      successesLogin();
+    } else {
+      falseLogin();
+    }
   };
 
   return (
-    localStorage.getItem('isLogin') !== 'true' ?
+    isLogin !== 'true' ?
       <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: 'width: 1890px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>
-          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' />
-          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" />
+          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='on'/>
+          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete='on'/>
           <SearchDiv className="txt_find">
             <A href="/member/find/loginId">아이디</A>
             <A> / </A>
             <A href="/member/find/password" >비밀번호 찾기</A>
           </SearchDiv>
-          <LoginButton onClick={handleLogin} className="btn_login" >로그인</LoginButton>
+          <LoginButton onClick={handleLogin} className="btn_login" type="button">로그인</LoginButton>
         </Div>
         <ButtonDiv>
         <SignUpButton className="btn_login" ><Link style= {{textDecoration: 'none'}} to='/signup'>회원가입</Link></SignUpButton>
