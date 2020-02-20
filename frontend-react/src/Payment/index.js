@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Popup from "reactjs-popup";
 import DaumPostcode from "react-daum-postcode";
 
@@ -137,9 +138,8 @@ function Payment({ history, form, ua }) {
 
   async function callback(response) {
     const { success } = response;
-
+    const query = queryString.stringify(response);
     if (success) {
-      const query = queryString.stringify(response);
       history.push(`/payment/result?${query}`);
       await buyItem({ products });
     } else {
@@ -258,9 +258,10 @@ function Payment({ history, form, ua }) {
   }, []);
 
   return (
+    <div style={{height:'1730px'}}>
     <GridDiv>
       <div style={{ borderBottom: "1px solid black" }}>
-        <img src="/public/image/catbaner.jpg" />
+        <Link to={`/`}><img src="/public/image/catbaner.jpg" /></Link>
       </div>
       <h1 style={{ borderBottom: "3px solid black" }}>주문/결제</h1>
       <div>
@@ -502,6 +503,11 @@ function Payment({ history, form, ua }) {
                 })(<Switch />)}
               </Item>
             </Span>
+            <Item>
+            <span style={{ textAlign: 'center', textAlign: 'center', display: 'grid', fontSize: '13px' }}>
+              위 주문 내용을 확인 하였으며, 회원 본인은 결제에 동의합니다.
+            </span>
+            </Item>
             <Item style={{ textAlign: "-webkit-center" }}>
               <BuyButton type="primary" htmlType="submit" size="large">
                 결제하기
@@ -511,6 +517,7 @@ function Payment({ history, form, ua }) {
         </Wrapper>
       </div>
     </GridDiv>
+    </div>
   );
 }
 const Span = styled.span`

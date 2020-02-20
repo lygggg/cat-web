@@ -31,8 +31,6 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route exact path="/payment" component={Payment}/>
-          <Route exact path="/payment/result" component={PaymentResult}/>
           <Route path="/categories/:categoryId/page/:pageNum">
             <Header/>
             <ProductList/>
@@ -81,6 +79,12 @@ function App() {
             <Header />
               <PurchaseList/>
               <Bottom />
+            </AuthRoute>
+            <Route exact path="/payment/result" component={PaymentResult}/>
+            <AuthRoute path="/payment">
+            <Route exact path="/payment" component={Payment}/>
+            
+            <Bottom />
             </AuthRoute>
         </Switch>
     </Router>

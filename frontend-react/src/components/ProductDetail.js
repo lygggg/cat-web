@@ -40,6 +40,8 @@ const PutDiv = styled.div`
 const handleBuyItem = async (product, count) => {
   const products = [{...product, count}];
   ProductStore.putPayProducts(products);
+  
+  // goToLink
   // await buyItem({products});
 };
 
@@ -103,7 +105,7 @@ function ProductDetail() {
                             className='count' value={count} size='3' readOnly />
                         <button style={{ height: '36px', width: '40px' }} onClick={() => handleMinus()}>-</button>
                     </span>
-                    <Link to='/payment'><Button style={{ margin: '6px' }} onClick={() => handleBuyItem(product, count)}>상품 구매</Button></Link>
+                    <Link to={'/payment'} onClick={() => handleBuyItem(product, count)}><Button style={{ margin: '6px' }}>상품 구매</Button></Link>
                     <Button style={{ background: '#f0f0f0', margin: '6px' }} onClick={() => putProduct(product, count)}>장바구니 추가</Button>
                 </PutDiv>
                 <div>
