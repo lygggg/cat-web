@@ -11,7 +11,6 @@ import { createPurchase as buyItem } from '../service/purchaseService';
 import ProductStore from "../stores/ProductStore";
 
 const Div = styled.div`
-    
     margin: auto;
     width: 1000px;
     height: auto;
@@ -104,7 +103,7 @@ function BasketList() {
   }, [setBaskets]);
 
   return (
-    <MainDiv>
+    <MainDiv style={{ paddingTop: '40px' }}>
         <Div>
         <h1>장바구니</h1>
             <h2>내 장바구니 목록</h2>

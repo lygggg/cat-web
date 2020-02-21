@@ -31,7 +31,7 @@ const { Option } = Select;
 function Payment({ history, form, ua }) {
   const [products, setProducts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
-  const { name, phoneNumber, location, email } = userInfo;
+  const { name, phoneNumber, email } = userInfo;
   const [orderName, setOrderName] = useState("");
   const [Price, setPrice] = useState(0);
   const [destination, setDestination] = useState('배송지를 입력해주세요.');

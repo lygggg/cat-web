@@ -13,7 +13,7 @@ import BasketList from './components/BasketList';
 import Login from './components/Login';
 import PurchaseList from './components/MyPagePurchaselist';
 import SignUp from './components/SignUp';
-
+import UserModify from './components/UserModify';
 import SearchResult from './components/SearchResult';
 import Header from './components/Header';
 import Bottom from './components/Bottom';
@@ -73,6 +73,11 @@ function App() {
           <Route path="/signup">
             <Header />
             <SignUp/>
+            <Bottom />
+          </Route>
+          <Route path="/usermodify">
+            <Header />
+            <UserModify/>
             <Bottom />
           </Route>
           <AuthRoute path="/purchase">
