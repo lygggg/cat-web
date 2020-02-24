@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
 
 import Product from './Product';
-import { getProducts } from '../service/taskService';
-import { getSearchProducts as searchProducts } from '../service/taskService'
+import { getSearchProducts as searchProducts } from '../service/productService'
 
 import { Button } from '../lib/Button';
 import ItemListDiv, { Div } from '../lib/Grid'
 
 function SearchResult(props) {
   const [searchResults, setSearchResults] = useState([]);
-  const { searchTerm } = useParams();
-
-  // const fetchProducts = async () => {
-  //   const result = await getProducts();
-  //   setProducts(result.product);
-  // };
 
   const lowprice = (result) => {
     const final = result.sort(function (a, b) { return a.price - b.price });

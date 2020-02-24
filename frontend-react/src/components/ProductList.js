@@ -6,7 +6,7 @@ import Product from './Product';
 import Pagination from './Pagination';
 
 
-import { getSliceProducts } from '../service/taskService';
+import { getSliceProducts } from '../service/productService';
 
 import { Button } from '../lib/Button';
 import ItemListDiv, { Div, H1, MainDiv } from '../lib/Grid';

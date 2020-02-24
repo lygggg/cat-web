@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 
-import { userAuth as getUserInfo } from '../service/userService';
-import { getUserProfile } from '../service/userService';
+import {
+  userAuth as getUserInfo,
+  getUserProfile,
+  modifyInfo
+} from "../service/userService";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 function UserModify() {
-  const [userInfo, setUserInfo] = useState([]);
-  const { name, email, phoneNumber } = userInfo;
-  const [ userName, setUserName ] = useState(name);
-  const [ userPhoneNumber, setUserPhoneNumber ] = useState(phoneNumber);
+  const [userInfo, setUserInfo] = useState({});
+//   const { name, email, phoneNumber } = userInfo;
+  const [userName, setUserName] = useState('');
+  const [userPhoneNumber, setUserPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
@@ -21,59 +25,84 @@ function UserModify() {
   };
 
   const handleLogin = async () => {
-    const userProfile = await getUserProfile({ email, password });
+    const userProfile = await getUserProfile({ email: userInfo.email, password });
     if (userProfile.islogin) {
-        setPassword('');
-        setLogin('true');
+      setPassword("");
+      setLogin("true");
     } else {
-        setLogin('false');
+        alert('패스워드가 틀립니다.')
+        setLogin("false");
     }
   };
 
-  const handleChangeInfo = async () => {
-      if (!password) {
-          
+  const handleModifyPassword = async () => {
+    const userProfile = await getUserProfile({ email: userInfo.email, password });
+      if (userProfile.islogin){
+          if(newPassword === checkPassword) {
+            await modifyInfo({ 'password': newPassword });
+            alert('패스워드가 변경되었습니다.');
+            setPassword('');
+            setNewPassword('');
+            setCheckPassword('');
+          }
+          else {
+              alert('두개의 비밀번호가 일치하지 않습니다.')
+              setPassword('');
+              setNewPassword('');
+              setCheckPassword('');
+          }
       }
-  }
-
+      else {
+          alert('패스워드가 틀립니다.')
+          setPassword('');
+      }
+  };
+  const handleModifyName = async () => {
+  await modifyInfo({ 'name': userName });
+  UserInfo();
+  };
+  const handleModifyPhoneNumber = async () => {
+  await modifyInfo({ 'phoneNumber': userPhoneNumber });
+  UserInfo();
+  };
   useEffect(() => {
     UserInfo();
   }, []);
 
-  return isLogin !== 'true' ? (
+  return isLogin !== "true" ? (
     <>
-      <div style={{ width: '1920px' }}>
+      <div style={{ width: "1920px" }}>
         <MainDiv>
           <HeaderDiv>
-            <h1 style={{ fontWeight: '700' }}>개인 정보 수정</h1>
+            <h1 style={{ fontWeight: "700" }}>개인 정보 수정</h1>
           </HeaderDiv>
           <ImageDiv>
             <img
-              style={{ placeSelf: 'center' }}
-              src='/public/image/h_pass_rember.png'
+              style={{ placeSelf: "center" }}
+              src="/public/image/h_pass_rember.png"
             />
           </ImageDiv>
           <Form>
             <InputDiv>
               <Div>아이디</Div>
-              <Div style={{ color: '#0185da' }}>{email}</Div>
+              <Div style={{ color: "#0185da" }}>{userInfo.email}</Div>
               <Div>비밀번호</Div>
               <Div>
                 <Input
                   value={password}
                   onChange={({ target: { value } }) => setPassword(value)}
-                  type='password'
-                  placeholder='패스워드를 입력해주세요'
-                  autoComplete='on'
+                  type="password"
+                  placeholder="패스워드를 입력해주세요"
+                  autoComplete="off"
                 ></Input>
               </Div>
             </InputDiv>
             <div>
-              <button onClick={handleLogin} type='button'>
+              <button onClick={handleLogin} type="button">
                 확인
               </button>
-              <Link to='/purchase'>
-                <button type='button'>취소</button>
+              <Link to="/purchase">
+                <button type="button">취소</button>
               </Link>
             </div>
           </Form>
@@ -81,70 +110,104 @@ function UserModify() {
       </div>
     </>
   ) : (
-    <div style={{ width: '1920px' }}>
+    <div style={{ width: "1920px" }}>
       <MainDiv>
-      <h1>회원정보 수정</h1>
+        <h1>회원정보 수정</h1>
         <Table>
           <tbody>
             <tr>
               <TitleTd>이메일</TitleTd>
-              <TextTd>{email}</TextTd>
+              <TextTd>{userInfo.email}</TextTd>
             </tr>
             <tr>
               <TitleTd>현재 비밀번호</TitleTd>
               <TextTd>
+              <form>
                 <PasswordInput
-                    value={password}
-                    onChange={({ target: { value } }) => setPassword(value)}
-                    type='password'
-                    placeholder='패스워드를 입력해주세요'
-                    autoComplete='off' />
+                  value={password}
+                  onChange={({ target: { value } }) => setPassword(value)}
+                  type="password"
+                  placeholder="패스워드를 입력해주세요"
+                  autoComplete="off"
+                />
+                </form>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>새 비밀번호</TitleTd>
               <TextTd>
+                  <form>
                 <PasswordInput
-                value={newPassword}
-                onChange={({ target: { value } }) => setNewPassword(value)}
-                type='password'
-                placeholder='패스워드를 입력해주세요'
-                autoComplete='off'
+                  value={newPassword}
+                  onChange={({ target: { value } }) => setNewPassword(value)}
+                  type="password"
+                  placeholder="패스워드를 입력해주세요"
+                  autoComplete="off"
                 />
+                </form>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>새 비밀번호 확인</TitleTd>
               <TextTd>
+                  <div style={{ display: 'flex' }}>
+              <form style={{ width: '300px' }}>
                 <PasswordInput
-                value={checkPassword}
-                onChange={({ target: { value } }) => setCheckPassword(value)}
-                type='password' 
-                placeholder='패스워드를 입력해주세요'
-                autoComplete='off'
+                  value={checkPassword}
+                  onChange={({ target: { value } }) => setCheckPassword(value)}
+                  type="password"
+                  placeholder="패스워드를 입력해주세요"
+                  autoComplete="off"
                 />
-                <ModifyButton>비밀번호 변경</ModifyButton>
+                </form>
+                <ModifyButton onClick={handleModifyPassword}>
+                  비밀번호 변경
+                </ModifyButton>
+                </div>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>이름</TitleTd>
               <TextTd>
-              <PasswordInput type='name' value={name} onChange={v => setUserName(v.target.value)} />
-              <ModifyButton>이름 변경</ModifyButton>
+                  {userInfo.name}
+                <Popup contentStyle={{ width:'220px' }} trigger={<ModifyButton onClick={handleModifyName}>
+                 이름 변경
+                </ModifyButton>} position="right center">
+                <div>
+                    <input
+                  value={userName}
+                  onChange={({ target: { value }}) => setUserName(value)} type='name'/>
+                <ModifyButton onClick={handleModifyName}>
+                  변경
+                </ModifyButton>
+                </div>
+  </Popup>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>휴대폰 번호</TitleTd>
               <TextTd>
-              <PasswordInput type='tel' value={phoneNumber} onChange={v => setUserPhoneNumber(v.target.value)} />
-              <ModifyButton>휴대폰 번호 변경</ModifyButton>
+                  {userInfo.phoneNumber}
+                 <Popup contentStyle={{ width:'220px' }}  trigger={<ModifyButton onClick={handleModifyPassword}>
+                  휴대폰 번호 변경
+                </ModifyButton>} position="right center">
+                     <div>
+                     <input
+                  value={userPhoneNumber}
+                  onChange={({ target: { value }}) => setUserPhoneNumber(value)} type='tel'/>
+                <ModifyButton onClick={handleModifyPhoneNumber}>
+                  변경
+                </ModifyButton>
+                </div>
+                </Popup>
               </TextTd>
             </tr>
           </tbody>
         </Table>
         <ButtonDiv>
-          <Button onClick={handleChangeInfo}>회원정보 수정</Button>
-          <Link to='/purchase'><Button>취소</Button></Link>
+          <Link to="/purchase">
+            <Button>나가기</Button>
+          </Link>
         </ButtonDiv>
       </MainDiv>
     </div>
@@ -152,11 +215,11 @@ function UserModify() {
 }
 
 const ModifyButton = styled.button`
-    margin-left: 30px;
-    border-color: #bcbfc6;
-    color: #777;
-    background-color: #fafbf6;
-    
+  margin-left: 30px;
+  border-color: #bcbfc6;
+  color: #777;
+  background-color: #fafbf6;
+  
 `;
 
 const PasswordInput = styled.input`
@@ -197,7 +260,7 @@ const TextTd = styled.td`
   padding: 10px 16px;
   font-size: 12px;
   color: #333;
-  font-family: '돋움', Dotum, sans-serif;
+  font-family: "돋움", Dotum, sans-serif;
 `;
 
 const Div = styled.div`
@@ -262,7 +325,7 @@ const Button = styled.button`
 
 const ButtonDiv = styled.div`
   display: grid;
-  grid-template-columns: 280px 280px;
 `;
+
 
 export default UserModify;

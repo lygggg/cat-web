@@ -1,5 +1,6 @@
 import userModel from '../models/auth.schema';
 import cartModel from '../models/basket.schema';
+import { model } from 'mongoose';
 
 class UserRepository {
     async getOne(userEmail) {
@@ -38,7 +39,27 @@ class UserRepository {
             return console.error(500, e);
         }
     }
+
+    async modifyPassword(userPassword, userEmail) {
+        await userModel.updateOne(
+            { email: userEmail },
+            { $set: { password: userPassword } }
+        )
+    }
     
+    async modifyName(userName, userEmail) {
+        await userModel.updateOne(
+            { email: userEmail },
+            { $set: { name: userName } }
+        )
+    }
+
+    async modifyPhoneNumber(userPhoneNumber, userEmail) {
+        await userModel.updateOne(
+            { email: userEmail },
+            { $set: { phoneNumber: userPhoneNumber } }
+        )
+    }
 }
 
 export default UserRepository;

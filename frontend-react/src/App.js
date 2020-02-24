@@ -32,7 +32,7 @@ function App() {
     <Router>
         <Switch>
           <Route path="/categories/:categoryId/page/:pageNum">
-            <Header/>
+            <Header searchCallback={searchTermRoute}/>
             <ProductList/>
             <Bottom />
           </Route>
@@ -42,12 +42,12 @@ function App() {
             <Bottom />
           </Route>
           <Route path="/user/login">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <Login/>
             <Bottom />
           </Route>
           <Route exact path="/">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <Home />
             <Bottom />
           </Route>
@@ -56,32 +56,32 @@ function App() {
             <Bottom />
           </Route> */}
          <Route path="/products/new">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
            <ProductNew/>
            <Bottom />
            </Route>
           <Route path="/products/:productId">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <ProductDetail />
             <Bottom />
           </Route>
           <Route path="/basket">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <BasketList/>
             <Bottom />
           </Route>
           <Route path="/signup">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <SignUp/>
             <Bottom />
           </Route>
           <Route path="/usermodify">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
             <UserModify/>
             <Bottom />
           </Route>
           <AuthRoute path="/purchase">
-            <Header />
+            <Header searchCallback={searchTermRoute}/>
               <PurchaseList/>
               <Bottom />
             </AuthRoute>

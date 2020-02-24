@@ -2,6 +2,7 @@ import { userSignUp as apiUserSignUp } from '../apis/auth';
 import { userLogout as apiUserLogout} from '../apis/auth'
 import { userAuth as apiUserAuth } from '../apis/auth';
 import { getUserProfile as apiGetUserProfile} from '../apis/auth';
+import { modifyInfo as apiModifyInfo } from '../apis/auth';
 
 
 export const userSignUp = async ({
@@ -39,3 +40,11 @@ export const getUserProfile = async ({ email, password }) => {
     alert(e);
   }
 };
+
+export const modifyInfo = async (params) => {
+  try {
+    return await apiModifyInfo(params)
+  } catch (e) {
+    alert(e);
+  }
+}

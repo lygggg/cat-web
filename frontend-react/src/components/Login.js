@@ -83,8 +83,8 @@ function Login() {
       <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: 'width: 1890px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
         <Div>
-          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='on'/>
-          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete='on'/>
+          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='off'/>
+          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete='off'/>
           <SearchDiv className="txt_find">
             <A href="/member/find/loginId">아이디</A>
             <A> / </A>

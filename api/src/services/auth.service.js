@@ -22,4 +22,19 @@ export default class AuthService {
     await this.auth.createOne(user);
     await this.auth.createCart(user.email);
   }
+
+  async modifyInfo(password, name, phoneNumber, userEmail) {
+    if (password) {
+      await this.auth.modifyPassword(password, userEmail);
+    }
+
+    if (name) {
+      await this.auth.modifyName(name, userEmail);
+    }
+    
+    if (phoneNumber) {
+      await this.auth.modifyPhoneNumber(phoneNumber, userEmail);
+
+    }
+  }
 }
