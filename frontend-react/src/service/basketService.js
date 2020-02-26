@@ -1,7 +1,7 @@
 import { putCart as apiPutCart } from '../apis/basket';
 import { getCart as apiGetCart } from '../apis/basket';
 import { deleteCart as apiDeleteCart } from '../apis/basket'; 
-import { toggleItem as apiToggleItem } from '../apis/basket';
+import { modifyCount as apiModifyCount } from '../apis/basket';
 
 
 export const putCart = async (params) => {
@@ -28,9 +28,9 @@ export const deleteCart = async (productId) => {
   }
 };
 
-export const toggleItem = async (productId) => {
+export const modifyCount = async (productId, count) => {
   try {
-    return await apiToggleItem(productId);
+    return await apiModifyCount(productId, count);
   } catch (e) {
     alert(e);
   }

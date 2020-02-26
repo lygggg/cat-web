@@ -28,10 +28,10 @@ router.delete('/', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
-  const { productId } = req.body;
+  const { productId, count } = req.body;
   const basketRepo = new BasketRepo();
   const basketService = new BasketService(basketRepo);
-  await basketService.toggleBasket(req.session.email, productId);
+  await basketService.modifyCount(productId, req.session.email, count);
   res.send('체크');
 });
 

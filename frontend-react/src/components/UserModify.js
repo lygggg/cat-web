@@ -12,59 +12,66 @@ import styled from "styled-components";
 
 function UserModify() {
   const [userInfo, setUserInfo] = useState({});
-//   const { name, email, phoneNumber } = userInfo;
-  const [userName, setUserName] = useState('');
-  const [userPhoneNumber, setUserPhoneNumber] = useState('');
-  const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [checkPassword, setCheckPassword] = useState('');
-  const [isLogin, setLogin] = useState('');
+  //   const { name, email, phoneNumber } = userInfo;
+  const [userName, setUserName] = useState("");
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
+  const [isLogin, setLogin] = useState("");
 
   const UserInfo = async () => {
     setUserInfo(await getUserInfo());
   };
 
   const handleLogin = async () => {
-    const userProfile = await getUserProfile({ email: userInfo.email, password });
+    const userProfile = await getUserProfile({
+      email: userInfo.email,
+      password
+    });
     if (userProfile.islogin) {
       setPassword("");
       setLogin("true");
     } else {
-        alert('패스워드가 틀립니다.')
-        setLogin("false");
+      alert("패스워드가 틀립니다.");
+      setLogin("false");
     }
   };
 
   const handleModifyPassword = async () => {
-    const userProfile = await getUserProfile({ email: userInfo.email, password });
-      if (userProfile.islogin){
-          if(newPassword === checkPassword) {
-            await modifyInfo({ 'password': newPassword });
-            alert('패스워드가 변경되었습니다.');
-            setPassword('');
-            setNewPassword('');
-            setCheckPassword('');
-          }
-          else {
-              alert('두개의 비밀번호가 일치하지 않습니다.')
-              setPassword('');
-              setNewPassword('');
-              setCheckPassword('');
-          }
+    const userProfile = await getUserProfile({
+      email: userInfo.email,
+      password
+    });
+    if (userProfile.islogin) {
+      if (newPassword === checkPassword) {
+        await modifyInfo({ password: newPassword });
+        alert("패스워드가 변경되었습니다.");
+        setPassword("");
+        setNewPassword("");
+        setCheckPassword("");
+      } else {
+        alert("두개의 비밀번호가 일치하지 않습니다.");
+        setPassword("");
+        setNewPassword("");
+        setCheckPassword("");
       }
-      else {
-          alert('패스워드가 틀립니다.')
-          setPassword('');
-      }
+    } else {
+      alert("패스워드가 틀립니다.");
+      setPassword("");
+    }
   };
+  
   const handleModifyName = async () => {
-  await modifyInfo({ 'name': userName });
-  UserInfo();
+    await modifyInfo({ name: userName });
+    UserInfo();
   };
+
   const handleModifyPhoneNumber = async () => {
-  await modifyInfo({ 'phoneNumber': userPhoneNumber });
-  UserInfo();
+    await modifyInfo({ phoneNumber: userPhoneNumber });
+    UserInfo();
   };
+
   useEffect(() => {
     UserInfo();
   }, []);
@@ -122,83 +129,101 @@ function UserModify() {
             <tr>
               <TitleTd>현재 비밀번호</TitleTd>
               <TextTd>
-              <form>
-                <PasswordInput
-                  value={password}
-                  onChange={({ target: { value } }) => setPassword(value)}
-                  type="password"
-                  placeholder="패스워드를 입력해주세요"
-                  autoComplete="off"
-                />
+                <form>
+                  <PasswordInput
+                    value={password}
+                    onChange={({ target: { value } }) => setPassword(value)}
+                    type="password"
+                    placeholder="패스워드를 입력해주세요"
+                    autoComplete="off"
+                  />
                 </form>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>새 비밀번호</TitleTd>
               <TextTd>
-                  <form>
-                <PasswordInput
-                  value={newPassword}
-                  onChange={({ target: { value } }) => setNewPassword(value)}
-                  type="password"
-                  placeholder="패스워드를 입력해주세요"
-                  autoComplete="off"
-                />
+                <form>
+                  <PasswordInput
+                    value={newPassword}
+                    onChange={({ target: { value } }) => setNewPassword(value)}
+                    type="password"
+                    placeholder="패스워드를 입력해주세요"
+                    autoComplete="off"
+                  />
                 </form>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>새 비밀번호 확인</TitleTd>
               <TextTd>
-                  <div style={{ display: 'flex' }}>
-              <form style={{ width: '300px' }}>
-                <PasswordInput
-                  value={checkPassword}
-                  onChange={({ target: { value } }) => setCheckPassword(value)}
-                  type="password"
-                  placeholder="패스워드를 입력해주세요"
-                  autoComplete="off"
-                />
-                </form>
-                <ModifyButton onClick={handleModifyPassword}>
-                  비밀번호 변경
-                </ModifyButton>
+                <div style={{ display: "flex" }}>
+                  <form style={{ width: "300px" }}>
+                    <PasswordInput
+                      value={checkPassword}
+                      onChange={({ target: { value } }) =>
+                        setCheckPassword(value)
+                      }
+                      type="password"
+                      placeholder="패스워드를 입력해주세요"
+                      autoComplete="off"
+                    />
+                  </form>
+                  <ModifyButton onClick={handleModifyPassword}>
+                    비밀번호 변경
+                  </ModifyButton>
                 </div>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>이름</TitleTd>
               <TextTd>
-                  {userInfo.name}
-                <Popup contentStyle={{ width:'220px' }} trigger={<ModifyButton onClick={handleModifyName}>
-                 이름 변경
-                </ModifyButton>} position="right center">
-                <div>
+                {userInfo.name}
+                <Popup
+                  contentStyle={{ width: "220px" }}
+                  trigger={
+                    <ModifyButton onClick={handleModifyName}>
+                      이름 변경
+                    </ModifyButton>
+                  }
+                  position="right center"
+                >
+                  <div>
                     <input
-                  value={userName}
-                  onChange={({ target: { value }}) => setUserName(value)} type='name'/>
-                <ModifyButton onClick={handleModifyName}>
-                  변경
-                </ModifyButton>
-                </div>
-  </Popup>
+                      value={userName}
+                      onChange={({ target: { value } }) => setUserName(value)}
+                      type="name"
+                    />
+                    <ModifyButton onClick={handleModifyName}>변경</ModifyButton>
+                  </div>
+                </Popup>
               </TextTd>
             </tr>
             <tr>
               <TitleTd>휴대폰 번호</TitleTd>
               <TextTd>
-                  {userInfo.phoneNumber}
-                 <Popup contentStyle={{ width:'220px' }}  trigger={<ModifyButton onClick={handleModifyPassword}>
-                  휴대폰 번호 변경
-                </ModifyButton>} position="right center">
-                     <div>
-                     <input
-                  value={userPhoneNumber}
-                  onChange={({ target: { value }}) => setUserPhoneNumber(value)} type='tel'/>
-                <ModifyButton onClick={handleModifyPhoneNumber}>
-                  변경
-                </ModifyButton>
-                </div>
+                {userInfo.phoneNumber}
+                <Popup
+                  contentStyle={{ width: "220px" }}
+                  trigger={
+                    <ModifyButton onClick={handleModifyPassword}>
+                      휴대폰 번호 변경
+                    </ModifyButton>
+                  }
+                  position="right center"
+                >
+                  <div>
+                    <input
+                      value={userPhoneNumber}
+                      onChange={({ target: { value } }) =>
+                        setUserPhoneNumber(value)
+                      }
+                      type="tel"
+                    />
+                    <ModifyButton onClick={handleModifyPhoneNumber}>
+                      변경
+                    </ModifyButton>
+                  </div>
                 </Popup>
               </TextTd>
             </tr>
@@ -219,7 +244,6 @@ const ModifyButton = styled.button`
   border-color: #bcbfc6;
   color: #777;
   background-color: #fafbf6;
-  
 `;
 
 const PasswordInput = styled.input`
@@ -326,6 +350,5 @@ const Button = styled.button`
 const ButtonDiv = styled.div`
   display: grid;
 `;
-
 
 export default UserModify;

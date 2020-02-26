@@ -17,7 +17,7 @@ export const deleteCart = async (id) => {
   return data;
 };
 
-export const toggleItem = async (productId) => {
-  const data = await axios.patch(USER_BASKET_URL, { productId });
+export const modifyCount = async (productId, count) => {
+  const data = await axios.patch(USER_BASKET_URL, { productId, count });
   return data;
 };

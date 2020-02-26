@@ -21,8 +21,13 @@ export default class BasketService {
         
     }
 
-    async toggleBasket({ userEmail, productId }) {
-        await this.baskets.toggleOne({userEmail, productId});
-       
+    async modifyCount(productId, userEmail, count) {
+        if(count === 1) {
+        await this.baskets.plusCountOne(productId, userEmail, count);
+        }
+
+        if(count === -1) {
+        await this.baskets.minusCountOne(productId, userEmail, count);    
+        }
     }
 }

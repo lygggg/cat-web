@@ -11,7 +11,7 @@ import ProductStore from "../stores/ProductStore";
 import styled from "styled-components";
 
 
-import { Form, Select, Icon, Input, Switch, Button } from "antd";
+import { Form, Select, Icon, Input, Switch } from "antd";
 import { withRouter } from "react-router-dom";
 import { withUserAgent } from "react-useragent";
 import queryString from "query-string";

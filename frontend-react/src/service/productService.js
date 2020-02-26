@@ -3,8 +3,6 @@ import { getSliceProducts as apiGetSliceProducts } from '../apis/task';
 import { getProductDetail as apiGetProductDetail } from '../apis/task';
 import { createProduct as apiCreateProduct } from '../apis/task';
 import { getSearchProducts as apiGetSearchProducts } from '../apis/task';
-import styled from 'styled-components';
-
 
 
 export const getProducts = async () => {

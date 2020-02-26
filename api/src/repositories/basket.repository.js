@@ -35,9 +35,37 @@ class BasketRepository {
 
   async deleteSelected(_id, userEmail) {
     await model.updateMany(
-      { email: userEmail}, {$pull: {products: { $in: _id }}}
+      { email: userEmail}, {$pull: { products: { $in: _id }}}
       )
 }
+
+  async plusCountOne(_id, userEmail) {
+    await model.updateOne(
+      { email: userEmail },
+      { $push: { products: _id }}
+    )
+  }
+  async minusCountOne(_id, userEmail) {
+    await model.bulkWrite(
+      [
+        { updateOne : {
+           email: userEmail,
+          'filter': { products: _id },
+          'update': {
+            '$unset': { 'products.$': '' }
+          }
+        }},
+        { updateOne : {
+          email: userEmail,
+          'filter': { products: null },
+          'update':{
+            '$pull': { 'products': null }
+          }
+        }}
+      ]
+    )
+  }
 }
+
 
 export default BasketRepository;
