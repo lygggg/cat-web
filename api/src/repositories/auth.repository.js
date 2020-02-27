@@ -1,6 +1,5 @@
 import userModel from '../models/auth.schema';
 import cartModel from '../models/basket.schema';
-import { model } from 'mongoose';
 
 class UserRepository {
     async getOne(userEmail) {

@@ -8,8 +8,10 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     imageurl: { type: String, required: true },
     account: { type: String },
+    count: { type: Number },
+    amount: { type: Number },
     phoneNumber: { },
-});
+}); 
 
 
 export default mongoose.model('products', productSchema);

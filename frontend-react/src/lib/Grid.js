@@ -4,7 +4,6 @@ const ItemListDiv = styled.div`
     grid-template-columns: 300px 300px 300px;
     grid-template-rows: 300px 300px 300px;
     justify-content: center;
-    align-items: center;
 `;
 export const H1 = styled.h1`
     width: 100%;
@@ -12,6 +11,7 @@ export const H1 = styled.h1`
     padding: 10px;
     margin-left: 10px;
     font-size: 27px;
+    margin-top: 15px;
 
 `;
 

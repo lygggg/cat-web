@@ -1,5 +1,4 @@
 import model from '../models/product.schema';
-import { get } from 'mongoose';
 
 class ProductRepository {
     async getAll({ category, offset, limit }) {

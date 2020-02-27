@@ -245,6 +245,10 @@ function Payment({ history, form, ua }) {
       ).price
     );
   };
+  
+  const buy = async () => {
+    await buyItem({ products });
+  }
 
   useEffect(() => {
     UserInfo();
@@ -514,6 +518,7 @@ function Payment({ history, form, ua }) {
               </BuyButton>
             </Item>
           </FormContainer>
+          <button onClick={buy}>가짜 결제</button>
         </Wrapper>
       </div>
     </GridDiv>

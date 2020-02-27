@@ -1,8 +1,8 @@
-import { getProducts as apiGetProducts } from '../apis/task';
-import { getSliceProducts as apiGetSliceProducts } from '../apis/task';
-import { getProductDetail as apiGetProductDetail } from '../apis/task';
-import { createProduct as apiCreateProduct } from '../apis/task';
-import { getSearchProducts as apiGetSearchProducts } from '../apis/task';
+import { getProducts as apiGetProducts } from '../apis/product';
+import { getSliceProducts as apiGetSliceProducts } from '../apis/product';
+import { getProductDetail as apiGetProductDetail } from '../apis/product';
+import { createProduct as apiCreateProduct } from '../apis/product';
+import { getSearchProducts as apiGetSearchProducts } from '../apis/product';
 
 
 export const getProducts = async () => {

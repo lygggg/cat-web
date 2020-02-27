@@ -10,5 +10,6 @@ export default class PurchaseService {
 
     async createPurchase(products, email) {
         await this.purchase.create(products, email);
+        await this.purchase.modifyAmount(products);
     }
 }
