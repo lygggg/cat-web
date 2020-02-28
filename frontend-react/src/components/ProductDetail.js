@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import Popup from "reactjs-popup";
 
 import { getProductDetail as getProduct } from "../service/productService";
-import { createPurchase as buyItem } from "../service/purchaseService";
 import ProductStore from "../stores/ProductStore";
 
 import styled from "styled-components";
@@ -16,44 +16,28 @@ import {
 import { Button } from "../lib/Button";
 import { putCart } from "../service/basketService";
 
-const ItemDetali = styled.div`
-  display: grid;
-  grid-template-columns: 500px 600px;
-  grid-template-rows: 600px;
-  margin: auto;
-  width: 1000px;
-  height: 0%;
-  border: 1px solid #e0e0e0;
-  padding: 20px;
-`;
-
-const ItemDivide = styled.div`
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const PutDiv = styled.div`
-  display: flex;
-  margin-right: 10px;
-`;
-
-const handleBuyItem = async (product, count) => {
-  const products = [{ ...product, count }];
-  ProductStore.putPayProducts(products);
-
-};
-
-const putProduct = async (product, count) => {
-  await putCart(new Array(count).fill(product._id));
-};
-
 function ProductDetail() {
   const [product, setProduct] = useState([]);
   const [count, setcount] = useState(1);
   const { productId } = useParams();
   const { imageurl, account, phoneNumber, title, description, price } = product;
+  const history = useHistory();
+
+  const handleBuyItem = async (product, count) => {
+    if (product.amount <= 0) {
+      alert("품절입니다.");
+    }
+    if (product.amount > 0) {
+      const products = [{ ...product, count }];
+      ProductStore.putPayProducts(products);
+      history.push("/payment");
+    }
+  };
+
+  const putProduct = async (product, count) => {
+    console.log('fassd')
+    await putCart(new Array(count).fill(product._id));
+  };
 
   const getOneProduct = async id => {
     const oneProduct = await getProduct(id);
@@ -92,6 +76,7 @@ function ProductDetail() {
             로그인후, 회원할인가와 적립혜택이 제공됩니다.
           </DescriptionName>
           <h4>무료배송</h4>
+          {product.amount <= 0 ? <StatusDiv>품절</StatusDiv> : <></>}
         </div>
         <PutDiv>
           <span style={{ margin: "6px" }}>
@@ -116,15 +101,53 @@ function ProductDetail() {
               -
             </button>
           </span>
-          <Link to={"/payment"} onClick={() => handleBuyItem(product, count)}>
-            <Button style={{ margin: "6px" }}>상품 구매</Button>
-          </Link>
-          <Button
-            style={{ background: "#f0f0f0", margin: "6px" }}
-            onClick={() => putProduct(product, count)}
+          <Popup on={
+            <div>das</div>
+          }
+          trigger={<Button
+            onClick={() => handleBuyItem(product, count)}
+            style={{ margin: "6px" }}
           >
-            장바구니 추가
-          </Button>
+            상품 구매
+          </Button>}
+          >
+          </Popup>
+          <Popup
+            contentStyle={{ width: "250px", height: "110px" }}
+            position="top center"
+            onOpen={() => putProduct(product, count)}
+            trigger={
+              <Button
+                style={{ background: "#f0f0f0", margin: "6px" }}
+              >
+                장바구니 추가
+              </Button> 
+            }
+          >
+            <div
+              style={{
+                display: "grid",
+                height: "100px",
+                placeContent: "center"
+              }}
+            >
+              <div
+                style={{
+                  color: "arkslategray",
+                  fontSize: "12px",
+                  justifySelf: "center"
+                }}
+              >
+                상품이 장바구니에 담겼습니다.
+              </div>
+              <Button
+                style={{ background: "#f0f0f0", margin: "6px" }}
+                onClick={() => history.push('/basket')}
+              >
+                장바구니 바로가기
+              </Button>
+            </div>
+          </Popup>
         </PutDiv>
         <div>
           <DescriptionName>계좌번호: {account}</DescriptionName>
@@ -134,5 +157,33 @@ function ProductDetail() {
     </ItemDetali>
   );
 }
+
+const ItemDetali = styled.div`
+  display: grid;
+  grid-template-columns: 500px 600px;
+  grid-template-rows: 600px;
+  margin: auto;
+  width: 1000px;
+  height: 0%;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+`;
+
+const ItemDivide = styled.div`
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const PutDiv = styled.div`
+  display: flex;
+  margin-right: 10px;
+`;
+
+const StatusDiv = styled.div`
+  color: red;
+  font-size: 20px;
+`;
 
 export default ProductDetail;

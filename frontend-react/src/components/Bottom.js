@@ -3,9 +3,8 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Footer = styled.footer`
-    margin-top: 100px;
     width: 1890px;
-    
+    margin-top: 70px;
 `;
 
 const TextDiv = styled.div`

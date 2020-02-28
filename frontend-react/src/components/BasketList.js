@@ -190,11 +190,12 @@ function BasketList() {
         </GridInfo>
         {baskets.map(basket => (
           <Grid key={basket.id}>
-            <input
-              type="checkbox"
-              checked={basket.selected}
-              onChange={() => handleCheck(basket.id, baskets)}
-            />
+            {basket.amount <= 0 ?  
+      <span style={{ color: 'red' }}>품절</span> : <input
+      type="checkbox"
+      checked={basket.selected}
+      onChange={() => handleCheck(basket.id, baskets)}
+    />}
             <Product
               onDeleteClick={handleSelectDelete}
               product={basket}

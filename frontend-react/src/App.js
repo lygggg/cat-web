@@ -51,10 +51,6 @@ function App() {
             <Home />
             <Bottom />
           </Route>
-          {/* <Route path="/billingpage">
-            <BillingPage/>
-            <Bottom />
-          </Route> */}
          <Route path="/products/new">
             <Header searchCallback={searchTermRoute}/>
            <ProductNew/>
@@ -88,7 +84,6 @@ function App() {
             <Route exact path="/payment/result" component={PaymentResult}/>
             <AuthRoute path="/payment">
             <Route exact path="/payment" component={Payment}/>
-            
             <Bottom />
             </AuthRoute>
         </Switch>

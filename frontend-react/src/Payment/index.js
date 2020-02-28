@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Popup from "reactjs-popup";
-import DaumPostcode from "react-daum-postcode";
+import Popup from 'reactjs-popup';
+import DaumPostcode from 'react-daum-postcode';
 
-import { userAuth as getUserInfo } from "../service/userService";
-import { getPrice as getPaymentPrice } from "../service/paymentService";
-import { createPurchase as buyItem } from "../service/purchaseService";
-import ProductStore from "../stores/ProductStore";
+import { userAuth as getUserInfo } from '../service/userService';
+import { getPrice as getPaymentPrice } from '../service/paymentService';
+import { createPurchase as buyItem } from '../service/purchaseService';
+import ProductStore from '../stores/ProductStore';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 
-import { Form, Select, Icon, Input, Switch } from "antd";
-import { withRouter } from "react-router-dom";
-import { withUserAgent } from "react-useragent";
-import queryString from "query-string";
+import { Form, Select, Icon, Input, Switch, Button } from 'antd';
+import { withRouter } from 'react-router-dom';
+import { withUserAgent } from 'react-useragent';
+import queryString from 'query-string';
 
-import "antd/dist/antd.css";
+import 'antd/dist/antd.css';
 
 import {
   PGS,
   METHODS_FOR_INICIS,
   QUOTAS_FOR_INICIS_AND_KCP
-} from "./constants";
-import { getMethods, getQuotas } from "./utils";
+} from './constants';
+import { getMethods, getQuotas } from './utils';
 
 const { Item } = Form;
 const { Option } = Select;
@@ -32,10 +32,10 @@ function Payment({ history, form, ua }) {
   const [products, setProducts] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
   const { name, phoneNumber, email } = userInfo;
-  const [orderName, setOrderName] = useState("");
+  const [orderName, setOrderName] = useState('');
   const [Price, setPrice] = useState(0);
   const [destination, setDestination] = useState('배송지를 입력해주세요.');
-  const [requestTerm, setRequestTerm] = useState("안전하게 배송해주세요");
+  const [requestTerm, setRequestTerm] = useState('안전하게 배송해주세요');
   const [methods, setMethods] = useState(METHODS_FOR_INICIS);
   const [quotas, setQuotas] = useState(QUOTAS_FOR_INICIS_AND_KCP);
   const [isQuotaRequired, setIsQuotaRequired] = useState(true);
@@ -51,17 +51,17 @@ function Payment({ history, form, ua }) {
 
   const handleAddress = data => {
     let fullAddress = data.address;
-    let extraAddress = "";
+    let extraAddress = '';
 
-    if (data.addressType === "R") {
-      if (data.bname !== "") {
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
         extraAddress += data.bname;
       }
-      if (data.buildingName !== "") {
+      if (data.buildingName !== '') {
         extraAddress +=
-          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
       }
-      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     setDestination(fullAddress);
   };
@@ -72,7 +72,7 @@ function Payment({ history, form, ua }) {
     validateFieldsAndScroll((error, values) => {
       if (!error) {
         /* 가맹점 식별코드 */
-        const userCode = "imp02805801";
+        const userCode = 'imp02805801';
         /* 결제 데이터 */
         const {
           pg,
@@ -102,18 +102,18 @@ function Payment({ history, form, ua }) {
           escrow
         };
 
-        if (pay_method === "vbank") {
+        if (pay_method === 'vbank') {
           data.vbank_due = vbank_due;
-          if (pg === "danal_tpay") {
+          if (pg === 'danal_tpay') {
             data.biz_num = biz_num;
           }
         }
-        if (pay_method === "card") {
+        if (pay_method === 'card') {
           if (card_quota !== 0) {
             data.digital = { card_quota: card_quota === 1 ? [] : card_quota };
           }
         }
-        if (pay_method === "phone") {
+        if (pay_method === 'phone') {
           data.digital = digital;
         }
 
@@ -122,7 +122,7 @@ function Payment({ history, form, ua }) {
           const params = {
             userCode,
             data,
-            type: "payment" // 결제와 본인인증을 구분하기 위한 필드
+            type: 'payment' // 결제와 본인인증을 구분하기 위한 필드
           };
           const paramsToString = JSON.stringify(params);
           window.ReactNativeWebView.postMessage(paramsToString);
@@ -160,8 +160,8 @@ function Payment({ history, form, ua }) {
     /* 사업자번호/입금기한 설정 */
     let isBizNumRequired = false;
     let isVbankDueRequired = false;
-    if (pay_method === "vbank") {
-      if (value === "danal_tpay") {
+    if (pay_method === 'vbank') {
+      if (value === 'danal_tpay') {
         isBizNumRequired = true;
       }
       isVbankDueRequired = true;
@@ -177,16 +177,16 @@ function Payment({ history, form, ua }) {
     let isVbankDueRequired = false;
     let isBizNumRequired = false;
     switch (value) {
-      case "card": {
+      case 'card': {
         isQuotaRequired = true;
         break;
       }
-      case "phone": {
+      case 'phone': {
         isDigitalRequired = true;
         break;
       }
-      case "vbank": {
-        if (pg === "danal_tpay") {
+      case 'vbank': {
+        if (pg === 'danal_tpay') {
           isBizNumRequired = true;
         }
         isVbankDueRequired = true;
@@ -225,7 +225,7 @@ function Payment({ history, form, ua }) {
   }
 
   function modifyRequestTerm() {
-    var retVal = prompt("요청사항 변경 : ", requestTerm);
+    var retVal = prompt('요청사항 변경 : ', requestTerm);
     setRequestTerm(retVal);
   }
 
@@ -262,12 +262,12 @@ function Payment({ history, form, ua }) {
   }, []);
 
   return (
-    <div style={{height:'1730px'}}>
+    <div style={{height:'100%'}}>
     <GridDiv>
-      <div style={{ borderBottom: "1px solid black" }}>
-        <Link to={`/`}><img src="/public/image/catbaner.jpg" /></Link>
+      <div style={{ borderBottom: '1px solid black' }}>
+        <Link to={`/`}><img src='/public/image/catbaner.jpg' /></Link>
       </div>
-      <h1 style={{ borderBottom: "3px solid black" }}>주문/결제</h1>
+      <h1 style={{ borderBottom: '3px solid black' }}>주문/결제</h1>
       <div>
         <h2>구매자정보</h2>
         <Table>
@@ -275,10 +275,10 @@ function Payment({ history, form, ua }) {
             <tr>
               <TitleTd>이름</TitleTd>
               <TextTd>
-                {getFieldDecorator("buyer_name", {
+                {getFieldDecorator('buyer_name', {
                   initialValue: name,
                   rules: [
-                    { required: true, message: "구매자 이름은 필수입력입니다" }
+                    { required: true, message: '구매자 이름은 필수입력입니다' }
                   ]
                 })(<span>{name}</span>)}
               </TextTd>
@@ -286,12 +286,12 @@ function Payment({ history, form, ua }) {
             <tr>
               <TitleTd>이메일</TitleTd>
               <TextTd>
-                {getFieldDecorator("buyer_email", {
+                {getFieldDecorator('buyer_email', {
                   initialValue: email,
                   rules: [
                     {
                       required: true,
-                      message: "구매자 이메일은 필수입력입니다"
+                      message: '구매자 이메일은 필수입력입니다'
                     }
                   ]
                 })(<span>{email}</span>)}
@@ -300,12 +300,12 @@ function Payment({ history, form, ua }) {
             <tr>
               <TitleTd>휴대폰 번호</TitleTd>
               <TextTd>
-                {getFieldDecorator("buyer_tel", {
+                {getFieldDecorator('buyer_tel', {
                   initialValue: phoneNumber,
                   rules: [
                     {
                       required: true,
-                      message: "구매자 전화번호는 필수입력입니다"
+                      message: '구매자 전화번호는 필수입력입니다'
                     }
                   ]
                 })(<span>{phoneNumber}</span>)}
@@ -328,11 +328,11 @@ function Payment({ history, form, ua }) {
                 {destination}
                 <Popup
                   trigger={<button style={{ background:'white', marginLeft:'40px', marginTop: '10px' }}> 주소지 변경</button>}
-                  position="right center"
+                  position='right center'
                 >
                   <DaumPostcode
                     onComplete={handleAddress}
-                    style={{ width: "500px", height: "100%" }}
+                    style={{ width: '500px', height: '100%' }}
                   />
                 </Popup>
                 <input style={{ marginTop:'10px', height:'40px', width: '600px', border:'none', background:'transparent' }} type='text' placeholder='상세주소를 입력해주세요.'/>
@@ -353,7 +353,7 @@ function Payment({ history, form, ua }) {
       </div>
       <div>
         <h2>결제 상품</h2>
-        <div style={{ border: "1px solid #ccc" }}>
+        <div style={{ border: '1px solid #ccc' }}>
           <GridInfo></GridInfo>
           {products.map(product => (
             <Grid key={product._id}>
@@ -368,7 +368,7 @@ function Payment({ history, form, ua }) {
         <h2>결제정보</h2>
         <Table>
           <tbody>
-            {getFieldDecorator("name", {
+            {getFieldDecorator('name', {
               initialValue: orderName.toString()
             })(
               <tr>
@@ -376,9 +376,9 @@ function Payment({ history, form, ua }) {
                 <TextTd>{orderName.toString()}</TextTd>
               </tr>
             )}
-            {getFieldDecorator("merchant_uid", {
+            {getFieldDecorator('merchant_uid', {
               initialValue: `${new Date().getTime()}`,
-              rules: [{ required: true, message: "주문번호는 필수입력입니다" }]
+              rules: [{ required: true, message: '주문번호는 필수입력입니다' }]
             })(
               <tr>
                 <TitleTd>주문번호</TitleTd>
@@ -396,10 +396,10 @@ function Payment({ history, form, ua }) {
             <tr>
               <TitleTd>총결제금액</TitleTd>
               <TextTd>
-                {getFieldDecorator("amount", {
+                {getFieldDecorator('amount', {
                   initialValue: 100,
                   rules: [
-                    { required: true, message: "결제금액은 필수입력입니다" }
+                    { required: true, message: '결제금액은 필수입력입니다' }
                   ]
                 })(<span>{Price}원</span>)}
               </TextTd>
@@ -409,27 +409,27 @@ function Payment({ history, form, ua }) {
         <Wrapper>
           <FormContainer onSubmit={handleSubmit}>
             <Span>
-              {getFieldDecorator("pg", {
-                initialValue: "html5_inicis"
+              {getFieldDecorator('pg', {
+                initialValue: 'html5_inicis'
               })(
                 <span
                   style={{
-                    fontSize: "35px",
-                    textAlign: "center",
-                    marginTop: "13px"
+                    fontSize: '35px',
+                    textAlign: 'center',
+                    marginTop: '13px'
                   }}
                 >
                   결제
                 </span>
               )}
-              <Item label="결제수단">
-                {getFieldDecorator("pay_method", {
-                  initialValue: "card"
+              <Item label='결제수단'>
+                {getFieldDecorator('pay_method', {
+                  initialValue: 'card'
                 })(
                   <Select
-                    size="large"
+                    size='large'
                     onChange={onChangePayMethod}
-                    suffixIcon={<Icon type="caret-down" />}
+                    suffixIcon={<Icon type='caret-down' />}
                   >
                     {methods.map(method => {
                       const { value, label } = method;
@@ -443,13 +443,13 @@ function Payment({ history, form, ua }) {
                 )}
               </Item>
               {isQuotaRequired && (
-                <Item label="할부개월수">
-                  {getFieldDecorator("card_quota", {
+                <Item label='할부개월수'>
+                  {getFieldDecorator('card_quota', {
                     initialValue: 0
                   })(
                     <Select
-                      size="large"
-                      suffixIcon={<Icon type="caret-down" />}
+                      size='large'
+                      suffixIcon={<Icon type='caret-down' />}
                     >
                       {quotas.map(quota => {
                         const { value, label } = quota;
@@ -465,45 +465,45 @@ function Payment({ history, form, ua }) {
               )}
               {isVbankDueRequired && (
                 <Item>
-                  {getFieldDecorator("vbank_due", {
+                  {getFieldDecorator('vbank_due', {
                     rules: [
-                      { required: true, message: "입금기한은 필수입력입니다" }
+                      { required: true, message: '입금기한은 필수입력입니다' }
                     ]
                   })(
                     <Input
-                      size="large"
-                      type="number"
-                      addonBefore="입금기한"
-                      placeholder="YYYYMMDDhhmm"
+                      size='large'
+                      type='number'
+                      addonBefore='입금기한'
+                      placeholder='YYYYMMDDhhmm'
                     />
                   )}
                 </Item>
               )}
               {isBizNumRequired && (
                 <Item>
-                  {getFieldDecorator("biz_num", {
+                  {getFieldDecorator('biz_num', {
                     rules: [
-                      { required: true, message: "사업자번호는 필수입력입니다" }
+                      { required: true, message: '사업자번호는 필수입력입니다' }
                     ]
                   })(
                     <Input
-                      size="large"
-                      type="number"
-                      addonBefore="사업자번호"
+                      size='large'
+                      type='number'
+                      addonBefore='사업자번호'
                     />
                   )}
                 </Item>
               )}
               {isDigitalRequired && (
-                <Item label="실물여부" className="toggle-container">
-                  {getFieldDecorator("digital", {
-                    valuePropName: "checked"
+                <Item label='실물여부' className='toggle-container'>
+                  {getFieldDecorator('digital', {
+                    valuePropName: 'checked'
                   })(<Switch />)}
                 </Item>
               )}
-              <Item label="에스크로" className="toggle-container">
-                {getFieldDecorator("escrow", {
-                  valuePropName: "checked"
+              <Item label='에스크로' className='toggle-container'>
+                {getFieldDecorator('escrow', {
+                  valuePropName: 'checked'
                 })(<Switch />)}
               </Item>
             </Span>
@@ -512,8 +512,8 @@ function Payment({ history, form, ua }) {
               위 주문 내용을 확인 하였으며, 회원 본인은 결제에 동의합니다.
             </span>
             </Item>
-            <Item style={{ textAlign: "-webkit-center" }}>
-              <BuyButton type="primary" htmlType="submit" size="large">
+            <Item style={{ textAlign: '-webkit-center' }}>
+              <BuyButton type='primary' htmlType='submit' size='large'>
                 결제하기
               </BuyButton>
             </Item>
@@ -561,8 +561,6 @@ const GridDiv = styled.div`
   display: grid;
   grid-gap: 40px;
   justify-content: center;
-  width: 1880px;
-  height: 1500px;
 `;
 
 const Table = styled.table`
@@ -589,7 +587,7 @@ const TextTd = styled.td`
   padding: 10px 16px;
   font-size: 12px;
   color: #333;
-  font-family: "돋움", Dotum, sans-serif;
+  font-family: '돋움', Dotum, sans-serif;
 `;
 
 const BuyButton = styled.button`
@@ -667,13 +665,13 @@ const FormContainer = styled.form`
   .ant-col {
   }
 
-  button[type="submit"] {
+  button[type='submit'] {
     height: 5rem;
     font-size: 1.6rem;
     margin-top: 2rem;
   }
 `;
 
-const PaymentForm = Form.create({ name: "payment" })(Payment);
+const PaymentForm = Form.create({ name: 'payment' })(Payment);
 
 export default withUserAgent(withRouter(PaymentForm));

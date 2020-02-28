@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 
 import styled from 'styled-components';
 
@@ -7,7 +8,7 @@ import { getUserProfile } from '../service/userService';
 
 const Div = styled.form`
   display: grid;
-  height: 200px;
+  height: 230px;
   margin-bottom: 8px;
 `;
 
@@ -21,6 +22,7 @@ const ButtonDiv = styled.div`
 const SearchDiv = styled.div`
   display: flex;
   justify-content: flex-end;
+  height: 7px;
 `;
 
 const LoginButton = styled.button`
@@ -53,8 +55,16 @@ const Input = styled.input`
   font-size: 14px;
 `;
 
+const FalseDiv = styled.div`
+  color: red;
+  height: 18px;
+  width: 300px;
+  font-size: 11px;
+`;
+
 function Login() {
   const [isLogin, setLogin] = useState(localStorage.getItem('isLogin'));
+  const [falsePassword, setFalsePassword] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -64,12 +74,13 @@ function Login() {
   };
 
   const falseLogin = () => {
-    alert('아이디 또는 패스워드를 다시 입력해주세요.');
+    setFalsePassword(false);
     setEmail('');
     setPassword('');
   };
 
   const handleLogin = async () => {
+    setFalsePassword(true);
     const userProfile = await getUserProfile({ email, password });
     if (userProfile.islogin) {
       successesLogin();
@@ -80,16 +91,21 @@ function Login() {
 
   return (
     isLogin !== 'true' ?
-      <div style={{ display: 'grid', justifyContent: 'center', padding: '50px', width: 'width: 1890px' }}>
+      <div style={{ height: '460px', display: 'grid', justifyContent: 'center', padding: '50px', width: 'width: 1890px' }}>
         <h3 style={{ textAlign: 'center' }}>로그인</h3>
-        <Div>
-          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='off'/>
-          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete='off'/>
-          <SearchDiv className="txt_find">
+        <Div autoComplete='off'>
+          <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='on'/>
+          <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete="false" maxlength="30"/>
+          <SearchDiv className="txt_find">    
             <A href="/member/find/loginId">아이디</A>
             <A> / </A>
             <A href="/member/find/password" >비밀번호 찾기</A>
           </SearchDiv>
+          {falsePassword === false ? 
+        <FalseDiv>이메일 또는 비밀번호를 다시 확인하세요. 등록되지 않은 이메일이거나, 비밀번호를 잘못 입력하셨습니다.</FalseDiv>
+        : <></>
+        } 
+          
           <LoginButton onClick={handleLogin} className="btn_login" type="button">로그인</LoginButton>
         </Div>
         <ButtonDiv>
