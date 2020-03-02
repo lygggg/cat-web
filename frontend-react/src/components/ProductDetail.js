@@ -104,7 +104,11 @@ function ProductDetail() {
           <Popup on={
             <div>das</div>
           }
-          trigger={<Button
+          trigger={product.amount <= 0 ? <Button
+            style={{ margin: "6px" }}
+          >
+            품절
+          </Button> : <Button
             onClick={() => handleBuyItem(product, count)}
             style={{ margin: "6px" }}
           >
