@@ -11,16 +11,28 @@ import {
   MainName,
   PriceName,
   BoldName,
-  DescriptionName
+  DescriptionName,
 } from "../lib/ItemName";
 import { Button } from "../lib/Button";
 import { putCart } from "../service/basketService";
+import productStore from "../stores/ProductStore";
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
+  const [question, setQuestion] = useState([]);
   const [count, setcount] = useState(1);
   const { productId } = useParams();
-  const { imageurl, account, phoneNumber, title, description, price } = product;
+  const [menu, setMenu] = useState(1);
+  const {
+    imageurl,
+    detailImage,
+    account,
+    phoneNumber,
+    title,
+    description,
+    price,
+    category,
+  } = product;
   const history = useHistory();
 
   const handleBuyItem = async (product, count) => {
@@ -35,13 +47,13 @@ function ProductDetail() {
   };
 
   const putProduct = async (product, count) => {
-    console.log('fassd')
     await putCart(new Array(count).fill(product._id));
   };
 
-  const getOneProduct = async id => {
+  const getOneProduct = async (id) => {
     const oneProduct = await getProduct(id);
     setProduct(oneProduct.product[0]);
+    setQuestion(productStore.questions);
   };
 
   useEffect(() => {
@@ -59,108 +71,245 @@ function ProductDetail() {
   };
 
   return (
-    <ItemDetali>
-      <div>
-        <img src={imageurl} alt="" width="470px" height="552px" />
-      </div>
-      <ItemDivide>
+    <MainDiv>
+      <ItemDetali>
         <div>
-          <MainName>{title}</MainName>
-          <BoldName>{description}</BoldName>
+          <img src={imageurl} alt="" width="470px" height="552px" />
         </div>
-        <div>
-          <PriceName style={{ fontSize: "24px", lineHeight: "40px" }}>
-            {price}원
-          </PriceName>
-          <DescriptionName style={{}}>
-            로그인후, 회원할인가와 적립혜택이 제공됩니다.
-          </DescriptionName>
-          <h4>무료배송</h4>
-          {product.amount <= 0 ? <StatusDiv>품절</StatusDiv> : <></>}
-        </div>
-        <PutDiv>
-          <span style={{ margin: "6px" }}>
-            <button
-              style={{ height: "36px", width: "40px" }}
-              onClick={() => handlePlus()}
-            >
-              +
-            </button>
-            <input
-              style={{ textAlign: "center", height: "30px" }}
-              type="text"
-              className="count"
-              value={count}
-              size="3"
-              readOnly
-            />
-            <button
-              style={{ height: "36px", width: "40px" }}
-              onClick={() => handleMinus()}
-            >
-              -
-            </button>
-          </span>
-          <Popup on={
-            <div>das</div>
-          }
-          trigger={product.amount <= 0 ? <Button
-            style={{ margin: "6px" }}
-          >
-            품절
-          </Button> : <Button
-            onClick={() => handleBuyItem(product, count)}
-            style={{ margin: "6px" }}
-          >
-            상품 구매
-          </Button>}
-          >
-          </Popup>
-          <Popup
-            contentStyle={{ width: "250px", height: "110px" }}
-            position="top center"
-            onOpen={() => putProduct(product, count)}
-            trigger={
-              <Button
-                style={{ background: "#f0f0f0", margin: "6px" }}
+        <ItemDivide>
+          <div>
+            <MainName>{title}</MainName>
+            <BoldName>{description}</BoldName>
+          </div>
+          <div>
+            <PriceName style={{ fontSize: "24px", lineHeight: "40px" }}>
+              {price}원
+            </PriceName>
+            <DescriptionName style={{}}>
+              로그인후, 회원할인가와 적립혜택이 제공됩니다.
+            </DescriptionName>
+            <h4>무료배송</h4>
+            {product.amount <= 0 ? <StatusDiv>품절</StatusDiv> : <></>}
+          </div>
+          <PutDiv>
+            <span style={{ margin: "6px" }}>
+              <button
+                style={{ height: "36px", width: "40px" }}
+                onClick={() => handlePlus()}
               >
-                장바구니 추가
-              </Button> 
-            }
-          >
-            <div
-              style={{
-                display: "grid",
-                height: "100px",
-                placeContent: "center"
-              }}
+                +
+              </button>
+              <input
+                style={{ textAlign: "center", height: "30px" }}
+                type="text"
+                className="count"
+                value={count}
+                size="3"
+                readOnly
+              />
+              <button
+                style={{ height: "36px", width: "40px" }}
+                onClick={() => handleMinus()}
+              >
+                -
+              </button>
+            </span>
+            {product.amount <= 0 ? (
+              <Button style={{ margin: "6px" }}>품절</Button>
+            ) : (
+              <Button
+                onClick={() => handleBuyItem(product, count)}
+                style={{ margin: "6px" }}
+              >
+                상품 구매
+              </Button>
+            )}
+            <Popup
+              contentStyle={{ width: "250px", height: "110px" }}
+              position="top center"
+              onOpen={() => putProduct(product, count)}
+              trigger={
+                <Button style={{ background: "#f0f0f0", margin: "6px" }}>
+                  장바구니 추가
+                </Button>
+              }
             >
               <div
                 style={{
-                  color: "arkslategray",
-                  fontSize: "12px",
-                  justifySelf: "center"
+                  display: "grid",
+                  height: "100px",
+                  placeContent: "center",
                 }}
               >
-                상품이 장바구니에 담겼습니다.
+                <div
+                  style={{
+                    color: "arkslategray",
+                    fontSize: "12px",
+                    justifySelf: "center",
+                  }}
+                >
+                  상품이 장바구니에 담겼습니다.
+                </div>
+                <Button
+                  style={{ background: "#f0f0f0", margin: "6px" }}
+                  onClick={() => history.push("/basket")}
+                >
+                  장바구니 바로가기
+                </Button>
               </div>
-              <Button
-                style={{ background: "#f0f0f0", margin: "6px" }}
-                onClick={() => history.push('/basket')}
-              >
-                장바구니 바로가기
-              </Button>
-            </div>
-          </Popup>
-        </PutDiv>
+            </Popup>
+          </PutDiv>
+          <div>
+            <DescriptionName>계좌번호: {account}</DescriptionName>
+            <DescriptionName>핸드폰 번호: {phoneNumber}</DescriptionName>
+          </div>
+        </ItemDivide>
+      </ItemDetali>
+      <CenterDiv>
+        <Ul>
+          <Li onClick={() => setMenu(1)}>상품상세</Li>
+          <Li onClick={() => setMenu(2)}>상품평</Li>
+          <Li onClick={() => setMenu(3)}>상품문의</Li>
+          <Li onClick={() => setMenu(4)}>배송/교환/반품</Li>
+        </Ul>
         <div>
-          <DescriptionName>계좌번호: {account}</DescriptionName>
-          <DescriptionName>핸드폰 번호: {phoneNumber}</DescriptionName>
+          <p
+            style={{
+              color: "black",
+              paddingBottom: "10px",
+              fontSize: "14px",
+              fontWeight: "700",
+            }}
+          >
+            필수 표기정보
+          </p>
+          <Table>
+            <colgroup>
+              <col width="150px"></col>
+              <col width="340px"></col>
+              <col width="150px"></col>
+              <col width="*"></col>
+            </colgroup>
+            <tbody>
+              <tr>
+                <Th>품명</Th>
+                <Td>{category}</Td>
+                <Th>모델명</Th>
+                <Td>{title}</Td>
+              </tr>
+              <tr>
+                <Th>유통기한</Th>
+                <Td>생산일로부터 1년</Td>
+                <Th>원산지</Th>
+                <Td>한국</Td>
+              </tr>
+              <tr>
+                <Th>A/S 및 소비자 상담 전화번호</Th>
+                <Td>이태원센터 고객센터 1111-7079</Td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
-      </ItemDivide>
-    </ItemDetali>
+        <img
+          style={{ justifySelf: "center" }}
+          src={detailImage}
+          alt=""
+          width="1000px"
+          height="10006px"
+        />
+      </CenterDiv>
+      <CenterDiv>
+        <H4>상품평</H4>
+        {question.map(quest => (
+          <Grid key={quest.id}>
+              <div>
+            {quest.name}
+            {quest.date}
+            </div>
+            <div>
+            {quest.content}
+            </div>
+          </Grid>
+        ))}
+      </CenterDiv>
+      <CenterDiv>
+        <H4>상품문의</H4>
+      </CenterDiv>
+    </MainDiv>
   );
 }
+
+const CenterDiv = styled.div`
+  width: 100%;
+  display: grid;
+  justify-content: center;
+`;
+
+const H4 = styled.h4`
+  margin-top: 26px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
+  font-size: 1em;
+  margin: 0;
+`;
+
+const Th = styled.th`
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
+  color: #111;
+  font-weight: 400;
+  font-size: 12px;
+  overflow: hidden;
+`;
+
+const Td = styled.td`
+  white-space: normal;
+  word-break: break-all;
+  padding: 12px 16px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  line-height: 17px;
+  font-size: 12px;
+`;
+
+const Ul = styled.ul`
+  border-top: 2px solid #555;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  width: 100%;
+  padding: 0;
+`;
+
+const Li = styled.li`
+  display: inline-block;
+  padding: 15px 20px 14px;
+  width: 25%;
+  border-right: 1px solid #ccc;
+  background-color: #fafafa;
+  text-align: center;
+  color: #555;
+  font-weight: bold;
+  font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
+
+const MainDiv = styled.div`
+  display: grid;
+  grid-gap: 150px;
+`;
 
 const ItemDetali = styled.div`
   display: grid;
@@ -168,7 +317,6 @@ const ItemDetali = styled.div`
   grid-template-rows: 600px;
   margin: auto;
   width: 1000px;
-  height: 0%;
   border: 1px solid #e0e0e0;
   padding: 20px;
 `;
@@ -188,6 +336,14 @@ const PutDiv = styled.div`
 const StatusDiv = styled.div`
   color: red;
   font-size: 20px;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 100px 770px 50px;
+  grid-template-rows: 125px 10px;
+  justify-items: center;
 `;
 
 export default ProductDetail;

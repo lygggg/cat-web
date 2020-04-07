@@ -19,9 +19,10 @@ const Li = styled.li`
 `;
 
 const Nav = styled.div`
-  width: 1850px;
+  width: 100%;
+  min-width: 1500px;
   text-align: center;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #f1f3f6;
 `;
 
 function NavMenu() {
