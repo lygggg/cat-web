@@ -3,7 +3,9 @@ import { useParams, useHistory } from "react-router-dom";
 import Popup from "reactjs-popup";
 
 import { getProductDetail as getProduct } from "../service/productService";
+import { getQuestion as getQuestionList } from '../service/questionService';
 import ProductStore from "../stores/ProductStore";
+import ProductQuestion from "./ProductQuestion";
 
 import styled from "styled-components";
 
@@ -15,7 +17,6 @@ import {
 } from "../lib/ItemName";
 import { Button } from "../lib/Button";
 import { putCart } from "../service/basketService";
-import productStore from "../stores/ProductStore";
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -53,11 +54,17 @@ function ProductDetail() {
   const getOneProduct = async (id) => {
     const oneProduct = await getProduct(id);
     setProduct(oneProduct.product[0]);
-    setQuestion(productStore.questions);
   };
+
+  const getProductsQuestion = async (id) => {
+    const productQuestion = await getQuestionList(id);
+    console.log(productQuestion.data.questions);
+    setQuestion(productQuestion.data.questions);
+  }
 
   useEffect(() => {
     getOneProduct(productId);
+    getProductsQuestion(productId);
   }, []);
 
   const handlePlus = () => {
@@ -220,20 +227,23 @@ function ProductDetail() {
       </CenterDiv>
       <CenterDiv>
         <H4>상품평</H4>
-        {question.map(quest => (
-          <Grid key={quest.id}>
-              <div>
-            {quest.name}
-            {quest.date}
-            </div>
-            <div>
-            {quest.content}
-            </div>
-          </Grid>
-        ))}
       </CenterDiv>
       <CenterDiv>
+      <div style={{ border: '0.2px solid #ddd'}}>
+        <div style={{ padding: '30px 40px' }}>
+          <div style={{ display: 'flex', placeContent: 'space-between'}}>
         <H4>상품문의</H4>
+        <button style={{ color:'#0073e9', border: '1px solid #0073e9', background: '#FFFFFF', alignSelf: 'center' }}>문의하기</button>
+        </div>
+        <div style={{ borderTop: '3px solid'}}>
+        {question.map(quest => (
+          <Grid key={quest._id}>
+            <ProductQuestion question={quest} />
+          </Grid>
+        ))}
+        </div>
+        </div>
+        </div>
       </CenterDiv>
     </MainDiv>
   );
@@ -341,9 +351,10 @@ const StatusDiv = styled.div`
 const Grid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 100px 770px 50px;
+  grid-template-columns: 150px 750px 100px;
   grid-template-rows: 125px 10px;
   justify-items: center;
+  border-bottom: 0.2px solid;
 `;
 
 export default ProductDetail;
