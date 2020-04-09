@@ -11,8 +11,16 @@ router.get('/:id', async (req, res) => {
     const questionRepo = new QuestionRepo();
     const questionService = new QuestionService(questionRepo);
     const questions = await questionService.getQuestion(id);
-    console.log(questions);
     res.send({ questions });
 })
+
+router.post('/', async (req, res) => {
+    const { questionText, productId } = req.body;
+    const questionRepo = new QuestionRepo();
+    const questionService = new QuestionService(questionRepo);
+    await questionService.createQuestion(req.session.email, productId, questionText)
+    res.send('문의 작성');
+})
+
 
 export default router;

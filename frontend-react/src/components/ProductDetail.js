@@ -3,7 +3,11 @@ import { useParams, useHistory } from "react-router-dom";
 import Popup from "reactjs-popup";
 
 import { getProductDetail as getProduct } from "../service/productService";
-import { getQuestion as getQuestionList } from '../service/questionService';
+import {
+  getQuestion as getQuestionList,
+  createQuestion as createQuest,
+} from "../service/questionService";
+
 import ProductStore from "../stores/ProductStore";
 import ProductQuestion from "./ProductQuestion";
 
@@ -24,6 +28,8 @@ function ProductDetail() {
   const [count, setcount] = useState(1);
   const { productId } = useParams();
   const [menu, setMenu] = useState(1);
+  const [questionText, setQuestionText] = useState("");
+  const [questionButton, setQuestionButton] = useState('');
   const {
     imageurl,
     detailImage,
@@ -60,12 +66,12 @@ function ProductDetail() {
     const productQuestion = await getQuestionList(id);
     console.log(productQuestion.data.questions);
     setQuestion(productQuestion.data.questions);
-  }
+  };
 
   useEffect(() => {
     getOneProduct(productId);
     getProductsQuestion(productId);
-  }, []);
+  }, [questionButton]);
 
   const handlePlus = () => {
     setcount(count + 1);
@@ -75,6 +81,12 @@ function ProductDetail() {
     if (count > 1) {
       setcount(count - 1);
     }
+  };
+
+  const sendQuestion = () => {
+    createQuest({questionText, productId});
+    setQuestionButton('클릭');
+    setQuestionText('');
   };
 
   return (
@@ -229,25 +241,153 @@ function ProductDetail() {
         <H4>상품평</H4>
       </CenterDiv>
       <CenterDiv>
-      <div style={{ border: '0.2px solid #ddd'}}>
-        <div style={{ padding: '30px 40px' }}>
-          <div style={{ display: 'flex', placeContent: 'space-between'}}>
-        <H4>상품문의</H4>
-        <button style={{ color:'#0073e9', border: '1px solid #0073e9', background: '#FFFFFF', alignSelf: 'center' }}>문의하기</button>
-        </div>
-        <div style={{ borderTop: '3px solid'}}>
-        {question.map(quest => (
-          <Grid key={quest._id}>
-            <ProductQuestion question={quest} />
-          </Grid>
-        ))}
-        </div>
-        </div>
+        <div
+          style={{
+            width: "1000px",
+            height: 'auto',
+            border: "0.2px solid #ddd",
+          }}
+        >
+          <div style={{ padding: "30px 40px" }}>
+            <div style={{ display: "flex", placeContent: "space-between" }}>
+              <H4>상품문의</H4>
+              <Popup
+                modal={true}
+                contentStyle={{ width: "640px", height: "460px" }}
+                trigger={<QuestionButton>문의하기</QuestionButton>}
+              >
+                {(close) => (
+                  <>
+                    <div>
+                      <div style={{ height: "65px", background: "#eee" }}>
+                        <button style={{ float: "right" }} onClick={close}>
+                          X
+                        </button>
+                        <div
+                          style={{
+                            padding: "14px",
+                            display: "flex",
+                            fontSize: "17px",
+                            height: "70px",
+                            alignItems: "center",
+                          }}
+                        >
+                          상품 문의
+                        </div>
+                      </div>
+                      <div style={{ padding: "14px" }}>
+                        <div
+                          style={{
+                            height: "280px",
+                            borderTop: "2px solid ",
+                            padding: "8px",
+                          }}
+                        >
+                          <table>
+                            <tbody>
+                              <Qtr style={{ height: "100px" }}>
+                                <Qth>상품 정보</Qth>
+                                <Qtd>{product.title}</Qtd>
+                              </Qtr>
+                              <Qtr style={{ height: "170px" }}>
+                                <Qth>문의 내용</Qth>
+                                <Qtd>
+                                  <textarea
+                                    style={{ height: "140px", width: "460px" }}
+                                    value={questionText}
+                                    maxLength='200'
+                                    onChange={(v) =>
+                                      setQuestionText(v.target.value)
+                                    }
+                                  ></textarea>
+                                </Qtd>
+                              </Qtr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        textAlignLast: "center",
+                        marginTop: "14px",
+                      }}
+                    >
+                      개인정보(주민번호, 연락처, 주소, 계좌번호, 카드번호 등)가
+                      포함되지 않도록 유의해주세요.
+                    </div>
+                    <div style={{ textAlign: "center", marginTop: "5px" }}>
+                      <button
+                        onClick={() => {
+                          sendQuestion();
+                          close();
+                        }}
+                      >
+                        확인
+                      </button>
+                    </div>
+                  </>
+                )}
+              </Popup>
+            </div>
+            <div style={{ borderTop: "3px solid" }}>
+            <div style={{ fontWeight: 'bold',
+              placeItems: 'center',
+               gridTemplateColumns: '160px 580px 150px',
+    height: '30px',
+    background: '#eee',
+    display: 'grid' }}>
+              <span>작성자</span>
+              <span>문의내용</span>
+              <span>작성일</span>
+            </div>
+              {question.length === 0 ? (
+                <NeverDiv>등록된 문의가 없습니다.</NeverDiv>
+              ) : (
+                question.map((quest) => (
+                  <Grid key={quest._id}>
+                    <ProductQuestion question={quest} />
+                  </Grid>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       </CenterDiv>
     </MainDiv>
   );
 }
+
+const Qtd = styled.td`
+  width: 500px;
+  padding: 20px;
+`;
+
+const Qtr = styled.tr`
+  border-bottom: 1px solid #ddd;
+`;
+
+const Qth = styled.th`
+  border-right: 1px solid #ddd;
+  padding: 10px;
+`;
+
+const QuestionButton = styled.button`
+  color: #0073e9;
+  border: 1px solid #0073e9;
+  background: #ffffff;
+  alignself: center;
+  height: 40px;
+  align-self: center;
+`;
+
+const NeverDiv = styled.div`
+  display: flex;
+  place-content: center;
+  height: 300px;
+  align-items: center;
+`;
 
 const CenterDiv = styled.div`
   width: 100%;
@@ -351,7 +491,7 @@ const StatusDiv = styled.div`
 const Grid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 150px 750px 100px;
+  grid-template-columns: 170px 600px 100px;
   grid-template-rows: 125px 10px;
   justify-items: center;
   border-bottom: 0.2px solid;

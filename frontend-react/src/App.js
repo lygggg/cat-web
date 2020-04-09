@@ -19,6 +19,7 @@ import Header from './components/Header';
 import Bottom from './components/Bottom';
 import Payment from './Payment';
 import PaymentResult from './PaymentResult';
+import ProductReview from './components/ProductReviewList';
 
 function App() {
 
@@ -75,6 +76,11 @@ function App() {
             <Header searchCallback={searchTermRoute}/>
             <UserModify/>
             <Bottom />
+          </Route>
+          <Route path="/review">
+            <Header searchCallback={searchTermRoute}/>
+            <ProductReview/>
+            <Bottom />  
           </Route>
           <AuthRoute path="/purchase">
             <Header searchCallback={searchTermRoute}/>
