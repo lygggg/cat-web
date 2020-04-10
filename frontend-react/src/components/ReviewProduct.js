@@ -23,6 +23,7 @@ const Button = styled.button`
 `;
 
 function ReviewProduct({ product }) {
+
   return (
     <Grid>
       <Link to={`/products/${product.id}`}>
@@ -35,8 +36,7 @@ function ReviewProduct({ product }) {
                 <div>{product.title}</div>{product.count}개
       </Link>
       <div>
-        <div><Button>리뷰작성</Button></div>
-       
+        <Link to={`/review/${product._id}`}><Button>리뷰작성</Button></Link>
       </div>
     </Grid>
   );

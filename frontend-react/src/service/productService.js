@@ -19,7 +19,7 @@ export const getSearchProducts = async (string) => {
   } catch (e) {
     alert(e);
   }
-}
+};
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
   try {

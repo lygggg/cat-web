@@ -20,6 +20,7 @@ import Bottom from './components/Bottom';
 import Payment from './Payment';
 import PaymentResult from './PaymentResult';
 import ProductReview from './components/ProductReviewList';
+import WriteReviewPage from './components/WriteReviewPage';
 
 function App() {
 
@@ -45,7 +46,7 @@ function App() {
           <Route path="/user/login">
             <Header searchCallback={searchTermRoute}/>
             <Login/>
-            <Bottom />
+            <Bottom/>
           </Route>
           <Route exact path="/">
             <Header searchCallback={searchTermRoute}/>
@@ -77,10 +78,15 @@ function App() {
             <UserModify/>
             <Bottom />
           </Route>
-          <Route path="/review">
+          <Route exact path="/review">
             <Header searchCallback={searchTermRoute}/>
             <ProductReview/>
-            <Bottom />  
+            <Bottom />
+          </Route>
+          <Route exact path="/review/:productId">
+            <Header searchCallback={searchTermRoute}/>
+            <WriteReviewPage/>
+            <Bottom />
           </Route>
           <AuthRoute path="/purchase">
             <Header searchCallback={searchTermRoute}/>

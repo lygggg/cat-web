@@ -30,13 +30,14 @@ function ProductReview() {
           <OrderDiv>    
             <h2>구매후기</h2>
             <div>
-              <MenuButton className="menu-btn">구매후기   작성하기</MenuButton>
+              <MenuButton className="menu-btn">작성 가능 구매후기</MenuButton>
+              <MenuButton className="menu-btn">내가 쓴 구매후기</MenuButton>
             </div>
             <FrameDiv>
             {purchaseList.map((it) => {
                 return (
                   <div key={it._id}>
-                    {it.products.map((i) => {
+                    {it. products.map((i) => {
                       return (
                         <ItemDiv key={i._id}>
                           <ReviewProduct product={i} />
@@ -55,13 +56,6 @@ function ProductReview() {
     </MainDiv>
   );
 }
-
-const DateDiv = styled.div`
-  font-size: 17px;
-  background-color: #f9f9f9;
-  margin: 7px;
-  padding: 20px;
-`;
 
 const FrameDiv = styled.div`
   display: grid;

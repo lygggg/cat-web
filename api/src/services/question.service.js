@@ -3,7 +3,7 @@ export default class QuestionService {
         this.question = question;
     }
 
-    async getQuestion(id){
+    async getQuestion(id) {
         const questions = await this.question.getAll(id);
         return questions;
     }

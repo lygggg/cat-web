@@ -20,18 +20,13 @@ db.once('open', function() {
   console.log('Connected');
 })
 
-const corsOptions = {
-  origin: '*',
-  credentials: true,
-};
-
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient();
 
 app.use(session({
   secret: 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   cookie: {
     name: 'user',
     httpOnly: false,
@@ -42,7 +37,7 @@ app.use(session({
 
 app.use(express.json());
 
-app.use(cors(corsOptions));
+app.use(cors({ origin: 'http://localhost:8080', credentials: true}));
 
 app.use(v1Route);
 

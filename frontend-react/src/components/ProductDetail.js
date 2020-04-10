@@ -64,7 +64,6 @@ function ProductDetail() {
 
   const getProductsQuestion = async (id) => {
     const productQuestion = await getQuestionList(id);
-    console.log(productQuestion.data.questions);
     setQuestion(productQuestion.data.questions);
   };
 
