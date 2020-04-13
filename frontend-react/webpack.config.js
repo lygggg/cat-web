@@ -23,7 +23,7 @@ module.exports = {
   },
   devServer: {
     proxy: [{
-      context: ["/login", "/userbasket", "/sign_up", "/userpurchase", "/modify_info", "/question", "/reviewproduct"],
+      context: ["/login", "/userbasket", "/sign_up", "/userpurchase", "/modify_info", "/question", "/reviewproduct",],
       target: 'http://localhost:3000',
       secure: false,
       changeOrigin: true,

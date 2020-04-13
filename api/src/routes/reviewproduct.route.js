@@ -14,4 +14,4 @@ router.get('/:id', async (req, res) => {
     res.send({ reviewProduct });
 })
 
-export default router;
+export default router;  

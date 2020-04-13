@@ -22,7 +22,7 @@ function Product({ product }) {
           <PriceName style={{ textAlign: 'center' }}>{product.price}원</PriceName>
           
       </div>
-      {product.amount <= 50 && product.amount > 0 ?  
+      {product.amount <= 50 && product.amount > 0 ?
       <StatusDiv style={{ color: 'red' }}>품절임박</StatusDiv> : <StatusDiv></StatusDiv>}
       {product.amount <= 0 ?  
       <StatusDiv style={{ color: 'blue' }}>품절</StatusDiv> : <></>}
