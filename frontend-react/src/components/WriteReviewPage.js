@@ -20,6 +20,7 @@ function WriteReviewPage() {
       };
 
       useEffect(() => {
+        console.log('gfd');
         fetchReview();
       }, []);
     
@@ -27,15 +28,46 @@ function WriteReviewPage() {
         <MainDiv style={{ height: "1500px" }}>
       <div style={{ width: "1230px", margin: "auto", paddingTop: "40px" }}>
         <LeftMenu/>
-        <div style={{ float: "right" }}>  
+        <div style={{ float: "right" }}>
+        <h2>구매후기</h2>  
           <OrderDiv>
-            <h2>구매후기</h2>
             <div>
-              <MenuButton className="menu-btn">구매후기   작성하기</MenuButton>
+              <div>
+                구매후기 쓰기
+              </div>
             </div>
             <div>
+              <img src= {ReviewProduct.imageurl}
+              alt=""
+              width="20%"
+              height="180px"/>
               {ReviewProduct.title}
+              {ReviewProduct.description}
+              {ReviewProduct.count}개
             </div>
+            <div>
+            <div>별점</div>
+            <div>
+              <button>
+
+              </button>
+              <button>
+                
+              </button>
+              <button>
+                
+              </button>
+              <button>
+                
+              </button>
+              <button>
+                
+              </button>
+            </div>
+            </div>
+            <div>구매하기</div>
+            <div>사진첨부</div>
+            <div>평가</div>
           </OrderDiv>
         </div>
       </div>

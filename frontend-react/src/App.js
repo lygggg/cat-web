@@ -88,7 +88,7 @@ function App() {
             <WriteReviewPage/>
             <Bottom />
           </Route>
-          <AuthRoute path="/purchase">
+          <AuthRoute exact path="/purchase">
             <Header searchCallback={searchTermRoute}/>
               <PurchaseList/>
               <Bottom />
