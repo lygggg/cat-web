@@ -11,7 +11,6 @@ class QuestionRepository {
     const date =
       d.getFullYear() + "년 " + d.getMonth() + "월 " + d.getDate() + "일";
         await model.create({ id, email, content, date});
-        console.log(email,id,content);
     }
 }
 

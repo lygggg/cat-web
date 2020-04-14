@@ -12,7 +12,6 @@ export const getQuestion = async (params) => {
 
 export const createQuestion = async (params) => {
     try {
-        console.log(params);
         return await apiCreateQuestion(params);
     } catch(e) {
         alert(e);

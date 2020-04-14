@@ -20,6 +20,5 @@ export const Button = styled.button`
     text-align: center;
     margin-left: 1;
     margin: 5px;
-    
 `;
 export default MenuButton;

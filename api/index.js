@@ -1,4 +1,5 @@
 import express from 'express';
+import fileUpload from 'express-fileupload';
 import cors from 'cors';
 import v1Route from './src/routes';
 import session from 'express-session';
@@ -10,6 +11,8 @@ require('dotenv').config();
 
 const port = 3000;
 const app = express();
+
+app.use(fileUpload());
 
 mongoose.connect('mongodb://localhost:27017/cat_web', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;

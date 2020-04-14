@@ -490,7 +490,7 @@ const StatusDiv = styled.div`
 const Grid = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: 170px 600px 100px;
+  grid-template-columns: 170px 580px 130px;
   grid-template-rows: 125px 10px;
   justify-items: center;
   border-bottom: 0.2px solid;

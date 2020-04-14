@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
+import FileUpload from "./fileupload/FileUpload";
 import styled from "styled-components";
 
 import { getReviewProduct as getProduct } from "../service/reviewService";
+import { createReview as postReview } from "../service/reviewService";
 
 import LeftMenu from "./LeftMenu";
 
 import { MainDiv } from "../lib/Grid";
-import { Button } from "../lib/Button";
 import "../css/MyPagePurchaselist.css";
 import { useParams } from "react-router-dom";
 
@@ -14,10 +15,20 @@ function WriteReviewPage() {
   const { productId } = useParams();
   const [ReviewProduct, setReviewProduct] = useState([]);
   const [starcount, setStarCount] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [review, setReview] = useState([]);
 
   const fetchReview = async () => {
     const reviewProduct = await getProduct(productId);
     setReviewProduct(reviewProduct.reviewProduct.products[0]);
+  };
+
+  const getReviewData = async (e) => {
+    setReview(e);
+  };
+
+  const sendReview = async () => {
+    await postReview(review);
   };
 
   useEffect(() => {
@@ -81,31 +92,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </div>
@@ -117,31 +123,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </span>
@@ -153,31 +154,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </span>
@@ -189,31 +185,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </span>
@@ -225,31 +216,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/graystar.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </span>
@@ -261,31 +247,26 @@ function WriteReviewPage() {
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="1"
                     onClick={() => setStarCount(1)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="2"
                     onClick={() => setStarCount(2)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="3"
                     onClick={() => setStarCount(3)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="4"
                     onClick={() => setStarCount(4)}
                   />
                   <img
                     src={"/public/image/star.png"}
                     width="10%"
-                    value="5"
                     onClick={() => setStarCount(5)}
                   />
                 </span>
@@ -307,9 +288,14 @@ function WriteReviewPage() {
                   width: "80px",
                 }}
               >
-                구매하기
+                구매후기
               </div>
-              <textarea style={{ width: "100%", height: "146px" }}></textarea>
+              <textarea
+                value={reviewText}
+                maxLength="200"
+                onChange={(v) => setReviewText(v.target.value)}
+                style={{ width: "100%", height: "146px" }}
+              ></textarea>
             </TableDiv>
             <TableDiv>
               <div
@@ -323,12 +309,18 @@ function WriteReviewPage() {
                 사진첨부
               </div>
               <div>
-                <Button>사진 첨부하기</Button>
+                <FileUpload getReview={getReviewData} productId={productId} starCount={starcount} reviewText={reviewText}  />
               </div>
             </TableDiv>
           </OrderDiv>
-          <div style={{ textAlign: 'center', marginTop: '30px' }}>
-            <RegisterButton>등록하기</RegisterButton>
+          <div style={{ textAlign: "center", marginTop: "30px" }}>
+            <RegisterButton
+              onClick={() => {
+                sendReview();
+              }}
+            >
+              등록하기
+            </RegisterButton>
           </div>
         </div>
       </div>
