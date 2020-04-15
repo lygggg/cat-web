@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import Popup from "reactjs-popup";
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 
-import { getProductDetail as getProduct } from "../service/productService";
+import { getProductDetail as getProduct } from '../service/productService';
 import {
   getQuestion as getQuestionList,
   createQuestion as createQuest,
-} from "../service/questionService";
+} from '../service/questionService';
 
-import ProductStore from "../stores/ProductStore";
-import ProductQuestion from "./ProductQuestion";
+import ProductStore from '../stores/ProductStore';
 
-import styled from "styled-components";
+import ReviewList from './ReviewList';
+import ProductQuestion from './ProductQuestion';
+
+import styled from 'styled-components';
 
 import {
   MainName,
   PriceName,
   BoldName,
   DescriptionName,
-} from "../lib/ItemName";
-import { Button } from "../lib/Button";
-import { putCart } from "../service/basketService";
+} from '../lib/ItemName';
+import { Button } from '../lib/Button';
+import { putCart } from '../service/basketService';
 
 function ProductDetail() {
   const [product, setProduct] = useState([]);
@@ -28,7 +30,7 @@ function ProductDetail() {
   const [count, setcount] = useState(1);
   const { productId } = useParams();
   const [menu, setMenu] = useState(1);
-  const [questionText, setQuestionText] = useState("");
+  const [questionText, setQuestionText] = useState('');
   const [questionButton, setQuestionButton] = useState('');
   const {
     imageurl,
@@ -44,12 +46,12 @@ function ProductDetail() {
 
   const handleBuyItem = async (product, count) => {
     if (product.amount <= 0) {
-      alert("품절입니다.");
+      alert('품절입니다.');
     }
     if (product.amount > 0) {
       const products = [{ ...product, count }];
       ProductStore.putPayProducts(products);
-      history.push("/payment");
+      history.push('/payment');
     }
   };
 
@@ -83,7 +85,7 @@ function ProductDetail() {
   };
 
   const sendQuestion = () => {
-    createQuest({questionText, productId});
+    createQuest({ questionText, productId });
     setQuestionButton('클릭');
     setQuestionText('');
   };
@@ -92,7 +94,7 @@ function ProductDetail() {
     <MainDiv>
       <ItemDetali>
         <div>
-          <img src={imageurl} alt="" width="470px" height="552px" />
+          <img src={imageurl} alt='' width='470px' height='552px' />
         </div>
         <ItemDivide>
           <div>
@@ -100,7 +102,7 @@ function ProductDetail() {
             <BoldName>{description}</BoldName>
           </div>
           <div>
-            <PriceName style={{ fontSize: "24px", lineHeight: "40px" }}>
+            <PriceName style={{ fontSize: '24px', lineHeight: '40px' }}>
               {price}원
             </PriceName>
             <DescriptionName style={{}}>
@@ -110,67 +112,67 @@ function ProductDetail() {
             {product.amount <= 0 ? <StatusDiv>품절</StatusDiv> : <></>}
           </div>
           <PutDiv>
-            <span style={{ margin: "6px" }}>
+            <span style={{ margin: '6px' }}>
               <button
-                style={{ height: "36px", width: "40px" }}
+                style={{ height: '36px', width: '40px' }}
                 onClick={() => handlePlus()}
               >
                 +
               </button>
               <input
-                style={{ textAlign: "center", height: "30px" }}
-                type="text"
-                className="count"
+                style={{ textAlign: 'center', height: '30px' }}
+                type='text'
+                className='count'
                 value={count}
-                size="3"
+                size='3'
                 readOnly
               />
               <button
-                style={{ height: "36px", width: "40px" }}
+                style={{ height: '36px', width: '40px' }}
                 onClick={() => handleMinus()}
               >
                 -
               </button>
             </span>
             {product.amount <= 0 ? (
-              <Button style={{ margin: "6px" }}>품절</Button>
+              <Button style={{ margin: '6px' }}>품절</Button>
             ) : (
               <Button
                 onClick={() => handleBuyItem(product, count)}
-                style={{ margin: "6px" }}
+                style={{ margin: '6px' }}
               >
                 상품 구매
               </Button>
             )}
             <Popup
-              contentStyle={{ width: "250px", height: "110px" }}
-              position="top center"
+              contentStyle={{ width: '250px', height: '110px' }}
+              position='top center'
               onOpen={() => putProduct(product, count)}
               trigger={
-                <Button style={{ background: "#f0f0f0", margin: "6px" }}>
+                <Button style={{ background: '#f0f0f0', margin: '6px' }}>
                   장바구니 추가
                 </Button>
               }
             >
               <div
                 style={{
-                  display: "grid",
-                  height: "100px",
-                  placeContent: "center",
+                  display: 'grid',
+                  height: '100px',
+                  placeContent: 'center',
                 }}
               >
                 <div
                   style={{
-                    color: "arkslategray",
-                    fontSize: "12px",
-                    justifySelf: "center",
+                    color: 'arkslategray',
+                    fontSize: '12px',
+                    justifySelf: 'center',
                   }}
                 >
                   상품이 장바구니에 담겼습니다.
                 </div>
                 <Button
-                  style={{ background: "#f0f0f0", margin: "6px" }}
-                  onClick={() => history.push("/basket")}
+                  style={{ background: '#f0f0f0', margin: '6px' }}
+                  onClick={() => history.push('/basket')}
                 >
                   장바구니 바로가기
                 </Button>
@@ -193,20 +195,20 @@ function ProductDetail() {
         <div>
           <p
             style={{
-              color: "black",
-              paddingBottom: "10px",
-              fontSize: "14px",
-              fontWeight: "700",
+              color: 'black',
+              paddingBottom: '10px',
+              fontSize: '14px',
+              fontWeight: '700',
             }}
           >
             필수 표기정보
           </p>
           <Table>
             <colgroup>
-              <col width="150px"></col>
-              <col width="340px"></col>
-              <col width="150px"></col>
-              <col width="*"></col>
+              <col width='150px'></col>
+              <col width='340px'></col>
+              <col width='150px'></col>
+              <col width='*'></col>
             </colgroup>
             <tbody>
               <tr>
@@ -229,70 +231,70 @@ function ProductDetail() {
           </Table>
         </div>
         <img
-          style={{ justifySelf: "center" }}
+          style={{ justifySelf: 'center' }}
           src={detailImage}
-          alt=""
-          width="1000px"
-          height="10006px"
+          alt=''
+          width='1000px'
+          height='10006px'
         />
       </CenterDiv>
       <CenterDiv>
-        <H4>상품평</H4>
+        <ReviewList productId={product.id}/>
       </CenterDiv>
       <CenterDiv>
         <div
           style={{
-            width: "1000px",
+            width: '1000px',
             height: 'auto',
-            border: "0.2px solid #ddd",
+            border: '0.2px solid #ddd',
           }}
         >
-          <div style={{ padding: "30px 40px" }}>
-            <div style={{ display: "flex", placeContent: "space-between" }}>
+          <div style={{ padding: '30px 40px' }}>
+            <div style={{ display: 'flex', placeContent: 'space-between' }}>
               <H4>상품문의</H4>
               <Popup
                 modal={true}
-                contentStyle={{ width: "640px", height: "460px" }}
+                contentStyle={{ width: '640px', height: '460px' }}
                 trigger={<QuestionButton>문의하기</QuestionButton>}
               >
                 {(close) => (
                   <>
                     <div>
-                      <div style={{ height: "65px", background: "#eee" }}>
-                        <button style={{ float: "right" }} onClick={close}>
+                      <div style={{ height: '65px', background: '#eee' }}>
+                        <button style={{ float: 'right' }} onClick={close}>
                           X
                         </button>
                         <div
                           style={{
-                            padding: "14px",
-                            display: "flex",
-                            fontSize: "17px",
-                            height: "70px",
-                            alignItems: "center",
+                            padding: '14px',
+                            display: 'flex',
+                            fontSize: '17px',
+                            height: '70px',
+                            alignItems: 'center',
                           }}
                         >
                           상품 문의
                         </div>
                       </div>
-                      <div style={{ padding: "14px" }}>
+                      <div style={{ padding: '14px' }}>
                         <div
                           style={{
-                            height: "280px",
-                            borderTop: "2px solid ",
-                            padding: "8px",
+                            height: '280px',
+                            borderTop: '2px solid ',
+                            padding: '8px',
                           }}
                         >
                           <table>
                             <tbody>
-                              <Qtr style={{ height: "100px" }}>
+                              <Qtr style={{ height: '100px' }}>
                                 <Qth>상품 정보</Qth>
                                 <Qtd>{product.title}</Qtd>
                               </Qtr>
-                              <Qtr style={{ height: "170px" }}>
+                              <Qtr style={{ height: '170px' }}>
                                 <Qth>문의 내용</Qth>
                                 <Qtd>
                                   <textarea
-                                    style={{ height: "140px", width: "460px" }}
+                                    style={{ height: '140px', width: '460px' }}
                                     value={questionText}
                                     maxLength='200'
                                     onChange={(v) =>
@@ -308,15 +310,15 @@ function ProductDetail() {
                     </div>
                     <div
                       style={{
-                        fontSize: "12px",
-                        textAlignLast: "center",
-                        marginTop: "14px",
+                        fontSize: '12px',
+                        textAlignLast: 'center',
+                        marginTop: '14px',
                       }}
                     >
                       개인정보(주민번호, 연락처, 주소, 계좌번호, 카드번호 등)가
                       포함되지 않도록 유의해주세요.
                     </div>
-                    <div style={{ textAlign: "center", marginTop: "5px" }}>
+                    <div style={{ textAlign: 'center', marginTop: '5px' }}>
                       <button
                         onClick={() => {
                           sendQuestion();
@@ -330,17 +332,21 @@ function ProductDetail() {
                 )}
               </Popup>
             </div>
-            <div style={{ borderTop: "3px solid" }}>
-            <div style={{ fontWeight: 'bold',
-              placeItems: 'center',
-               gridTemplateColumns: '160px 580px 150px',
-    height: '30px',
-    background: '#eee',
-    display: 'grid' }}>
-              <span>작성자</span>
-              <span>문의내용</span>
-              <span>작성일</span>
-            </div>
+            <div style={{ borderTop: '3px solid' }}>
+              <div
+                style={{
+                  fontWeight: 'bold',
+                  placeItems: 'center',
+                  gridTemplateColumns: '160px 580px 150px',
+                  height: '30px',
+                  background: '#eee',
+                  display: 'grid',
+                }}
+              >
+                <span>작성자</span>
+                <span>문의내용</span>
+                <span>작성일</span>
+              </div>
               {question.length === 0 ? (
                 <NeverDiv>등록된 문의가 없습니다.</NeverDiv>
               ) : (

@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 function WriteReviewPage() {
   const { productId } = useParams();
   const [ReviewProduct, setReviewProduct] = useState([]);
-  const [starcount, setStarCount] = useState(0);
+  const [starCount, setStarCount] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [review, setReview] = useState([]);
 
@@ -87,7 +87,7 @@ function WriteReviewPage() {
               >
                 별점
               </div>
-              {starcount === 0 ? (
+              {starCount === 0 ? (
                 <div>
                   <img
                     src={"/public/image/graystar.png"}
@@ -118,7 +118,7 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {starcount === 1 ? (
+              {starCount === 1 ? (
                 <span>
                   <img
                     src={"/public/image/star.png"}
@@ -149,7 +149,7 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {starcount === 2 ? (
+              {starCount === 2 ? (
                 <span>
                   <img
                     src={"/public/image/star.png"}
@@ -180,7 +180,7 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {starcount === 3 ? (
+              {starCount === 3 ? (
                 <span>
                   <img
                     src={"/public/image/star.png"}
@@ -211,7 +211,7 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {starcount === 4 ? (
+              {starCount === 4 ? (
                 <span>
                   <img
                     src={"/public/image/star.png"}
@@ -242,7 +242,7 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {starcount === 5 ? (
+              {starCount === 5 ? (
                 <span>
                   <img
                     src={"/public/image/star.png"}
@@ -273,11 +273,11 @@ function WriteReviewPage() {
               ) : (
                 <></>
               )}
-              {/* {starcount === 1 ? "나쁨" : ""}
-              {starcount === 2 ? "별로" : ""}
-              {starcount === 3 ? "보통" : ""}
-              {starcount === 4 ? "좋음" : ""}
-              {starcount === 5 ? "최고" : ""} */}
+              {/* {starCount === 1 ? "나쁨" : ""}
+              {starCount === 2 ? "별로" : ""}
+              {starCount === 3 ? "보통" : ""}
+              {starCount === 4 ? "좋음" : ""}
+              {starCount === 5 ? "최고" : ""} */}
             </TableDiv>
             <TableDiv>
               <div
@@ -309,7 +309,7 @@ function WriteReviewPage() {
                 사진첨부
               </div>
               <div>
-                <FileUpload getReview={getReviewData} productId={productId} starCount={starcount} reviewText={reviewText}  />
+                <FileUpload getReview={getReviewData} productId={ReviewProduct.id} starCount={starCount} reviewText={reviewText}  />
               </div>
             </TableDiv>
           </OrderDiv>
