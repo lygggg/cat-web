@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema({
     email: { type: String, required: true },
-    id: { type: String, required: true },
+    id: { type: Number, required: true },
     starCount: { type: Number, required: true },
     reviewText: { type: String },
     imageUrl: { type: String },

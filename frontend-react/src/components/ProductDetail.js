@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 
 import { getProductDetail as getProduct } from '../service/productService';
@@ -69,11 +69,6 @@ function ProductDetail() {
     setQuestion(productQuestion.data.questions);
   };
 
-  useEffect(() => {
-    getOneProduct(productId);
-    getProductsQuestion(productId);
-  }, [questionButton]);
-
   const handlePlus = () => {
     setcount(count + 1);
   };
@@ -86,9 +81,14 @@ function ProductDetail() {
 
   const sendQuestion = () => {
     createQuest({ questionText, productId });
-    setQuestionButton('클릭');
+    setQuestionButton(true);
     setQuestionText('');
   };
+
+  useEffect(() => {
+    getOneProduct(productId);
+    getProductsQuestion(productId);
+  }, [questionButton]);
 
   return (
     <MainDiv>
@@ -239,7 +239,8 @@ function ProductDetail() {
         />
       </CenterDiv>
       <CenterDiv>
-        <ReviewList productId={product.id}/>
+        { product.id && <ReviewList productId={product.id}/> }
+        
       </CenterDiv>
       <CenterDiv>
         <div
@@ -361,6 +362,7 @@ function ProductDetail() {
         </div>
       </CenterDiv>
     </MainDiv>
+ 
   );
 }
 

@@ -10,14 +10,14 @@ import { getReviewList } from "../service/reviewService";
 function ReviewList({ productId }) {
   const [reviewList, setReviewList] = useState([]);
 
-  const fetchReviewList = async () => {
-    const list = await getReviewList(productId);
-    setReviewList(list);
-  };
-
   useEffect(() => {
     fetchReviewList();
-  });
+  },[]);
+  
+  const fetchReviewList = async () => {
+    const list = await getReviewList(productId);
+    setReviewList(list.reviewProduct);
+  };
 
   return (
     <div
@@ -30,7 +30,6 @@ function ReviewList({ productId }) {
       <div style={{ padding: "30px 40px" }}>
         <div style={{ display: "flex", placeContent: "space-between" }}>
           <H4>상품평</H4>
-          {productId}
         </div>
         <div style={{ borderTop: "3px solid" }}>
           <div
@@ -42,18 +41,25 @@ function ReviewList({ productId }) {
               background: "#eee",
               display: "grid",
             }}
-          ></div>
-          {/* {question.length === 0 ? (
+          ></div> 
+          {reviewList.length === 0 ? (
           <NeverDiv>등록된 문의가 없습니다.</NeverDiv>
         ) : (
-          question.map((quest) => (
-            <Grid key={quest._id}> */}
+          reviewList.map((review) => (
+            <Grid key={review._id}>
           <div>
-            <ProductReview />
-          </div>
-          {/* </Grid>
+            <ProductReview review={review}/>
+          </div>  
+          </Grid>
           ))
-        )} */}
+        )}
+        {reviewList.map((review) => (
+            <Grid key={review._id}>
+          <div>
+            <ProductReview review={review}/>
+          </div>  
+          </Grid>
+          ))}
         </div>
       </div>
     </div>

@@ -20,7 +20,6 @@ export const createReview = async (params) => {
 
 export const getReviewList = async (id) => {
     try {
-        console.log('service')
         return await apiGetReviewList(id);
     } catch (e) {
         alert(e);
