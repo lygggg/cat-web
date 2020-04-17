@@ -8,6 +8,7 @@ export const getReviewProduct = async (id) => {
 }
 
 export const createReview = async (params) => {
+  console.log(params);
         const data = await axios.post("http://localhost:8080/upload",params, {
           headers: {
             "Content-Type": "multipart/form-data",

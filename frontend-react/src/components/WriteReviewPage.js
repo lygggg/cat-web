@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import FileUpload from "./fileupload/FileUpload";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
 import { getReviewProduct as getProduct } from "../service/reviewService";
 import { createReview as postReview } from "../service/reviewService";
@@ -12,11 +14,12 @@ import "../css/MyPagePurchaselist.css";
 import { useParams } from "react-router-dom";
 
 function WriteReviewPage() {
+  const history = useHistory();
   const { productId } = useParams();
   const [ReviewProduct, setReviewProduct] = useState([]);
   const [starCount, setStarCount] = useState(0);
   const [reviewText, setReviewText] = useState("");
-  const [review, setReview] = useState([]);
+  const [reviewPhoto, setReviewPhoto] = useState([]);
 
   const fetchReview = async () => {
     const reviewProduct = await getProduct(productId);
@@ -24,11 +27,37 @@ function WriteReviewPage() {
   };
 
   const getReviewData = async (e) => {
-    setReview(e);
+    setReviewPhoto(e);
   };
 
   const sendReview = async () => {
-    await postReview(review);
+    const formData = new FormData();
+    formData.append("file", reviewPhoto);
+    formData.append("productId", ReviewProduct.id);
+    formData.append("starCount", starCount);
+    formData.append("reviewText", reviewText);
+    formData.append("productTitle", ReviewProduct.title);
+    const review = await postReview(formData);
+    console.log(review.statusText);
+    if (review.statusText === 'OK') {
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      ).then((result) => {
+        if (result.value) {
+          history.push('/review');
+        }
+      })
+    }
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href>Why do I have this issue?</a>'
+      })
+    }
   };
 
   useEffect(() => {
@@ -309,7 +338,7 @@ function WriteReviewPage() {
                 사진첨부
               </div>
               <div>
-                <FileUpload getReview={getReviewData} productId={ReviewProduct.id} starCount={starCount} reviewText={reviewText}  />
+                <FileUpload getReview={getReviewData} />
               </div>
             </TableDiv>
           </OrderDiv>

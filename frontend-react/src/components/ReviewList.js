@@ -38,12 +38,12 @@ function ReviewList({ productId }) {
               placeItems: "center",
               gridTemplateColumns: "160px 580px 150px",
               height: "30px",
-              background: "#eee",
+              background: "#555",
               display: "grid",
             }}
           ></div> 
           {reviewList.length === 0 ? (
-          <NeverDiv>등록된 문의가 없습니다.</NeverDiv>
+          <NeverDiv>등록된 상품평이 없습니다.</NeverDiv>
         ) : (
           reviewList.map((review) => (
             <Grid key={review._id}>
@@ -53,13 +53,6 @@ function ReviewList({ productId }) {
           </Grid>
           ))
         )}
-        {reviewList.map((review) => (
-            <Grid key={review._id}>
-          <div>
-            <ProductReview review={review}/>
-          </div>  
-          </Grid>
-          ))}
         </div>
       </div>
     </div>
@@ -83,11 +76,10 @@ const H4 = styled.h4`
 
 const Grid = styled.div`
   display: grid;
-  align-items: center;
-  grid-template-columns: 170px 580px 130px;
-  grid-template-rows: 125px 10px;
+  grid-template-columns: 900px;
   justify-items: center;
   border-bottom: 0.2px solid;
+  justify-items: left;
 `;
 
 export default ReviewList;

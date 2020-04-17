@@ -3,9 +3,8 @@ import Message from "./Message";
 import axios from "axios";
 import styled from "styled-components";
 
-const FileUpload = ({ getReview, productId, starCount, reviewText }) => {
+const FileUpload = ({ getReview }) => {
   const [file, setFile] = useState("");
-  const [filename, setFilename] = useState("Choose File");
   const [imageUrl, setImageUrl] = useState("");
   
 
@@ -16,14 +15,8 @@ const FileUpload = ({ getReview, productId, starCount, reviewText }) => {
   const onChange = async (e) => {
     onImageChange(e);
     setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('file', e.target.files[0]);
-    formData.append('productId', productId);
-    formData.append('starCount', starCount);
-    formData.append('reviewText', reviewText);
-    getReview(formData);
+    getReview(file);
   };
 
   return (

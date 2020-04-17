@@ -6,17 +6,24 @@ import UploadService from '../services/upload.service';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const file = req.files.file;
-
-    if(req.files === null) {
-      return res.status(400).json({ msg: '사진이 없습니다.'});
-    }
-  
-    const imageUrl = `${__dirname}/../../public/uploads/${file.name}`;
-    const { productId, starCount, reviewText } = req.body;
-    const uploadRepo = new UploadRepo();
+  const { productId, starCount, reviewText, productTitle } = req.body;
+  const uploadRepo = new UploadRepo();
     const uploadService = new UploadService(uploadRepo);
-    await uploadService.postUpload(req.session.email, productId, starCount, reviewText, imageUrl);
+
+    if(!req.files) {
+      const imageUrl = '없음'
+      console.log(req.body);
+    console.log( productId, starCount, reviewText, imageUrl, productTitle)
+    await uploadService.postUpload(req.session.email, productId, starCount, reviewText, imageUrl, productTitle);
+    res.send('리뷰등록');
+    }
+
+    if(req.files) {
+      const file = req.files.file;
+      console.log(req.body);
+      const imageUrl = `${__dirname}/../../public/uploads/${file.name}`;
+    console.log( productId, starCount, reviewText, imageUrl, productTitle)
+    await uploadService.postUpload(req.session.email, productId, starCount, reviewText, imageUrl, productTitle);
     
     file.mv(`${__dirname}/../../public/uploads/${file.name}`, err => {
       if(err) {
@@ -26,6 +33,9 @@ router.post('/', async (req, res) => {
     
       res.json({ fileName: file.name, filePath: `/uploads/${file.name}`});
     });
+    }
+  
+    
   })
 
 export default router;

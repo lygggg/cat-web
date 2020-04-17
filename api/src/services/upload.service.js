@@ -3,7 +3,7 @@ export default class UploadService {
         this.upload = upload;
     }
 
-    async postUpload(email, productId, starCount, reviewText, imageUrl) {
-        await this.upload.putOne(email, productId, starCount, reviewText, imageUrl);
+    async postUpload(email, productId, starCount, reviewText, imageUrl, productTitle) {
+        await this.upload.putOne(email, productId, starCount, reviewText, imageUrl, productTitle);
     }
 }

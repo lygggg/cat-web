@@ -6,6 +6,15 @@ class PurchaseRepository {
     return await purchaseModel.find({ email });
   }
 
+  async getReviewableList(email, isReview) {
+    return await purchaseModel.find({ email });
+  }
+
+  async getWroteList(email, isReview) {
+    console.log(await purchaseModel.find({ email: email }, { products: { $elemMatch:{review: 'true'}}}))
+    return await purchaseModel.find({ email: email }, { products: { $elemMatch:{review: 'true'}}})
+  }
+
   async create(products, email) {
     const d = new Date();
     const date =

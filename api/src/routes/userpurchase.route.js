@@ -23,9 +23,10 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  const { isReview } = req.query;
   const purchaseRepo = new PurchaseRepo();
   const purchaseService = new PurchaseService(purchaseRepo);
-  const purchases = await purchaseService.getPurchase(req.session.email);
+  const purchases = await purchaseService.getPurchase(req.session.email, isReview);
   res.send({ purchases });
 });
 

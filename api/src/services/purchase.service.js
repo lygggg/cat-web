@@ -3,7 +3,19 @@ export default class PurchaseService {
         this.purchase = purchase;
     }
 
-    async getPurchase(userEmail) {
+    async getPurchase(userEmail, isReview) {
+        if (isReview === 'true') {
+            console.log('true')
+            const purchase = await this.purchase.getReviewableList(userEmail, isReview);
+        return purchase;    
+        }
+
+        if (isReview === 'false') {
+            console.log('false')
+            const purchase = await this.purchase.getWroteList(userEmail, isReview);
+        return purchase;    
+        }
+
         const purchase = await this.purchase.getAll(userEmail);
         return purchase;
     }

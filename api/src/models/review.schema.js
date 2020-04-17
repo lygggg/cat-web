@@ -6,6 +6,7 @@ const reviewSchema = new mongoose.Schema({
     starCount: { type: Number, required: true },
     reviewText: { type: String },
     imageUrl: { type: String },
+    productTitle: { type: String, required: true },
     date: { type: String, required: true },
 })
 

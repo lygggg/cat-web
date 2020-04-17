@@ -10,9 +10,9 @@ export const createPurchase = async (params) => {
   }
 };
 
-export const getPurchase = async () => {
+export const getPurchase = async (params) => {
   try {
-    return await apiGetPurchase();
+    return await apiGetPurchase(params);
   } catch (e) {
     alert(e);
   }

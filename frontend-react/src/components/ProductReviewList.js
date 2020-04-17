@@ -10,15 +10,19 @@ import { MainDiv } from "../lib/Grid";
 import "../css/MyPagePurchaselist.css";
 
 function ProductReview() {
-  const [purchaseList, setPurchaseList] = useState([]);
+  const [reviewableList, setReviewableList] = useState([]);
+  const [wroteReviewList, setWroteReviewList] = useState()
+  const [reviewMenu, setReviewMenu] = useState(true);
+  
   const fetchPurchase = async () => {
-    const item = await getPurchase();
-    setPurchaseList(item.data.purchases);
+    const item = await getPurchase(reviewMenu);
+    console.log(item.data.purchases[0].products)
+    setReviewableList(item.data.purchases);
   };
 
   useEffect(() => {
     fetchPurchase();
-  }, []);
+  }, [reviewMenu]);
 
   return (
     <MainDiv style={{ height: "1500px" }}>
@@ -28,11 +32,11 @@ function ProductReview() {
           <OrderDiv>
             <h2>구매후기</h2>
             <div>
-              <Button >작성 가능 구매후기</Button>
-              <Button >내가 쓴 구매후기</Button>
+              <Button onClick={() => { setReviewMenu(true) }} >작성 가능 구매후기</Button>
+              <Button onClick={() => { setReviewMenu(false) }} >내가 쓴 구매후기</Button>
             </div>
-            <FrameDiv>
-              {purchaseList.map((it) => {
+            {reviewMenu === true ? <FrameDiv>
+              {reviewableList.map((it) => {
                 return (
                   <div key={it._id}>
                     {it.products.map((i) => {
@@ -45,7 +49,9 @@ function ProductReview() {
                   </div>
                 );
               })}
-            </FrameDiv>
+            </FrameDiv> :
+            <div>내가 쓴 구매후기</div>
+            }
           </OrderDiv>
         </div>
       </div>

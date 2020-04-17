@@ -39,7 +39,7 @@ function PurchaseProduct({ product }) {
         <div><Button>배송조회</Button></div>
         <div><Button>교환신청</Button></div>
         <div><Button>반품신청</Button></div>
-        <div><Button>구매후기</Button></div>
+        <Link to='/review'><div><Button>구매후기</Button></div></Link>
       </div>
     </Grid>
   );

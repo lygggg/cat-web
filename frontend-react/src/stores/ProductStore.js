@@ -26,7 +26,7 @@ const productStore = {
   
   putPayProducts(products) {
     this._paymentProducts = [];
-    this._paymentProducts = [...this.paymentProducts, products]
+    this._paymentProducts = [...this.paymentProducts, products ]
 
   },
 

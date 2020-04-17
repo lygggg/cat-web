@@ -10,6 +10,7 @@ const productShapshot = new mongoose.Schema({
   account: { type: String },
   phoneNumber: String,
   count: { type: Number, required: true },
+  review:{ type: Boolean },
 });
 
 const purchaseSchema = new mongoose.Schema({

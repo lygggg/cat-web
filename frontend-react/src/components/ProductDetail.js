@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory, Redirect } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import Swal from "sweetalert2";
 
 import { getProductDetail as getProduct } from '../service/productService';
 import {
@@ -50,7 +51,10 @@ function ProductDetail() {
     }
     if (product.amount > 0) {
       const products = [{ ...product, count }];
-      ProductStore.putPayProducts(products);
+      ProductStore.putPayProducts(products.map(e => ({
+        ...e,
+        review: true,
+      })));
       history.push('/payment');
     }
   };
@@ -79,8 +83,27 @@ function ProductDetail() {
     }
   };
 
-  const sendQuestion = () => {
-    createQuest({ questionText, productId });
+  const sendQuestion = async () => {
+    const quest = await createQuest({ questionText, productId });
+    if(quest.statusText === 'OK') {
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      ).then((result) => {
+        if (result.value) {
+          history.push(`/products/${productId}`);
+        }
+      })
+    }
+    else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href>Why do I have this issue?</a>'
+      })
+    }
     setQuestionButton(true);
     setQuestionText('');
   };

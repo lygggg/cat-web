@@ -151,11 +151,14 @@ function BasketList() {
 
   function selectBuy() {
     const products = baskets.filter(e => e.selected === true);
-    if (products.length == 0) {
+    if (products.length == 0) {``
       alert('상품을 선택해주세요.');
     }
     if (products.length !== 0) {
-      productStore.putPayProducts(products);
+      productStore.putPayProducts(products.map(e => ({
+        ...e,
+        review: true,
+      })));
       history.push('/payment');
     }
   }
