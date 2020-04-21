@@ -8,7 +8,7 @@ class ReviewRepository {
     }
 
     async getReviewList(id) {
-        console.log(id);
+
         const reviewList = await reviewModel.find({id: id})
         return reviewList;
     }

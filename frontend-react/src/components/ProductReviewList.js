@@ -11,12 +11,10 @@ import "../css/MyPagePurchaselist.css";
 
 function ProductReview() {
   const [reviewableList, setReviewableList] = useState([]);
-  const [wroteReviewList, setWroteReviewList] = useState()
   const [reviewMenu, setReviewMenu] = useState(true);
   
   const fetchPurchase = async () => {
     const item = await getPurchase(reviewMenu);
-    console.log(item.data.purchases[0].products)
     setReviewableList(item.data.purchases);
   };
 
@@ -32,10 +30,8 @@ function ProductReview() {
           <OrderDiv>
             <h2>구매후기</h2>
             <div>
-              <Button onClick={() => { setReviewMenu(true) }} >작성 가능 구매후기</Button>
-              <Button onClick={() => { setReviewMenu(false) }} >내가 쓴 구매후기</Button>
             </div>
-            {reviewMenu === true ? <FrameDiv>
+  <FrameDiv>
               {reviewableList.map((it) => {
                 return (
                   <div key={it._id}>
@@ -49,9 +45,7 @@ function ProductReview() {
                   </div>
                 );
               })}
-            </FrameDiv> :
-            <div>내가 쓴 구매후기</div>
-            }
+            </FrameDiv>
           </OrderDiv>
         </div>
       </div>

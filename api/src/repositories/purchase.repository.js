@@ -11,7 +11,7 @@ class PurchaseRepository {
   }
 
   async getWroteList(email, isReview) {
-    console.log(await purchaseModel.find({ email: email }, { products: { $elemMatch:{review: 'true'}}}))
+
     return await purchaseModel.find({ email: email }, { products: { $elemMatch:{review: 'true'}}})
   }
 

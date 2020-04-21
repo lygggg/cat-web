@@ -23,7 +23,7 @@ function PurchaseList() {
   }, []);
 
   return (
-    <MainDiv style={{ height: "1500px" }}>
+    <MainDiv style={{ height: "2000px" }}>
       <div style={{ width: "1230px", margin: "auto", paddingTop: "40px" }}>
         <LeftMenu/>
         <div style={{ float: "right" }}>

@@ -25,7 +25,7 @@ export const Div = styled.div`
 `;
 
 export const MainDiv = styled.div`
-    width: 1880px;
+    width: 100%;
 `;
 
 export default ItemListDiv;

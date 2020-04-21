@@ -12,17 +12,15 @@ router.post('/', async (req, res) => {
 
     if(!req.files) {
       const imageUrl = '없음'
-      console.log(req.body);
-    console.log( productId, starCount, reviewText, imageUrl, productTitle)
     await uploadService.postUpload(req.session.email, productId, starCount, reviewText, imageUrl, productTitle);
     res.send('리뷰등록');
     }
 
     if(req.files) {
       const file = req.files.file;
-      console.log(req.body);
+
       const imageUrl = `${__dirname}/../../public/uploads/${file.name}`;
-    console.log( productId, starCount, reviewText, imageUrl, productTitle)
+
     await uploadService.postUpload(req.session.email, productId, starCount, reviewText, imageUrl, productTitle);
     
     file.mv(`${__dirname}/../../public/uploads/${file.name}`, err => {

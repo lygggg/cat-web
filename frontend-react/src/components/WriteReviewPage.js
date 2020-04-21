@@ -38,7 +38,6 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
-    console.log(review.statusText);
     if (review.statusText === 'OK') {
       Swal.fire(
         'Good job!',

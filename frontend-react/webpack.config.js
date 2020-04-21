@@ -1,10 +1,11 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve( __dirname, '/dist' ),
+    path: path.resolve( __dirname, 'dist/' ),
     filename: 'main.js',
     publicPath: '/',
   },
@@ -23,7 +24,7 @@ module.exports = {
   },
   devServer: {
     proxy: [{
-      context: ["/login", "/userbasket", "/sign_up", "/userpurchase", "/modify_info", "/question", "/reviewproduct", "/upload"],
+      context: ['/login', '/userbasket', '/sign_up', '/userpurchase', '/modify_info', '/question', '/reviewproduct', '/upload'],
       target: 'http://localhost:3000',
       secure: false,
       changeOrigin: true,
@@ -35,7 +36,10 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: './index.html',
-      filename: 'index.html',
-    })
+      filename: 'index.html'
+    }),
+    new CopyPlugin([
+      { from: 'public/image', to: './public/image' },
+    ]),
   ],
 };
