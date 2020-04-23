@@ -1,18 +1,15 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node @babel/preset-env",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" &b& exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/node": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "babel-node": "0.0.1-security",
     "connect-redis": "^4.0.4",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
@@ -39,7 +36,11 @@
   },
   "description": "",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-node": "0.0.1-security",
     "babel-preset-node6": "^11.0.0",
     "babel-register": "^6.26.0",
     "eslint": "^6.8.0",

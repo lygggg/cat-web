@@ -27,12 +27,14 @@ function WriteReviewPage() {
   };
 
   const getReviewData = async (e) => {
+    console.log(e);
     setReviewPhoto(e);
   };
 
   const sendReview = async () => {
     const formData = new FormData();
     formData.append("file", reviewPhoto);
+    console.log(reviewPhoto);
     formData.append("productId", ReviewProduct.id);
     formData.append("starCount", starCount);
     formData.append("reviewText", reviewText);

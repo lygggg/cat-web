@@ -1,6 +1,4 @@
 import React, { Fragment, useState } from "react";
-import Message from "./Message";
-import axios from "axios";
 import styled from "styled-components";
 
 const FileUpload = ({ getReview }) => {
@@ -14,9 +12,8 @@ const FileUpload = ({ getReview }) => {
 
   const onChange = async (e) => {
     onImageChange(e);
-    setFile(e.target.files[0]);
     e.preventDefault();
-    getReview(file);
+    getReview(e.target.files[0]);
   };
 
   return (
@@ -27,7 +24,7 @@ const FileUpload = ({ getReview }) => {
           사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 10장까지 첨부 가능합니다.
           <FileInput
             type="file"
-            className="custom-file-input"
+            name='myfile'
             id="customFile"
             onChange={onChange}
           />
