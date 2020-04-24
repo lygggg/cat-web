@@ -33,13 +33,13 @@ function WriteReviewPage() {
 
   const sendReview = async () => {
     const formData = new FormData();
-    formData.append("file", reviewPhoto);
-    console.log(reviewPhoto);
+    formData.append("myfile", reviewPhoto);
     formData.append("productId", ReviewProduct.id);
     formData.append("starCount", starCount);
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
+    console.log(formData);
     if (review.statusText === 'OK') {
       Swal.fire(
         'Good job!',

@@ -18,20 +18,20 @@ let upload = multer({
     bucket: "reviewfile",
     acl: "public-read-write",
     key: (req, file, cb) => {
-      cb(null, file.originalname);
+      cb(null, Date.now().toString());
     },
   }),
   
 });
 
 router.post("/", upload.single('myfile'), async (req, res) => {
-  console.log(req.file, req.files);
+  const file = req.file
+  console.log(file);
   const { productId, starCount, reviewText, productTitle } = req.body;
   let imageUrl = '';
-  if (!req.files) {
+  if (!req.file) {
     imageUrl = "없음";
   } else {
-    res.json(file);
     imageUrl = 's3URL';
   }
 
