@@ -31,7 +31,7 @@ app.use(session({
     name: 'user',
     httpOnly: false,
   },
-  store: new RedisStore({ host: 'localhost', port: 6367, client: redisClient, ttl: 86400 }),
+  store: new RedisStore({ host: 'ec2-15-164-229-197.ap-northeast-2.compute.amazonaws.com', port: 6367, client: redisClient, ttl: 86400 }),
 }));
 
 
