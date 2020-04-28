@@ -21,7 +21,10 @@ db.once('open', function() {
 })
 
 const RedisStore = connectRedis(session);
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+  host: '15.164.229.197',
+  port: 6376,
+});
 
 app.use(session({
   secret: 'Rs89I67YEA55cLMgi0t6oyr8568e6KtD',
@@ -31,7 +34,7 @@ app.use(session({
     name: 'user',
     httpOnly: false,
   },
-  store: new RedisStore({ host: 'ec2-15-164-229-197.ap-northeast-2.compute.amazonaws.com', port: 6367, client: redisClient, ttl: 86400 }),
+  store: new RedisStore({ host: '15.164.229.197', port: 6367, client: redisClient, ttl: 86400 }),
 }));
 
 
