@@ -4,6 +4,7 @@ import styled from "styled-components";
 import LeftMenu from './LeftMenu';
 
 import PurchaseProduct from "./PurchaseProduct";
+import Bottom from './Bottom';
 import { getPurchase } from "../service/purchaseService";
 
 import { MainDiv } from "../lib/Grid";
@@ -23,7 +24,11 @@ function PurchaseList() {
   }, []);
 
   return (
-    <MainDiv style={{ height: "2000px" }}>
+    <>
+    <MainDiv style={{ height: "2000px",
+    width: '100%',
+    minWidth: '1500px',
+    marginBottom: '350px' }}>
       <div style={{ width: "1230px", margin: "auto", paddingTop: "40px" }}>
         <LeftMenu/>
         <div style={{ float: "right" }}>
@@ -82,6 +87,8 @@ function PurchaseList() {
         </div>
       </div>
     </MainDiv>
+    <Bottom />
+    </>
   );
 }
 

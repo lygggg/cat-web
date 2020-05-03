@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 function ProductRewview({ review }) {
   return (
-    <>
+    <div style={{ marginBottom: '60px' }}>
       <div style={{ display: "flex" }}>
         <div style={{ padding: "8px" }}>
           <img src="/public/image/profile-image.png" />
@@ -34,10 +34,10 @@ function ProductRewview({ review }) {
       </div>
       <TitleDiv>{review.productTitle}</TitleDiv>
       <div style={{ marginBottom: "19px" }}>
-        <img src={review.imageUrl} />
+        <img src={review.imageUrl} width='30%' />
       </div>
       <TextDiv>{review.reviewText}</TextDiv>
-    </>
+    </div>
   );
 }
 

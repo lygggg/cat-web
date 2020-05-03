@@ -87,8 +87,8 @@ function ProductDetail() {
     const quest = await createQuest({ questionText, productId });
     if(quest.statusText === 'OK') {
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        '문의가 완료되었습니다.!',
+        '감사합니다!',
         'success'
       ).then((result) => {
         if (result.value) {

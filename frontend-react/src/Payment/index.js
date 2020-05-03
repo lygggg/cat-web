@@ -345,6 +345,7 @@ function Payment({ history, form, ua }) {
             <tr>
               <TitleTd>배송 요청사항</TitleTd>
               <TextTd>
+                {requestTerm}
                 <button style={{ background:'white' }} onClick={() => modifyRequestTerm()}>변경</button>
               </TextTd>
             </tr>

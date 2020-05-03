@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { userSignUp } from "../apis/auth";
+import Swal from "sweetalert2";
 
 const GridDiv = styled.div`
   display: grid;
@@ -44,6 +45,7 @@ const SignButton = styled.button`
 `;
 
 function SignUp() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
@@ -62,7 +64,13 @@ function SignUp() {
         phoneNumber,
         location
       });
-      alert("회원가입 되셨습니다.");
+      Swal.fire(
+        'Good job!',
+        '회원가입 완료!',
+        'success'
+      ).then(() => {
+          history.push('/');
+      })
     }
   };
 

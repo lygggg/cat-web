@@ -78,8 +78,8 @@ function UserModify() {
 
   return isLogin !== "true" ? (
     <>
-      <div style={{ width: "1920px" }}>
-        <MainDiv>
+      <div style={{ width: '100%', minWidth: '1500px' }}>
+        <MainDiv style={{ width: '100%' }}>
           <HeaderDiv>
             <h1 style={{ fontWeight: "700" }}>개인 정보 수정</h1>
           </HeaderDiv>
@@ -117,7 +117,7 @@ function UserModify() {
       </div>
     </>
   ) : (
-    <div style={{ width: "1920px" }}>
+    <div style={{ width: '100%' }}>
       <MainDiv>
         <h1>회원정보 수정</h1>
         <Table>

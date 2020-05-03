@@ -81,7 +81,6 @@ function App() {
           <Route exact path="/review">
             <Header searchCallback={searchTermRoute}/>
             <ProductReview/>
-            <Bottom />
           </Route>
           <Route exact path="/review/:productId">
             <Header searchCallback={searchTermRoute}/>
@@ -91,7 +90,6 @@ function App() {
           <AuthRoute exact path="/purchase">
             <Header searchCallback={searchTermRoute}/>
               <PurchaseList/>
-              <Bottom />
             </AuthRoute>
             <Route exact path="/payment/result" component={PaymentResult}/>
             <AuthRoute path="/payment">

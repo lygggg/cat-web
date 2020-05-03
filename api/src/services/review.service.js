@@ -5,6 +5,7 @@ export default class ReviewService {
 
     async getReview(id, email) {
         const product = await this.review.getOne(id, email);
+        console.log(product,'뭐야시발', id, email);
         return product;
     }
 

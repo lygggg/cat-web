@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Footer = styled.footer`
     width: 100%;
     min-width: 1500px;
-    margin-top: 70px;
+    margin-top: 100px;
+
     
 `;
 

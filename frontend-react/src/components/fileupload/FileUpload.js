@@ -34,7 +34,7 @@ const FileUpload = ({ getReview }) => {
       {imageUrl ? (
         <div className="row mt-5">
           <div className="col-md-6 m-auto">
-            <img style={{ width: "20%" }} src={imageUrl} alt="" />
+            <img style={{ height: "60%", width: '200px' }} src={imageUrl} alt="" />
           </div>
         </div>
       ) : null}

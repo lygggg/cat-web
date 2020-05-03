@@ -16,23 +16,24 @@ let upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "reviewfile",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read-write",
     key: (req, file, cb) => {
-      cb(null, Date.now().toString());
+      cb(null, file.originalname);
     },
   }),
   
 });
 
 router.post("/", upload.single('myfile'), async (req, res) => {
+  
   const file = req.file
-  console.log(file);
   const { productId, starCount, reviewText, productTitle } = req.body;
   let imageUrl = '';
   if (!req.file) {
-    imageUrl = "없음";
+    imageUrl = "https://reviewfile.s3.ap-northeast-2.amazonaws.com/notimage.png";
   } else {
-    imageUrl = 's3URL';
+    imageUrl = `https://reviewfile.s3.ap-northeast-2.amazonaws.com/${file.originalname}`;
   }
 
   try {
@@ -48,7 +49,7 @@ router.post("/", upload.single('myfile'), async (req, res) => {
     );
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}`});
   } catch (err) {
-    res.send(500, err);
+    res.send('실패');
   }
 });
 

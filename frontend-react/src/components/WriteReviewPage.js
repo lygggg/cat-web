@@ -23,11 +23,11 @@ function WriteReviewPage() {
 
   const fetchReview = async () => {
     const reviewProduct = await getProduct(productId);
+    console.log(reviewProduct.reviewProduct.products)
     setReviewProduct(reviewProduct.reviewProduct.products[0]);
   };
 
   const getReviewData = async (e) => {
-    console.log(e);
     setReviewPhoto(e);
   };
 
@@ -39,11 +39,11 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
-    console.log(formData);
+    console.log(review);
     if (review.statusText === 'OK') {
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        '성공',
+        '리뷰 등록이 완료되었습니다!',
         'success'
       ).then((result) => {
         if (result.value) {
