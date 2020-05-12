@@ -8,7 +8,7 @@ import UploadService from "../services/upload.service";
 
 const router = express.Router();
 
-AWS.config.loadFromPath(__dirname+'/../config/awsconfig.json');
+// AWS.config.loadFromPath(__dirname+'/../config/awsconfig.json');
 let s3 = new AWS.S3({
 });
 

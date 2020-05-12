@@ -5,12 +5,12 @@ import session from 'express-session';
 import mongoose from 'mongoose';
 import redis from 'redis';
 import connectRedis from 'connect-redis';
-
 require('dotenv').config();
 
-const port = 3000;
+// dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
+const port = process.env.PORT;
 const app = express();
-mongoose.connect('mongodb+srv://baayoo71:dl1532@cluster0-zfvee.mongodb.net/catweb?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));
@@ -22,7 +22,7 @@ db.once('open', function() {
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient({
   host: '127.0.0.1',
-  port:6379
+  port: 6379
 });
 
 app.use(session({
@@ -33,14 +33,13 @@ app.use(session({
     name: 'user',
     httpOnly: false,
   },
-  store: new RedisStore({ host: '15.164.220.31', port: 6369, client: redisClient, ttl: 86400 }),
+  store: new RedisStore({ host: '15.164.220.31', port: process.env.REDIS_PORT, client: redisClient, ttl: 86400 }),
 }));
 
 
 app.use(express.json());
 
-app.use(cors({ origin: 'http://localhost:8080', credentials: true}));
-// app.use(cors({ origin: 'http://catweb.s3-website.ap-northeast-2.amazonaws.com', credentials: true}));
+app.use(cors({ origin: process.env.CORS_ORIGIN_PRO, credentials: true}));
 
 app.use(v1Route);
 
