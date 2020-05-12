@@ -55,6 +55,6 @@
 | <img src="frontend-react/public/image/que.png" > | <img src="frontend-react/public/image/reviewlist.png" > |
 |
 
-|                              |                 리뷰기능                |
+|                              |                 리뷰기능                
 | :-----------------------------------: | :-----------------------------------: |
 |  | <img src="frontend-react/public/image/writereview.png" > |
