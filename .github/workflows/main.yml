@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Build
-        destination: /frontend-react
+        location: /frontend-react
         run: npm run build
 
       - name: Deploy                  # S3에 배포하기
