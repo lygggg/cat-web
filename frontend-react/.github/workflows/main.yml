@@ -25,7 +25,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        paths: /frontend-react
 
       - name: Deploy                  # S3에 배포하기
         env:
