@@ -1,12 +1,13 @@
 name: catppingmall
 on:
-    push:
-      branches:
-        - master
-        jobs:
-            build:
-              runs-on: ubuntu-latest
-              steps:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+     steps:
                 - name: Checkout source code.
                   uses: actions/checkout@master
           
