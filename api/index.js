@@ -7,7 +7,6 @@ import redis from 'redis';
 import connectRedis from 'connect-redis';
 require('dotenv').config();
 
-// dotenv.config({ path: `.env.${process.env.NODE_ENV}`});
 const port = process.env.PORT;
 const app = express();
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -21,8 +20,8 @@ db.once('open', function() {
 
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient({
-  host: '127.0.0.1',
-  port: 6379
+  host: process.env.HOST,
+  port: process.env.REDIS_PORT
 });
 
 app.use(session({
@@ -33,13 +32,12 @@ app.use(session({
     name: 'user',
     httpOnly: false,
   },
-  store: new RedisStore({ host: '15.164.220.31', port: process.env.REDIS_PORT, client: redisClient, ttl: 86400 }),
+  store: new RedisStore({ client: redisClient, ttl: 86400 }),
 }));
 
 
 app.use(express.json());
-
-app.use(cors({ origin: process.env.CORS_ORIGIN_PRO, credentials: true}));
+app.use(cors({ origin: process.env.CORS_ORIGIN_DEV, credentials: true}));
 
 app.use(v1Route);
 

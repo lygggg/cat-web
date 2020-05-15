@@ -1,3 +1,4 @@
 /node_modules
 /sessions
 /api/src/config
+.env
