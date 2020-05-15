@@ -15,7 +15,7 @@ let s3 = new AWS.S3({
 let upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "reviewfile",
+    bucket: "reviewfiles",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read-write",
     key: (req, file, cb) => {
@@ -31,9 +31,9 @@ router.post("/", upload.single('myfile'), async (req, res) => {
   const { productId, starCount, reviewText, productTitle } = req.body;
   let imageUrl = '';
   if (!req.file) {
-    imageUrl = "https://reviewfile.s3.ap-northeast-2.amazonaws.com/notimage.png";
+    imageUrl = "https://reviewfiles.s3.ap-northeast-2.amazonaws.com/notimage.png";
   } else {
-    imageUrl = `https://reviewfile.s3.ap-northeast-2.amazonaws.com/${file.originalname}`;
+    imageUrl = `https://reviewfiles.s3.ap-northeast-2.amazonaws.com/${file.originalname}`;
   }
 
   try {
@@ -54,14 +54,3 @@ router.post("/", upload.single('myfile'), async (req, res) => {
 });
 
 export default router;
-
-// let payLoad = {url: req,}
-
-// file.mv(`${__dirname}/../../public/uploads/${file.name}`, err => {
-//   if(err) {
-//     console.error(err);
-//     return res.status(500).send(err);
-//   }
-
-//   res.json({ fileName: file.name, filePath: `/uploads/${file.name}`});
-// });
