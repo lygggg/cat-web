@@ -1,4 +1,6 @@
 /node_modules
 /sessions
 /src/config
+/.env
+.env*
 .env
