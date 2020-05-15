@@ -3,6 +3,8 @@ on:
   push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
       - master
+    paths:
+      - /frontend-react
 
 jobs:
   build:
@@ -24,7 +26,6 @@ jobs:
         run: npm install
 
       - name: Build
-        location: /frontend-react
         run: npm run build
 
       - name: Deploy                  # S3에 배포하기
