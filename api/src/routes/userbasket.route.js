@@ -19,8 +19,8 @@ router.post('/', async (req, res) => {
   res.send('장바구니 보내기');
 });
 
-router.delete('/', async (req, res) => {
-  const { productId } = req.body;
+router.delete('/:productId', async (req, res) => {
+  const { productId } = req.params
   const basketRepo = new BasketRepo();
   const basketService = new BasketService(basketRepo);
   await basketService.deleteBasket(productId, req.session.email);

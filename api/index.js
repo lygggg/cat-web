@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const port = process.env.PORT;
 const app = express();
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_URL_PRO, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error'));
@@ -37,7 +37,7 @@ app.use(session({
 
 
 app.use(express.json());
-app.use(cors({ origin: process.env.CORS_ORIGIN_DEV, credentials: true}));
+app.use(cors({ origin: process.env.CORS_ORIGIN_PRO, credentials: true}));
 
 app.use(v1Route);
 

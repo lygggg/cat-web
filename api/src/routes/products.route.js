@@ -24,9 +24,7 @@ router.get('/:id', async (req, res) => {
   const id = req.params.id;
   const productRepo = new ProductRepo();
   const productService = new ProductService(productRepo);
-  console.log('fsd');
   const product = await productService.getProduct(id);
-  console.log(product,'fsd');
   res.send({ product });
 });
 

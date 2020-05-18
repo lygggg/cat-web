@@ -13,10 +13,15 @@ export default class BasketService {
     }
 
     async deleteBasket(productId, userEmail) {
-        if(productId) { await this.baskets.deleteOne(productId, userEmail); }
+        if(productId == 'undefined') {
+             await this.baskets.deleteAll(productId, userEmail);
+            return;
+            }
 
-        if(!productId) { await this.baskets.deleteAll(productId, userEmail); }
-
+        if(productId && productId !== 'undefined') {
+            await this.baskets.deleteOne(productId, userEmail);
+            return;
+        }
         await this.baskets.deleteSelected(productId, userEmail);
         
     }
