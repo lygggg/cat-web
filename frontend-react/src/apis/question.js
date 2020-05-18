@@ -1,5 +1,7 @@
 import axios from 'axios';
-import URL from './url';
+const dotenv = require('dotenv');
+dotenv.config();
+const URL = process.env.API_URL;
 
 export const getQuestions = async (params) => {
     const data = await axios.get(`${URL}/question` + `/${params}`, { withCredentials: true });

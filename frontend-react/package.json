@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bulid": "webpack",
-    "start": "webpack-dev-server",
+    "build": "webpack",
+    "start": "webpack-dev-server --mode development --stage server",
+    "local": "webpack-dev-server --mode development --stage local",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint"
   },
@@ -42,6 +43,7 @@
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",

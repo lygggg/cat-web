@@ -1,5 +1,7 @@
 import axios from 'axios';
-import URL from './url';
+const dotenv = require('dotenv');
+dotenv.config();
+const URL = process.env.API_URL;
 
 export const putCart = async (params) => {
   const data = await axios.post(`${URL}/userbasket`, params, { withCredentials: true });
@@ -7,12 +9,14 @@ export const putCart = async (params) => {
 };
 
 export const getCart = async () => {
+  console.log(process.env.API_URL);
   const data = await axios.get(`${URL}/userbasket`, { withCredentials: true });
   return data;
 };
 
-export const deleteCart = async (id) => {
-  const data = await axios.delete(`${URL}/userbasket`, { data: { productId: id } }, { withCredentials: true });
+export const deleteCart = async (productId) => {
+  console.log(productId,'fsd');
+  const data = await axios.delete(`${URL}/userbasket/${productId}`, { withCredentials: true });
   return data;
 };
 

@@ -23,7 +23,6 @@ function WriteReviewPage() {
 
   const fetchReview = async () => {
     const reviewProduct = await getProduct(productId);
-    console.log(reviewProduct.reviewProduct.products)
     setReviewProduct(reviewProduct.reviewProduct.products[0]);
   };
 
@@ -39,7 +38,6 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
-    console.log(review);
     if (review.statusText === 'OK') {
       Swal.fire(
         '성공',

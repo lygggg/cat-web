@@ -1,5 +1,7 @@
 import axios from 'axios';
-import URL from './url';
+const dotenv = require('dotenv');
+dotenv.config();
+const URL = process.env.API_URL;
 
 export const getReviewProduct = async (id) => {
     const { data } = await axios.get(`${URL}/reviewproduct` + `/${id}`, { withCredentials: true });

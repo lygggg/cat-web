@@ -1,5 +1,7 @@
 import axios from 'axios';
-import URL from './url';
+const dotenv = require('dotenv');
+dotenv.config();
+const URL = process.env.API_URL;
 
 export const getUserProfile = async ({ email, password }) => {
   const { data } = await axios.post(`${URL}/login`, { email, password }, { withCredentials: true });

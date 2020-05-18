@@ -1,13 +1,22 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const dotenv = require('dotenv');
+module.exports = (env, options) => {
+  dotenv.config({
+    path: `env/${options.stage || 'server'}.env`
+  });
 
-module.exports = {
+  return {
   entry: './src/index.js',
   output: {
     path: path.resolve( __dirname, 'dist/' ),
-    filename: 'main.js',
+    filename: 'main.js?[hash]',
     publicPath: '/',
+  },
+  node: {
+    fs: 'empty'
   },
   module: {
     rules: [
@@ -41,5 +50,10 @@ module.exports = {
     new CopyPlugin([
       { from: 'public/image', to: './public/image' },
     ]),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify(process.env.API_URL)
+    }),
+    new webpack.EnvironmentPlugin(['API_URL'])
   ],
+};
 };
