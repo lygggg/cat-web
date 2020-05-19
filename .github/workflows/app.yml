@@ -47,7 +47,7 @@ jobs:
       # "commitId=${GITHUB_SHA}" 코드가 자동으로 최신 commit을 불러옵니다.
       # 아까 보관해두었던 AWS_ACCESS_KEY_ID와 AWS_SECRET_ACCESS_KEY는 GitHub secrets에 저장해둡니다.
       - name: Trigger the CodeDeploy in EC2 instance
-        run: aws deploy --region ap-northeast-2 create-deployment --application-name CodeDeploy-application-catppingmall --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name CodeDeploy-group-catppingmall --github-location repository=lygggg/cat-web,commitId=${GITHUB_SHA}
+        run: aws deploy --region ap-northeast-2 create-deployment --application-name CodeDeploy-application-catppingmall --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name CodeDeploy-group-catppingmall --github-location repository=lygggg/cat-web,commitId=${GITHUB_SHA}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
