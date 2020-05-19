@@ -15,9 +15,8 @@ jobs:
 
       - name: Cache node modules      # node modules 캐싱
         uses: actions/cache@v1
-        working-directory: ./frontend-react
         with:
-          path: node_modules
+          path: ./frontend-react/node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-
