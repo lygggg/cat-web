@@ -34,6 +34,7 @@ jobs:
       # [Your DockerHub ID]/[Your Repository Name] 예시) dal96k/woomin-facebook
       - name: Docker image build and push
         uses: docker/build-push-action@v1
+        working-directory: ./api
         with:
           username: ${{ secrets.DOCKER_ID }}
           password: ${{ secrets.DOCKER_PW }}
