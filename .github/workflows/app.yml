@@ -35,7 +35,7 @@ jobs:
       - name: Docker image build and push
         uses: docker/build-push-action@v1
         with:
-            path: ./api
+          path: ./api
           username: ${{ secrets.DOCKER_ID }}
           password: ${{ secrets.DOCKER_PW }}
           repository: baayoo71/catppingmall
