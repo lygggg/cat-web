@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Checkout source code.   # 레포지토리 체크아웃
         uses: actions/checkout@master
-        working-directory: ./frontend-react
 
       - name: Cache node modules      # node modules 캐싱
         uses: actions/cache@v1
