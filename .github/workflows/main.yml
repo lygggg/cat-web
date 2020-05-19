@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout source code.   # 레포지토리 체크아웃
-      working-directory: ./frontend-react
+      - name: Checkout master   # 레포지토리 체크아웃
+      working-directory: ../frontend-react
         uses: actions/checkout@master
 
       - name: Cache node modules      # node modules 캐싱
