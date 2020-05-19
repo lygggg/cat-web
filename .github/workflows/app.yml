@@ -37,8 +37,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_ID }}
           password: ${{ secrets.DOCKER_PW }}
-          repository: baayoo71/catppingmall:1.0
-          tags: latest
+          repository: baayoo71/catppingmall
+          tags: 1.0
 
       # Docker Hub에 새로운 Image가 push 완료되면 CodeDeploy Agent가 동작되도록 합니다.
       # --application-name과 --deployment-group-name은 아까 작성하신 애플리케이션 이름과 그룹 이름으로 대체하시면 됩니다.
