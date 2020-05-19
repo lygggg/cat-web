@@ -4,6 +4,9 @@ if [-d/home/ubuntu/build]; then
 fi
 mkdir -vp /home/ubuntu/build
 
-if [[ "$(docker images -q [Docker Hub ID]/[Docker Hub Repository Name]:[version] 2> /dev/null)" != "" ]]; then
-docker rmi -f $(docker images --format '{{.Repository}}:{{.Tag}}' --filter=reference='[Docker Hub ID]/[Docker Hub Repository Name]:[version]')
+docker stop catppingmall
+docker rm catppingmall
+
+if [[ "$(docker images -q baayoo71/catppingmall:1.0 2> /dev/null)" != "" ]]; then
+docker rmi -f $(docker images --format '{{.Repository}}:{{.Tag}}' --filter=reference='baayoo71/catppingmall:1.0')
 fi
