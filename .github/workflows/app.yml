@@ -10,7 +10,6 @@ jobs:
     env:
         working-directory: ./api
     steps:
-      # master branch로 변경합니다.
       - name: Checkout master
         uses: actions/checkout@master
 
