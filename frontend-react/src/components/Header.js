@@ -51,7 +51,7 @@ function Header(props) {
     <>
       <Ul className="header_user">
         <Link to="/purchase">
-          <Li>마이페이지</Li>
+          <Li>마이페이지시발</Li>
         </Link>
         <Link to="/basket">
           <Li>장바구니</Li>
