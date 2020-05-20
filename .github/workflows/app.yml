@@ -14,7 +14,6 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@master
 
-      # node_modules를 매번 설치하면 비효율적이므로 캐시로 저장해둡니다.
       - name: Cache node modules
         uses: actions/cache@v1
         with:
