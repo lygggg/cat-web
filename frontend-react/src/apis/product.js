@@ -8,7 +8,7 @@ export const getProducts = async () => {
 };
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
-  const { data } = await axios.post(`${process.env.API_URL}/products`, { category, offset, limit }, { withCredentials: true })
+  const { data } = await axios.post(`http://ec2-13-125-74-163.ap-northeast-2.compute.amazonaws.com:3000/products`, { category, offset, limit }, { withCredentials: true })
   return data;
 };
 
