@@ -9,13 +9,11 @@ export const putCart = async (params) => {
 };
 
 export const getCart = async () => {
-  console.log(process.env.API_URL);
   const data = await axios.get(`${URL}/userbasket`, { withCredentials: true });
   return data;
 };
 
 export const deleteCart = async (productId) => {
-  console.log(productId,'fsd');
   const data = await axios.delete(`${URL}/userbasket/${productId}`, { withCredentials: true });
   return data;
 };
