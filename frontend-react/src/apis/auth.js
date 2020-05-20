@@ -1,20 +1,19 @@
 import axios from 'axios';
 const dotenv = require('dotenv');
 dotenv.config();
-const URL = process.env.API_URL;
 
 export const getUserProfile = async ({ email, password }) => {
-  const { data } = await axios.post(`${URL}/login`, { email, password }, { withCredentials: true });
+  const { data } = await axios.post(`${process.env.API_URL}/login`, { email, password }, { withCredentials: true });
   return data;
 };
 
 export const userLogout = async () => {
-  const { data } = await axios.delete(`${URL}/login`, { withCredentials: true });
+  const { data } = await axios.delete(`${process.env.API_URL}/login`, { withCredentials: true });
   return data;
 };
 
 export const userAuth = async () => {
-  const { data } = await axios.get(`${URL}/login`, { withCredentials: true });
+  const { data } = await axios.get(`${process.env.API_URL}/login`, { withCredentials: true });
   return data;
 };
 

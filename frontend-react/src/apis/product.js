@@ -1,20 +1,19 @@
 import axios from 'axios';
 const dotenv = require('dotenv');
 dotenv.config();
-const URL = process.env.API_URL;
 
 export const getProducts = async () => {
-  const { data } = await axios.get(`${URL}/products`, { withCredentials: true });
+  const { data } = await axios.get(`${process.env.API_URL}/products`, { withCredentials: true });
   return data;
 };
 
 export const getSliceProducts = async ({ category, offset, limit }) => {
-  const { data } = await axios.post(`${URL}/products`, { category, offset, limit }, { withCredentials: true })
+  const { data } = await axios.post(`${process.env.API_URL}/products`, { category, offset, limit }, { withCredentials: true })
   return data;
 };
 
 export const getProductDetail = async (id) => {
-  const { data } = await axios.get(`${URL}/products` + `/${id}`, { withCredentials: true });
+  const { data } = await axios.get(`${process.env.API_URL}/products` + `/${id}`, { withCredentials: true });
   return data;
 };
 
