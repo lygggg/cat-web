@@ -41,11 +41,6 @@ jobs:
           repository: baayoo71/catppingmall
           tags: 1.0
 
-      # Docker Hub에 새로운 Image가 push 완료되면 CodeDeploy Agent가 동작되도록 합니다.
-      # --application-name과 --deployment-group-name은 아까 작성하신 애플리케이션 이름과 그룹 이름으로 대체하시면 됩니다.
-      # [Your GitHub Repository] 예시) Woomin-Jeon/facebook-clone-server
-      # "commitId=${GITHUB_SHA}" 코드가 자동으로 최신 commit을 불러옵니다.
-      # 아까 보관해두었던 AWS_ACCESS_KEY_ID와 AWS_SECRET_ACCESS_KEY는 GitHub secrets에 저장해둡니다.
       - name: Trigger the CodeDeploy in EC2 instance
         run: aws deploy --region ap-northeast-2 create-deployment --application-name CodeDeploy-application-example --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name CodeDeploy-group-example --github-location repository=lygggg/cat-web,commitId=${GITHUB_SHA}
         env:
