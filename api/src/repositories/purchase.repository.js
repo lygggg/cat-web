@@ -18,7 +18,7 @@ class PurchaseRepository {
   async create(products, email) {
     const d = new Date();
     const date =
-      d.getFullYear() + "년 " + d.getMonth() + "월 " + d.getDate() + "일";
+      d.getFullYear() + "년 " + d.getMonth()+1 + "월 " + d.getDate() + "일";
     await purchaseModel.create({ products, email, date });
   }
 
