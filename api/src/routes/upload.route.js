@@ -10,8 +10,6 @@ const router = express.Router();
 
 // AWS.config.loadFromPath(__dirname+'/../config/awsconfig.json');
 AWS.config.update({ "accessKeyId": process.env.accessKeyId, "secretAccessKey": process.env.secretAccessKey, "region": "ap-northeast-2" });
-let s3 = new AWS.S3({
-});
 
 let s3 = new AWS.S3({
 });
