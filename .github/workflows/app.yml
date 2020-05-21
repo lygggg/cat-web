@@ -28,6 +28,9 @@ jobs:
 
       - name: Docker image build and push
         uses: docker/build-push-action@v1
+        env:
+          accessKeyId: ${{ secrets.accessKeyId }}
+          secretAccessKey: ${{ secrets.secretAccessKey }}
         with:
           path: ./api
           username: ${{ secrets.DOCKER_ID }}
