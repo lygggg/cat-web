@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.DOCKER_ID }}
           password: ${{ secrets.DOCKER_PW }}
           repository: baayoo71/catppingmall
-          tags: 1.0
+          tags: latest
 
       - name: Trigger the CodeDeploy in EC2 instance
         run: aws deploy --region ap-northeast-2 create-deployment --application-name CodeDeploy-application-example --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name CodeDeploy-group-example --github-location repository=lygggg/cat-web,commitId=${GITHUB_SHA}
