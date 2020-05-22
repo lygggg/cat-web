@@ -21,13 +21,13 @@ export const createProduct = async ({
   title, category, price, description,
   imageurl, phoneNumber, account,
 }) => {
-  const { data } = await axios.post(`${URL}/products/new`, {
+  const { data } = await axios.post(`${process.env.API_URL}/products/new`, {
     title, category, price, description, imageurl, phoneNumber, account,
   }, { withCredentials: true });
   return data;
 };
 
 export const getSearchProducts = async (string) => {
-  const { data } = await axios.get(`${URL}/search` + `?q=${string}`, { withCredentials: true } );
+  const { data } = await axios.get(`${process.env.API_URL}/search` + `?q=${string}`, { withCredentials: true } );
   return data;
 };

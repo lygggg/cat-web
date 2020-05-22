@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     name: 'user',
-    httpOnly: false,
+    httpOnly: true,
   },
   store: new RedisStore({ client: redisClient, ttl: 86400 }),
 }));

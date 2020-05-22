@@ -97,9 +97,9 @@ function Login() {
           <Input value={email} placeholder="아이디를 입력해주세요" onChange={({ target: { value } }) => setEmail(value)} type='email' autoComplete='on'/>
           <Input value={password} onChange={({ target: { value } }) => setPassword(value)} type="password" placeholder="패스워드를 입력해주세요" autoComplete="false" maxlength="30"/>
           <SearchDiv className="txt_find">    
-            <A href="/member/find/loginId">아이디</A>
+            <A>아이디</A>
             <A> / </A>
-            <A href="/member/find/password" >비밀번호 찾기</A>
+            <A>비밀번호 찾기</A>
           </SearchDiv>
           {falsePassword === false ? 
         <FalseDiv>이메일 또는 비밀번호를 다시 확인하세요. 등록되지 않은 이메일이거나, 비밀번호를 잘못 입력하셨습니다.</FalseDiv>
