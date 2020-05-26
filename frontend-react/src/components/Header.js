@@ -33,6 +33,7 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 `;
 
 function Header(props) {
@@ -82,12 +83,12 @@ function Header(props) {
           <span>
             <img
               style={{
-                maxWidth: "150px",
+                maxWidth: "190px",
                 width: "auto",
                 height: "auto",
                 margin: "10px",
               }}
-              src="/public/image/catbaner.jpg"
+              src="/public/image/catppingmall-baner.jpg"
             />
           </span>
         </Link>
