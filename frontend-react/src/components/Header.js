@@ -83,7 +83,7 @@ function Header(props) {
           <span>
             <img
               style={{
-                maxWidth: "190px",
+                maxWidth: "170px",
                 width: "auto",
                 height: "auto",
                 margin: "10px",
