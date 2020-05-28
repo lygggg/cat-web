@@ -31,6 +31,11 @@ function WriteReviewPage() {
   };
 
   const sendReview = async () => {
+    Swal.fire({
+      timerProgressBar:true,
+      title: 'Wating...',
+      text: '업로드중입니다.',
+      })
     const formData = new FormData();
     formData.append("myfile", reviewPhoto);
     formData.append("productId", ReviewProduct.id);
@@ -38,14 +43,9 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
+    
 
     if (review.statusText === 'OK') {
-      Swal.fire({
-        title: '리뷰 업로딩 중입니다.',
-        timerProgressBar: true,
-        timer: 4000,
-      })
-      
       Swal.fire(
         '성공',
         '리뷰 등록이 완료되었습니다!',
