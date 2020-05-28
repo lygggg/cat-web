@@ -31,33 +31,6 @@ function WriteReviewPage() {
   };
 
   const sendReview = async () => {
-    let timerInterval
-Swal.fire({
-  title: 'Auto close alert!',
-  html: 'I will close in <b></b> milliseconds.',
-  timer: 2000,
-  timerProgressBar: true,
-  onBeforeOpen: () => {
-    Swal.showLoading()
-    timerInterval = setInterval(() => {
-      const content = Swal.getContent()
-      if (content) {
-        const b = content.querySelector('b')
-        if (b) {
-          b.textContent = Swal.getTimerLeft()
-        }
-      }
-    }, 100)
-  },
-  onClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    console.log('I was closed by the timer')
-  }
-})
     const formData = new FormData();
     formData.append("myfile", reviewPhoto);
     formData.append("productId", ReviewProduct.id);
@@ -65,24 +38,21 @@ Swal.fire({
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
-    if (review.statusText === 'OK') {
-      Swal.fire(
-        '성공',
-        '리뷰 등록이 완료되었습니다!',
-        'success'
-      ).then((result) => {
-        if (result.value) {
-          history.push('/review');
+    if (review.statusText === "OK") {
+      Swal.fire("성공", "리뷰 등록이 완료되었습니다!", "success").then(
+        (result) => {
+          if (result.value) {
+            history.push("/review");
+          }
         }
-      })
-    }
-    else {
+      );
+    } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
-      })
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: "<a href>Why do I have this issue?</a>",
+      });
     }
   };
 
@@ -371,6 +341,33 @@ Swal.fire({
           <div style={{ textAlign: "center", marginTop: "30px" }}>
             <RegisterButton
               onClick={() => {
+                let timerInterval;
+                Swal.fire({
+                  title: "Auto close alert!",
+                  html: "I will close in <b></b> milliseconds.",
+                  timer: 2000,
+                  timerProgressBar: true,
+                  onBeforeOpen: () => {
+                    Swal.showLoading();
+                    timerInterval = setInterval(() => {
+                      const content = Swal.getContent();
+                      if (content) {
+                        const b = content.querySelector("b");
+                        if (b) {
+                          b.textContent = Swal.getTimerLeft();
+                        }
+                      }
+                    }, 100);
+                  },
+                  onClose: () => {
+                    clearInterval(timerInterval);
+                  },
+                }).then((result) => {
+                  /* Read more about handling dismissals below */
+                  if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                  }
+                });
                 sendReview();
               }}
             >
