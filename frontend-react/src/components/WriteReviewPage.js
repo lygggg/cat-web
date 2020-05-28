@@ -38,36 +38,51 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
-    
-    try{
-      Swal.fire({
-        timerProgressBar:true,
-        title: 'Wating...',
-        text: '업로드중입니다.',
-        })
-    }
-    catch{
-      console.log('noob!');
-    }
 
-    if (review.statusText === 'OK') {
-      Swal.fire(
-        '성공',
-        '리뷰 등록이 완료되었습니다!',
-        'success'
-      ).then((result) => {
-        if (result.value) {
-          history.push('/review');
-        }
-      })
-    }
-    else {
+    Swal.fire({
+      timerProgressBar: true,
+      title: "Wating...",
+      text: "업로드중입니다.",
+    });
+
+    if (review.statusText === "OK") {
+      let timerInterval;
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href>Why do I have this issue?</a>'
-      })
+        title: "Auto close alert!",
+        html: "I will close in <b></b> milliseconds.",
+        timer: 2000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent();
+            if (content) {
+              const b = content.querySelector("b");
+              if (b) {
+                b.textContent = Swal.getTimerLeft();
+              }
+            }
+          }, 100);
+        },
+        onClose: () => {
+          clearInterval(timerInterval);
+        },
+      }).then((result) => {
+        Swal.fire("성공", "리뷰 등록이 완료되었습니다!", "success").then(
+          (result) => {
+            if (result.value) {
+              history.push("/review");
+            }
+          }
+        );
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: "<a href>Why do I have this issue?</a>",
+      });
     }
   };
 
