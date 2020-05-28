@@ -38,6 +38,15 @@ function WriteReviewPage() {
     formData.append("reviewText", reviewText);
     formData.append("productTitle", ReviewProduct.title);
     const review = await postReview(formData);
+    
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: '리뷰 업로딩 중입니다.',
+      showConfirmButton: false,
+      timer: 5000
+    })
+
     if (review.statusText === 'OK') {
       Swal.fire(
         '성공',
