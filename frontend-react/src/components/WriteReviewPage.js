@@ -345,7 +345,7 @@ function WriteReviewPage() {
                 Swal.fire({
                   title: "Auto close alert!",
                   html: "I will close in <b></b> milliseconds.",
-                  timer: 2000,
+                  timer: 10000,
                   timerProgressBar: true,
                   onBeforeOpen: () => {
                     Swal.showLoading();
