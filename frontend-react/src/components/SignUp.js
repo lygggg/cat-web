@@ -92,7 +92,7 @@ function SignUp() {
             <Label>아이디*</Label>
           </Span>
           <Input
-            placeholder="아이디(이메일)"
+            placeholder="이메일 형식으로 입력해주세요."
             value={email}
             type="email"
             onChange={v => setEmail(v.target.value)}
@@ -134,23 +134,23 @@ function SignUp() {
         </div>
         <div>
           <Span>
-            <Label>휴대폰</Label>
+            <Label>휴대폰*</Label>
           </Span>
           <Input
             type="tel"
             value={phoneNumber}
-            placeholder="휴대폰 번호"
+            placeholder="-을 입력하지마세요."
             onChange={v => setPhoneNumber(v.target.value)}
           />
         </div>
         <div>
           <Span>
-            <Label>주소</Label>
+            <Label>주소*</Label>
           </Span>
           <Input
             type="text"
             value={location}
-            placeholder="주소지"
+            placeholder="아무 주소나 입력해주세요"
             onChange={v => setLocation(v.target.value)}
           />
         </div>

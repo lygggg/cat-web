@@ -276,7 +276,20 @@ function ProductDetail() {
           <div style={{ padding: '30px 40px' }}>
             <div style={{ display: 'flex', placeContent: 'space-between' }}>
               <H4>상품문의</H4>
-              <Popup
+              {localStorage.getItem("isLogin") ? (
+          <>
+            <Link to="/">
+              <Li onClick={handleLogout}>로그아웃</Li>
+            </Link>
+          </>
+        ) : (
+          <>
+            
+          </>
+        )}
+        {localStorage.getItem("isLogin") ? (
+          <>
+            <Popup
                 modal={true}
                 contentStyle={{ width: '640px', height: '460px' }}
                 trigger={<QuestionButton>문의하기</QuestionButton>}
@@ -355,6 +368,13 @@ function ProductDetail() {
                   </>
                 )}
               </Popup>
+          </>
+        ) : (
+          <>
+            <QuestionButton>로그인 해주세요.</QuestionButton>
+          </>
+        )}
+              
             </div>
             <div style={{ borderTop: '3px solid' }}>
               <div
