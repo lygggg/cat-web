@@ -37,7 +37,7 @@ app.use(session({
 
 
 app.use(express.json());
-app.use(cors({ origin: process.env.CORS_ORIGIN_DEV, credentials: true}));
+app.use(cors({ origin: process.env.CORS_ORIGIN_PRO, credentials: true}));
 
 app.use(v1Route);
 

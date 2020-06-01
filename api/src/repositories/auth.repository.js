@@ -20,7 +20,7 @@ class UserRepository {
         try {
             await newUser.save();
         } catch(e) {
-            return console.error(500, e);
+            return error(500, e);
         }
         
     // 사용자 장바구니 배열

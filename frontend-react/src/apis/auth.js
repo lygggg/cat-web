@@ -18,11 +18,11 @@ export const userAuth = async () => {
 };
 
 export const userSignUp = async (params) => {
-  const { data } = await axios.post(`${URL}/sign_up`, params, { withCredentials: true });
+  const { data } = await axios.post(`${process.env.API_URL}/sign_up`, params, { withCredentials: true });
   return data;
 };
 
 export const modifyInfo = async (params) => {
-  const {data} = await axios.patch(`${URL}/modify_info`, params, { withCredentials: true });
+  const {data} = await axios.patch(`${process.env.API_URL}/modify_info`, params, { withCredentials: true });
   return data;
 }

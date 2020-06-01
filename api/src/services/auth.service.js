@@ -19,8 +19,9 @@ export default class AuthService {
   }
 
   async signUp(user) {
-    await this.auth.createOne(user);
+   const userId = await this.auth.createOne(user);
     await this.auth.createCart(user.email);
+    return userId;
   }
 
   async modifyInfo(password, name, phoneNumber, userEmail) {

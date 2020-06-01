@@ -57,20 +57,29 @@ function SignUp() {
     event.preventDefault();
     event.stopPropagation();
     if (password === checkPassword) {
-      await userSignUp({
+     const signUp = await userSignUp({
         email,
         password,
         name,
         phoneNumber,
         location
       });
-      Swal.fire(
-        'Good job!',
-        '회원가입 완료!',
-        'success'
-      ).then(() => {
-          history.push('/');
-      })
+      
+      if(signUp.statusText === "OK") {
+        Swal.fire(
+          'Good job!',
+          '회원가입 완료!',
+          'success'
+        ).then(() => {
+            history.push('/');
+        })
+      }
+      else {
+        Swal.fire(
+          'Noob!!',
+          '회원가입 실패!',
+          'error')
+      }
     }
   };
 
