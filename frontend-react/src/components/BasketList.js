@@ -139,6 +139,9 @@ function BasketList() {
   }
 
   async function checkRemove() {
+    if(baskets.filter(i => i.selected == true).length === 0) {
+      return alert('상품을 선택해주세요.');
+    } 
     await deleteCart(
       baskets
         .filter(i => i.selected == true)

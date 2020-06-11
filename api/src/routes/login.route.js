@@ -12,6 +12,9 @@ router.delete('/', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  if(!req.session.email) {
+    res.send({login: false});
+  }
   const authRepo = new AuthRepo();
   const authService = new AuthService(authRepo);
   const userInfo = await authService.Info(req.session.email);
