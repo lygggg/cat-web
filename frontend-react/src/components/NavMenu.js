@@ -40,9 +40,6 @@ function NavMenu() {
             <Category categoryName={category} categoryId={index} />
           </Li>
         )}
-        <Link to="/products/new">
-          <Li>상품추가</Li>
-        </Link>
       </ul>
     </Nav>
   );
