@@ -16,7 +16,6 @@ import { DescriptionName } from "../lib/ItemName";
 
 function PurchaseList() {
   const [purchaseList, setPurchaseList] = useState([]);
-  const history = useHistory();
 
   const fetchPurchase = async () => {
     const item = await getPurchase();
@@ -24,17 +23,9 @@ function PurchaseList() {
   };
 
   useEffect(() => {
-    checkLoign();
     fetchPurchase();
   }, []);
 
-  const checkLoign = async () => {
-    const checkSession = await userAuth();
-    if (checkSession.login === false) {
-      localStorage.removeItem("isLogin");
-      history.push('/');
-    }
-  };
 
   return (
     <>

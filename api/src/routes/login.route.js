@@ -12,6 +12,7 @@ router.delete('/', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+  console.log(req.session.email);
   if(!req.session.email) {
     res.send({login: false});
   }
@@ -27,12 +28,14 @@ router.post('/', async (req, res) => {
   const authService = new AuthService(authRepo);
   const userProfile = await authService.login(email, password);
   if (email === userProfile[0].email && password === userProfile[0].password) {
+    console.log(userProfile[0].email);
     req.session.email = userProfile[0].email;
     req.session.name = userProfile[0].name;
     res.json({ islogin: true });
   } else {
     res.json({ islogin: false });
   }
+  console.log(req.session.email);
 });
 
 export default router;
