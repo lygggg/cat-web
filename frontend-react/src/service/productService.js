@@ -1,9 +1,8 @@
-import { getProducts as apiGetProducts } from '../apis/product';
-import { getSliceProducts as apiGetSliceProducts } from '../apis/product';
-import { getProductDetail as apiGetProductDetail } from '../apis/product';
-import { createProduct as apiCreateProduct } from '../apis/product';
-import { getSearchProducts as apiGetSearchProducts } from '../apis/product';
-
+import { getProducts as apiGetProducts } from "../apis/product";
+import { getSliceProducts as apiGetSliceProducts } from "../apis/product";
+import { getProductDetail as apiGetProductDetail } from "../apis/product";
+import { createProduct as apiCreateProduct } from "../apis/product";
+import { getSearchProducts as apiGetSearchProducts } from "../apis/product";
 
 export const getProducts = async () => {
   try {
@@ -38,11 +37,23 @@ export const getProductDetail = async (id) => {
 };
 
 export const createProduct = async ({
-  title, category, price, description, imageurl, phoneNumber, account,
+  title,
+  category,
+  price,
+  description,
+  imageurl,
+  phoneNumber,
+  account,
 }) => {
   try {
     return await apiCreateProduct({
-      title, category, price, description, imageurl, phoneNumber, account,
+      title,
+      category,
+      price,
+      description,
+      imageurl,
+      phoneNumber,
+      account,
     });
   } catch (e) {
     alert(e);

@@ -1,6 +1,5 @@
-import { createPurchase as apiCreatePurchase } from '../apis/purchase';
-import { getPurchase as apiGetPurchase } from '../apis/purchase'
-
+import { createPurchase as apiCreatePurchase } from "../apis/purchase";
+import { getPurchase as apiGetPurchase } from "../apis/purchase";
 
 export const createPurchase = async (params) => {
   try {
