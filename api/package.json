@@ -21,7 +21,7 @@
     "express-session": "^1.17.0",
     "http-errors": "^1.7.3",
     "http-status": "^1.4.2",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "iamport": "^0.3.4",
     "moment": "^2.24.0",
     "mongoose": "^5.9.2",
