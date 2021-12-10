@@ -34,7 +34,6 @@ router.post('/', async (req, res) => {
   } else {
     res.json({ islogin: false });
   }
-  console.log(req.session.email);
 });
 
 export default router;
