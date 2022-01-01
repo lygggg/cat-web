@@ -1,11 +1,12 @@
 # catWeb
 
-리액트 라이브러리를 사용한 쇼핑몰 프로젝트*
+리액트 라이브러리를 사용한 쇼핑몰 프로젝트\*
 ![](/frontend-react/public/image/catweb.png)
 
 ## 프로젝트 소개
 
 2020.11.21~2021.03.20
+웹사이트 URL : http://catppingmalls.com/ (현재는 닫은 상태입니다.)
 
 ## 웹 사이트 화면
 
@@ -25,36 +26,37 @@
 
 ## 사용 기술
 
-|FrontEnd||
-|---|---|
-|Language|JavaScript|
-|FrontEnd|React, Webpack,Axios|
-|BackEnd|Nodejs-Express|
-|DataBase|MongoDB, Redis|
-|DevOps|Docker|
-|Infra|AWS EC2, AWS S3, Atlas|
+| FrontEnd |                        |
+| -------- | ---------------------- |
+| Language | JavaScript             |
+| FrontEnd | React, Webpack,Axios   |
+| BackEnd  | Nodejs-Express         |
+| DataBase | MongoDB, Redis         |
+| DevOps   | Docker                 |
+| Infra    | AWS EC2, AWS S3, Atlas |
 
-|                 메인                |               검색기능                |
-| :-----------------------------------: | :-----------------------------------: |
-| <img src="frontend-react/public/image/catweb (1).png" >    | <img src="frontend-react/public/image/search.png" >   |
+|                          메인                           |                      검색기능                       |
+| :-----------------------------------------------------: | :-------------------------------------------------: |
+| <img src="frontend-react/public/image/catweb (1).png" > | <img src="frontend-react/public/image/search.png" > |
 
-|               장바구니                |                상품디테일               |
-| :-----------------------------------: | :-----------------------------------: |
-| <img src="frontend-react/public/image/cart.png" > | <img src="frontend-react/public/image/detail.png" >  |
+|                     장바구니                      |                     상품디테일                      |
+| :-----------------------------------------------: | :-------------------------------------------------: |
+| <img src="frontend-react/public/image/cart.png" > | <img src="frontend-react/public/image/detail.png" > |
 
-|                구매페이지               |               결제페이지             |
-| :-----------------------------------: | :-----------------------------------: |
+|                       구매페이지                        |                    결제페이지                    |
+| :-----------------------------------------------------: | :----------------------------------------------: |
 | <img src="frontend-react/public/image/myshowping.png" > | <img src="frontend-react/public/image/pay.png" > |
 
-|               상품 목록               |                 결제기능                |
-| :-----------------------------------: | :-----------------------------------: |
+|                        상품 목록                         |                     결제기능                      |
+| :------------------------------------------------------: | :-----------------------------------------------: |
 | <img src="frontend-react/public/image/productlist.png" > | <img src="frontend-react/public/image/pay1.png" > |
 
-|               문의기능               |                 리뷰목록                |
-| :-----------------------------------: | :-----------------------------------: |
+|                     문의기능                     |                        리뷰목록                         |
+| :----------------------------------------------: | :-----------------------------------------------------: |
 | <img src="frontend-react/public/image/que.png" > | <img src="frontend-react/public/image/reviewlist.png" > |
+
 |
 
-|                           리뷰기능                        |
-| :------------------------------------------------------: | 
+|                         리뷰기능                         |
+| :------------------------------------------------------: |
 | <img src="frontend-react/public/image/writereview.png" > |

@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import styled from 'styled-components';
-import Slider from './Slider';
-import SubSlider from './SubSlider';
-
+import styled from "styled-components";
+import Slider from "./Slider";
+import SubSlider from "./SubSlider";
 
 function Home() {
   const Div = styled.div`
@@ -15,9 +14,9 @@ function Home() {
 
   return (
     <>
-    <Slider />
+      <Slider />
       <Div>
-      <SubSlider />
+        <SubSlider />
       </Div>
     </>
   );
