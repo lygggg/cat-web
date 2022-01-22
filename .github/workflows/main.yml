@@ -1,5 +1,5 @@
 name: catppingmall
-on: 
+on:
   push:
     branches:
       - master
@@ -8,10 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout source code.   # 레포지토리 체크아웃
+      - name: Checkout source code. # 레포지토리 체크아웃
         uses: actions/checkout@master
 
-      - name: Cache node modules      # node modules 캐싱
+      - name: Cache node modules # node modules 캐싱
         uses: actions/cache@v1
         with:
           path: ./frontend-react/node_modules
@@ -19,9 +19,8 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-          
 
-      - name: Install Dependencies    # 의존 파일 설치
+      - name: Install Dependencies # 의존 파일 설치
         working-directory: ./frontend-react
         run: npm install
 
@@ -40,4 +39,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            dist s3://catppingmall
+            dist s3://catweb
