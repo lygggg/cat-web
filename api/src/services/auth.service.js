@@ -10,6 +10,9 @@ export default class AuthService {
 
   async Info(email) {
     const userInfo = await this.auth.getOne(email);
+
+console.log(userInfo, email);
+
     if(!userInfo) {
       return {
         login: false,
