@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node @babel/preset-env",
+    "start": "BABEL_DISABLE_CACHE=1 nodemon index.js --exec babel-node @babel/preset-env",
     "test": "echo \"Error: no test specified\" &b& exit 1"
   },
   "author": "",

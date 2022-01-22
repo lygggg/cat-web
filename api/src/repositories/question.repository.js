@@ -1,4 +1,4 @@
-import model from "../models/question.scheama";
+import model from "../models/question.schema";
 
 class QuestionRepository {
   async getAll(productId) {
