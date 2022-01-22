@@ -32,6 +32,8 @@ module.exports = (env, options) => {
     ],
   },
   devServer: {
+  disableHostCheck: true,
+/*
     proxy: [{
       context: ['/login', '/userbasket', '/sign_up', '/userpurchase', '/modify_info', '/question', '/reviewproduct', '/upload'],
       target: 'http://localhost:3000',
@@ -39,6 +41,9 @@ module.exports = (env, options) => {
       changeOrigin: true,
       
     }],
+*/
+    host: '0.0.0.0',
+    port: 8080,
     inline: true,   
     historyApiFallback: true,
   },
